@@ -1,3 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="app_name">OCD</string>
+    <string name="loading">Loading…</string>
+    <string name="no_internet_connection">No internet connection!</string>
+<string name="msg_beginner_friend3">Beginner-friendly Week</string>
+  <string name="lbl_rocd_i">ROCD I</string>
+  <string name="msg_beginner_friend2">
+Beginner Friendly Week</string>
+  <string name="msg_we_will_help_yo">We will help you maintain your calm by keeping the OCD apar and overcoming it. </string>
+  <string name="msg_let_s_hear_what">Let\u2019s hear what do users have to say!</string>
+  <string name="msg_good_morning_h">Good morning, Hardikya!</string>
+  <string name="lbl_62">62</string>
+  <string name="msg_doubts_uncerta">Doubts, uncertainty and acceptance</string>
+  <string name="lbl_obsession2">Obsession:</string>
+  <string name="lbl_resources">Resources</string>
+  <string name="msg_sending_you_lov">Sending you love from our side!</string>
+  <string name="msg_to_keep_making"> to keep making progress!</string>
+  <string name="msg_post_reflection">Post-reflection form</string>
+  <string name="lbl_01_01_20022">01/01/2002</string>
+  <string name="msg_hardikya01gupta">hardikya01gupta@gmail.com</string>
+  <string name="lbl_jan_16_2024">Jan 16, 2024</string>
+  <string name="lbl_5_min">5 min</string>
+  <string name="msg_enter_the_name">Enter the name here.</string>
+  <string name="lbl_daily_reminders">Daily reminders</string>
+  <string name="lbl_log_out">Log out</string>
+  <string name="msg_we_will_see_you">We will see you back in two hours, until then relax yourself and have a break.</string>
+  <string name="msg_previous_passwo">Previous Password</string>
+  <string name="msg_let_s_begin_my">Let\u2019s begin my therapy</string>
+  <string name="msg_agree_and_proce">Agree and proceed.</string>
+  <string name="msg_health_anxiety">Health Anxiety I</string>
+  <string name="lbl_23_jan">23
+Jan</string>
+  <string name="msg_bringing_togeth">Bringing together expertise from IIITD and AIIMS, our multidisciplinary team is committed to creating an innovative and user-centric application that integrates the latest advancements in mental health research. By combining the technical prowess of IIITD with the medical insights of AIIMS, we aim to provide a comprehensive, evidence-based solution that fosters effective OCD management.</string>
+  <string name="msg_trigger_exposur">Trigger Exposure</string>
+  <string name="msg_this_document_a2">"This document and the other documents that we reference below make up our house rules,or what we officially call our Terms of Use (the "Terms" for short).
+The Terms are a legally binding contract between you and our app. If you live in India, the contract is between you and our app.
+If you live elsewhere, the contract is between you and XYZ Ireland UC, a subsidiary of XYZ.
+
+We'll just refer to XYZ and all of its subsidiaries collectively as "XYZ." Please note that "</string>
+  <string name="msg_sign_in_with_go">Sign in with Google</string>
+  <string name="msg_number_of_times">Number of times compulsion performed:</string>
+  <string name="lbl_m_01_01_2002">M \u2022 01.01.2002</string>
+  <string name="msg_a_4_digit_verif">A 4-digit verification code is sent to hardikya01gupta@gmail.com. Please enter it here.</string>
+  <string name="lbl_checking">Checking</string>
+  <string name="msg_the_app_has_bee">"The app has been a beacon of support. The 'Task Guidance Video' is a fantastic touch for those moments of uncertainty. The 'Post-Task Reflection' form also encourages self-awareness and growth!&#128200;"</string>
+  <string name="lbl_dob_dd_yy_mm">DOB (DD/YY/MM)</string>
+  <string name="lbl_30_seconds">30 seconds</string>
+  <string name="msg_we_will_see_you2">We will see you back in </string>
+  <string name="lbl_anxiety_i">Anxiety I</string>
+  <string name="lbl_22_01_2024">22/01/2024</string>
+  <string name="msg_unwanted_sexual">Unwanted Sexual Thoughts</string>
+  <string name="lbl_enter_now">enter now!</string>
+  <string name="lbl_edit_profile2">Edit Profile</string>
+  <string name="lbl_42">4:</string>
+  <string name="lbl_anxiety">Anxiety</string>
+  <string name="msg_pending_tasks">Pending Tasks (1)</string>
+  <string name="msg_0_of_16_complet">0 of 16 complete</string>
+  <string name="msg_more_than_15_mi">More than 15 minutes</string>
+  <string name="lbl_15_seconds">15 seconds</string>
+  <string name="msg_watch_next_vide">Watch next video▶️</string>
+  <string name="lbl_11_am_5_pm">11 am - 5 pm</string>
+  <string name="lbl_preferences2">Preferences</string>
+  <string name="lbl_ongoing_1">Ongoing (1)</string>
+  <string name="lbl_15_20_minutes">15-20 minutes</string>
+  <string name="msg_fear_conquer">Fear &amp; Conquer Task 1</string>
+  <string name="msg_ready_to_fight">Ready to fight OCD?</string>
+  <string name="msg_journal_your_oc">Journal your OCD through a few-clicks and help yourself to conquer the mountain of OCD.</string>
+  <string name="msg_sign_in_with_fa">Sign in with Facebook</string>
+  <string name="lbl_30">30</string>
+  <string name="lbl_31">31</string>
+  <string name="msg_resend_otp_in_6">Resend OTP in 60 seconds.</string>
+  <string name="lbl_app_shortcuts2">App Shortcuts</string>
+  <string name="lbl_0_complete">0% complete</string>
+  <string name="msg_we_can_help_wit">We can help with:</string>
+  <string name="lbl_arjun_gupta">Arjun Gupta
+</string>
+  <string name="lbl_stress_2_62">Stress 2: 62</string>
+  <string name="lbl_day_streak">Day-streak</string>
+  <string name="lbl10">தமிழ்</string>
+  <string name="lbl_6_min">6 min</string>
+  <string name="lbl11">ગુજરાતી</string>
+  <string name="lbl_15_jan">15
+Jan</string>
+  <string name="lbl12">اُردُو</string>
+  <string name="msg_hand_washing_c">hand washing, cleaning, and avoiding anything perceived to cause contamination.</string>
+  <string name="lbl_20">20</string>
+  <string name="lbl_bio">Bio</string>
+  <string name="msg_can_i_customize">Can I customize the duration of the exposure tasks?</string>
+  <string name="lbl_55_mins">55 mins</string>
+  <string name="lbl_23">23</string>
+  <string name="lbl_view_start">View &amp; Start&#128640;</string>
+  <string name="lbl_24">24</string>
+  <string name="lbl_21">21</string>
+  <string name="lbl_22">2</string>
+  <string name="msg_allow_push_noti">Allow push notifications</string>
+  <string name="lbl_27">27</string>
+  <string name="lbl_28">28</string>
+  <string name="msg_let_s_move_ahea">Let\u2019s move ahead!</string>
+  <string name="lbl_stress_level">Stress Level</string>
+  <string name="lbl_25">25</string>
+  <string name="lbl_26">26</string>
+  <string name="lbl_29">29</string>
+  <string name="msg_just_like_a_per">"Just like a perfect cup of coffee, you've brewed patience, strength, and resilience.&#127775;&#129395;"</string>
+  <string name="lbl_stress_1_85">Stress 1: 85</string>
+  <string name="lbl_female">Female</string>
+  <string name="msg_enable_clock_so">Enable clock sound</string>
+  <string name="lbl_stress_meter">Stress meter:</string>
+  <string name="lbl_advait_kumar">Advait Kumar
+</string>
+  <string name="lbl_e_mail">E-Mail</string>
+  <string name="msg_coping_with_anx">Coping with anxiety</string>
+  <string name="msg_religious_obses">Religious Obsessions</string>
+  <string name="msg_embark_on_a_com">Embark on a comprehensive journey to comprehend and effectively manage Pure Obsessive-Compulsive Disorder (Pure OCD) through Exposure and Response Prevention (ERP) therapy. In this series, we delve into the intricacies of Pure OCD, offering practical insights and step-by-step guidance on how to implement ERP techniques for optimal therapeutic results.</string>
+  <string name="msg_with_over_15_ye">With over 15 years of invaluable experience in Clinical Psychology, Dr. Swati is a licensed Clinical Psychologist registered with the Rehabilitation Council of India (RCI). She has honed her expertise at prestigious institutions, including the National Institute of Mental Health and Neurosciences (NIMHANS, Bengaluru), AIIMS, Delhi, Janakpuri Superspeciality Hospital, RML Hospital, and G B Pant Hospital.</string>
+  <string name="lbl_0_5_times">0-5 times</string>
+  <string name="lbl_12">12</string>
+  <string name="lbl_13">13</string>
+  <string name="lbl_10">10</string>
+  <string name="lbl_09_mins">09 mins</string>
+  <string name="lbl_11">11</string>
+  <string name="lbl_16">16</string>
+  <string name="lbl_let_s_start">Let\u2019s start⚡</string>
+  <string name="lbl_6_10_minutes">6-10 minutes</string>
+  <string name="lbl_17">17</string>
+  <string name="lbl_14">14</string>
+  <string name="lbl_start_task">Start task&#128640;</string>
+  <string name="lbl_15">15</string>
+  <string name="lbl_proceed">PROCEED</string>
+  <string name="lbl_18">18</string>
+  <string name="msg_allow_task_remi">Allow task reminders</string>
+  <string name="lbl_19">19</string>
+  <string name="msg_sign_up_with_go">Sign up with Google</string>
+  <string name="lbl_keep">Keep </string>
+  <string name="msg_thought_reversa2">Thought Reversal exercise</string>
+  <string name="msg_type_your_trigg">Type your trigger here.</string>
+  <string name="msg_fear_conquest2">Fear &amp; Conquest Task 2</string>
+  <string name="msg_15th_january_2">15th January, 2024</string>
+  <string name="lbl_24_jan">24
+Jan</string>
+  <string name="lbl_compulsion">Compulsion</string>
+  <string name="msg_spend_more_time">Spend more time in understanding OCD and conquering it with ERP therapy at your own pace. </string>
+  <string name="msg_compulsion_to_s2">Compulsion to straighten tie</string>
+  <string name="lbl_rocd_iii">ROCD III</string>
+  <string name="msg_resume_the_cour">Resume the course right from where you left off!</string>
+  <string name="msg_erp_therapy_is">ERP therapy is a specialized cognitive-behavioral approach designed to address and manage Obsessive-Compulsive Disorder (OCD). It involves systematically exposing individuals to anxiety triggers while simultaneously preventing the accompanying compulsive responses.
+
+ERP operates on the principle of breaking the cycle of obsessions and compulsions. By gradually exposing individuals to their anxiety triggers in a controlled manner and preventing the usual compulsive behaviors, it helps desensitize them to the distressing thoughts, fostering adaptive responses.</string>
+  <string name="lbl_02">0%</string>
+  <string name="lbl_users">users</string>
+  <string name="lbl_00">00</string>
+  <string name="msg_not_sure_on_how">Not sure on how to perform the task on the application, watch this video and perform the task seamlessly!&#127775;</string>
+  <string name="lbl_obsessions">Obsessions</string>
+  <string name="lbl_08_jan">08
+Jan</string>
+  <string name="msg_advait_kumar_ja">Advait Kumar
+Jan 17, 2024</string>
+  <string name="msg_5_10_times_0">5-10 times ; 0-5 minutes</string>
+  <string name="msg_how_many_journa">How many journal entries would you like to record?</string>
+  <string name="lbl_change_language">Change Language</string>
+  <string name="msg_what_is_erp_the">What is ERP therapy, and how does it work?</string>
+  <string name="msg_naina_singh_jan">Naina Singh
+Jan 18, 2024</string>
+  <string name="msg_how_can_i_use_t">How can I use the resources?</string>
+  <string name="msg_re_enter_passwo">Re-enter Password</string>
+  <string name="lbl_endurance_time">Endurance time!</string>
+  <string name="msg_more_than_25_mi">More than 25 minutes</string>
+  <string name="lbl_cancel_task">Cancel task</string>
+  <string name="msg_beginner_friend">Beginner-friendly week</string>
+  <string name="lbl_14_jan">14
+Jan</string>
+  <string name="msg_sign_up_with_fa">Sign up with Facebook</string>
+  <string name="msg_report_a_proble">Report a problem</string>
+  <string name="msg_fear_of_contami">Fear of contamination</string>
+  <string name="lbl_anxiety_ii">Anxiety II</string>
+  <string name="lbl_repeating">Repeating</string>
+  <string name="msg_the_patient_is">The patient is instructed to touch a doorknob without immediately washing their hands. The goal is to gradually expose the patient to the anxiety trigger and discourage the typical compulsive response, fostering a reduction in anxiety over time.</string>
+  <string name="msg_mental_compulsi">Mental Compulsions</string>
+  <string name="lbl_settings">Settings</string>
+  <string name="msg_compelled_to_re">Compelled to repeatedly check things,
+checking the same thing multiple times.</string>
+  <string name="lbl_help">Help</string>
+  <string name="msg_proceed_with_yo">Proceed with your</string>
+  <string name="msg_unable_to_type">Unable to type? Record now!</string>
+  <string name="lbl_january_2024">January 2024</string>
+  <string name="lbl_8766279496">8766279496</string>
+  <string name="lbl_11_15_times">11-15 times</string>
+  <string name="msg_no_journal_entr">No journal entries added.</string>
+  <string name="msg_religion_spir">Religion &amp; Spirituality OCD</string>
+  <string name="msg_let_s_move_my_j">Let\u2019s move my journey ahead!</string>
+  <string name="lbl_harm">Harm</string>
+  <string name="lbl_back">Back</string>
+  <string name="msg_indraprastha_in">Indraprastha Institute of Information Technology Delhi (IIITD) collaborating with experts from the All India Institute of Medical Sciences (AIIMS)</string>
+  <string name="lbl_no">No</string>
+  <string name="msg_ocd_treatment">OCD Treatment- How to do ERP for pure OCD</string>
+  <string name="msg_let_s_make_it_h">Let\u2019s make it happen</string>
+  <string name="lbl4">&#129395;</string>
+  <string name="msg_contamination_o5">Contamination OCD may </string>
+  <string name="msg_contamination_o4">Contamination OCD may result in excessive hand washing, cleaning, and avoiding anything perceived to cause contamination.</string>
+  <string name="lbl5">**********</string>
+  <string name="lbl2">********</string>
+  <string name="lbl3">\?</string>
+  <string name="lbl_home">Home</string>
+  <string name="lbl_support2">support</string>
+  <string name="msg_coping_and_deal">Coping and dealing with health worries</string>
+  <string name="msg_contamination_o3">Contamination OCD is a subtype of OCD, characterized by obsessions about their fear of becoming contaminated, contaminating others, or spreading germs. Contamination compulsions often involve excessive hand washing, cleaning, and sterilizing behavior.
+
+These fears may have a basis of realistic concern, such as viral or bacterial illness, visible dirt, or toxic materials. But fears of contamination can also stem from </string>
+  <string name="msg_contamination_o2">Contamination OCD is a subtype of OCD, characterized by obsessions about their fear of becoming contaminated, contaminating others, or spreading germs. Contamination compulsions often involve excessive hand washing, cleaning, and sterilizing behavior.
+
+These fears may have a basis of realistic concern, such as viral or bacterial illness, visible dirt, or toxic materials. But fears of contamination can also stem from magical thinking, including beliefs that names, mental images, or specific locations can contaminate them.</string>
+  <string name="lbl_13_jan">13
+Jan</string>
+  <string name="msg_set_goals_for_y">Set goals for yourself</string>
+  <string name="msg_you_re_also_agr">"you're also agreeing that we can process your information in the ways set out in the Privacy Policy, so please read it here....."</string>
+  <string name="lbl_endurance_time2">Endurance Time</string>
+  <string name="lbl_notifications">Notifications</string>
+  <string name="lbl_jan_17_2024">Jan 17, 2024</string>
+  <string name="msg_forgot_password">Forgot password?</string>
+  <string name="msg_write_a_review">Write a review and help us improve!</string>
+  <string name="msg_proceed_to_regi">Proceed to register on the app</string>
+  <string name="lbl_cancel">Cancel</string>
+  <string name="msg_constantly_worr">Constantly worried of having offended a higher power, or having done something morally wrong.</string>
+  <string name="lbl_edit_profile">Edit profile</string>
+  <string name="lbl_verification">Verification</string>
+  <string name="msg_stage_1_journ">\?Stage 1: Journal your thoughts</string>
+  <string name="lbl_01_01_2002">01/01//2002</string>
+  <string name="lbl_journal_entry">Journal entry</string>
+  <string name="lbl_support">Support</string>
+  <string name="lbl_stage_3">\?Stage 3:</string>
+  <string name="msg_ocd_contaminati">OCD Contamination</string>
+  <string name="lbl_save_changes">Save Changes</string>
+  <string name="msg_how_many_times2">How many times did you perform it?</string>
+  <string name="msg_start_from_wher">Start from where you left off!</string>
+  <string name="lbl_compulsion2">Compulsion:</string>
+  <string name="msg_obsession_perfo">Obsession performed as a response to this triggering situation.</string>
+  <string name="msg_read_therapy_re">Read therapy reviews</string>
+  <string name="lbl_health_anxiety">Health Anxiety</string>
+  <string name="msg_we_know_your_pe2">"We know your personal information is important to you, so it's important to us. Our Privacy Policy details how your information is collected, used and shared when you use our Services. By using our Services, "</string>
+  <string name="lbl_jan_19_2024">Jan 19, 2024</string>
+  <string name="lbl_pending">Pending</string>
+  <string name="msg_new_user_to_the">New user to the application? Register now!</string>
+  <string name="msg_the_task_is_pre">The task is pre-assigned by the doctor.</string>
+  <string name="msg_keep_learning_t">Keep learning to make progress!</string>
+  <string name="msg_life_changing">"Life-changing! The tasks and resources have been a game-changer in managing my anxiety. The app's user-friendly design makes it easy to navigate, and the educational videos are incredibly insightful.&#127775;"</string>
+  <string name="msg_path_to_profici">
+Path to Proficiency Week
+Skillful Mastery Wee</string>
+  <string name="msg_did_you_perform">Did you perform the compulsion in between the task?</string>
+  <string name="msg_take_a_moment_t">Take a moment to enjoy this brief video from your doctor, offering guidance for the upcoming task. Relax and begin the task at your own pace!</string>
+  <string name="lbl_ongoing_modules">Ongoing Modules</string>
+  <string name="msg_path_to_profici3">Path to Proficiency Week</string>
+  <string name="msg_path_to_profici2"> Path to Proficiency Week</string>
+  <string name="msg_explore_a_journ">Explore a journey of guidance and empowerment as you find support while navigating the complexities of OCD.</string>
+  <string name="lbl_16_20_minutes">16-20 minutes</string>
+  <string name="lbl8">हरियाणवी</string>
+  <string name="lbl9">తెలుగు</string>
+  <string name="lbl6">हिंदी</string>
+  <string name="msg_0_of_28_complet">0 of 28 complete</string>
+  <string name="lbl7">বাংলা</string>
+  <string name="lbl_28_jan">28
+Jan</string>
+  <string name="msg_4_journal_entri">4 journal entries</string>
+  <string name="lbl_21_25_minutes">21-25 minutes</string>
+  <string name="lbl_two_hours">two hours</string>
+  <string name="lbl_12_jan">12
+Jan</string>
+  <string name="msg_meet_your_thera">Meet your therapist</string>
+  <string name="msg_you_can_achieve">You can achieve the target, its never too late! </string>
+  <string name="lbl_processing">Processing...</string>
+  <string name="msg_fantastic_job">"Fantastic job! You've nailed it! &#127881;"</string>
+  <string name="msg_how_often_shoul">How often should I perform the assigned tasks?</string>
+  <string name="lbl_task_today_2">Task Today (2)</string>
+  <string name="lbl_222">22</string>
+  <string name="lbl_100">100</string>
+  <string name="lbl_8_min">8 min</string>
+  <string name="lbl_task_today_3">Task Today (3)</string>
+  <string name="lbl_10_mins">10 mins</string>
+  <string name="lbl_25_complete">25% complete</string>
+  <string name="msg_including_belie"> including beliefs that names, mental images, or specific locations can contaminate them.</string>
+  <string name="msg_view_my_journal">View my journal entry!</string>
+  <string name="lbl_05_pm">05 PM</string>
+  <string name="msg_get_the_care_yo">Get the care you deserve, with an OCD therapist who gets you.</string>
+  <string name="msg_woah_you_are_o">Woah, you are on a 7-day streak. That\u2019s just awesome!&#129327;</string>
+  <string name="msg_create_shortcut">Create shortcut to task screen</string>
+  <string name="lbl_preferences">Preferences </string>
+  <string name="msg_new_user_to_the2">New user to the application? </string>
+  <string name="msg_create_app_shor">Create app shortcut</string>
+  <string name="lbl_explore_modules">Explore modules</string>
+  <string name="lbl">************</string>
+  <string name="lbl_losing_control">Losing Control</string>
+  <string name="msg_you_did_it_once">You did it once again, and made yourself more strong in the journey of battling OCD!✨</string>
+  <string name="msg_2_journal_entri">2 journal entries</string>
+  <string name="lbl_subtasks">Subtasks</string>
+  <string name="msg_name_of_the_com2">Name of the compulsion.</string>
+  <string name="msg_after_what_dura">After what duration was the compulsion performed?</string>
+  <string name="lbl_0">0</string>
+  <string name="lbl_1">1</string>
+  <string name="lbl_3">3</string>
+  <string name="lbl_checking_ocd">Checking OCD</string>
+  <string name="lbl_4">4</string>
+  <string name="lbl_5">5</string>
+  <string name="lbl_6">6</string>
+  <string name="lbl_7">7</string>
+  <string name="lbl_8">8</string>
+  <string name="lbl_9">9</string>
+  <string name="lbl_login">Login</string>
+  <string name="msg_0_of_5_goals_co">0 of 5 goals completed</string>
+  <string name="lbl_meet_your">Meet your </string>
+  <string name="msg_we_are_a_dedica2">We are a dedicated team of researchers from the prestigious </string>
+  <string name="lbl_create_task">Create Task</string>
+  <string name="lbl_stage_3_of_4">Stage 3 of 4</string>
+  <string name="msg_circumstance_wh">Circumstance which triggered the situation:</string>
+  <string name="lbl_27_jan">27
+Jan</string>
+  <string name="msg_enter_the_trigg">Enter the trigger here.</string>
+  <string name="lbl_to_do_tasks">To-do tasks</string>
+  <string name="lbl_symptoms">Symptoms</string>
+  <string name="lbl_fill_now">fill now!</string>
+  <string name="lbl_stage">Stage</string>
+  <string name="msg_riya_choudhary">Riya Choudhary
+Jan 16, 2024</string>
+  <string name="msg_arjun_gupta_jan">Arjun Gupta
+Jan 19, 2024</string>
+  <string name="msg_thought_reversa">Thought Reversal Exercise</string>
+  <string name="lbl_0_of_4_complete">0 of 4 complete</string>
+  <string name="lbl_10_15_minutes">10-15 minutes</string>
+  <string name="msg_enter_time_of_y">Enter time of your choice duration.</string>
+  <string name="lbl_60_seconds">60 seconds</string>
+  <string name="lbl_16_20_times">16-20 times</string>
+  <string name="lbl_120_seconds">120 seconds</string>
+  <string name="lbl_k">k</string>
+  <string name="lbl_m">M</string>
+  <string name="lbl_stress_level_2">Stress level 2</string>
+  <string name="msg_already_an_exis">Already an existing user? Login now!</string>
+  <string name="lbl_12_pm">12 PM</string>
+  <string name="msg_hang_on_in_ther">Hang on in there, this is your moment of strength&#128170;&#128338;</string>
+  <string name="lbl_change_password2">Change password</string>
+  <string name="lbl_s">S</string>
+  <string name="lbl_created">Created</string>
+  <string name="lbl_t">T</string>
+  <string name="msg_view_all_the_fa">View all the FAQ here.</string>
+  <string name="msg_6_journal_entri">6 journal entries</string>
+  <string name="lbl_w">W</string>
+  <string name="lbl_date_of_birth">Date of Birth</string>
+  <string name="lbl_swati_kedia">Swati Kedia</string>
+  <string name="msg_pure_ocd_treatm3">Pure OCD Treatment - What is Pure OCD (3 of 3)</string>
+  <string name="msg_time_to_stay_st">Time to stay still</string>
+  <string name="msg_enable_sound_af">Enable sound after task completion</string>
+  <string name="lbl_new_password">New Password</string>
+  <string name="msg_stay_still_for">Stay still for 1 minute after triggering the situation.</string>
+  <string name="lbl_reflection_form">Reflection form</string>
+  <string name="msg_pure_ocd_treatm2">Pure OCD Treatment - What is Pure OCD (2 of 3)</string>
+  <string name="msg_agreed_upon_beh">Agreed upon behaviour</string>
+  <string name="msg_enter_task_name">Enter task name here.</string>
+  <string name="lbl_general">General</string>
+  <string name="msg_obsession_not_l">Obsession not listed? Type here.</string>
+  <string name="msg_magical_thinkin">magical thinking,</string>
+  <string name="lbl_male">Male</string>
+  <string name="lbl_let_s_journal">Let\u2019s journal!</string>
+  <string name="msg_re_enter_new_pa">Re-enter new password</string>
+  <string name="msg_22nd_january_2">22nd January, 2024</string>
+  <string name="msg_skillful_master"> Skillful Mastery Wee</string>
+  <string name="lbl_11_jan">11
+Jan</string>
+  <string name="lbl_ocd_basics">OCD Basics</string>
+  <string name="lbl_d">D</string>
+  <string name="lbl_app_guide">App Guide</string>
+  <string name="lbl_f">F</string>
+  <string name="lbl_252">25%</string>
+  <string name="msg_allow_app_updat">Allow app-updates notification</string>
+  <string name="lbl_gender">Gender</string>
+  <string name="lbl_naina_singh">Naina Singh
+</string>
+  <string name="lbl_26_jan">26
+Jan</string>
+  <string name="msg_privacy_conditi">Privacy conditions</string>
+  <string name="lbl_due_date">Due date</string>
+  <string name="msg_are_you_sure_yo">Are you sure you want to do the task later?</string>
+  <string name="msg_high_stress_lev">High stress level due to OCD?</string>
+  <string name="msg_what_should_i_d">What should I do if I feel overwhelmed during a task?</string>
+  <string name="msg_i_found_himself">I found himself in a tense negotiation, with the pressure mounting as the stakes of the business deal became increasingly evident.</string>
+  <string name="msg_reflect_on_situ">Reflect on situations or stimuli that consistently trigger obsessive thoughts. Identify a recurring trigger that reliably leads to distress and obsessive thinking.</string>
+  <string name="lbl_personalization">Personalization</string>
+  <string name="lbl_anxiety_iii">Anxiety III</string>
+  <string name="msg_let_s_start_the">Let\u2019s start the journey and conquer your OCD all by yourself.</string>
+  <string name="msg_how_many_times">How many times did your perform it?</string>
+  <string name="lbl_02_00_00">&#128274;02:00:00</string>
+  <string name="lbl_20_mins">20 mins</string>
+  <string name="msg_unable_to_find">Unable to find right composure?</string>
+  <string name="lbl_00_59">00:59</string>
+  <string name="lbl_180_seconds">180 seconds</string>
+  <string name="msg_already_an_exis2">Already an existing user? </string>
+  <string name="lbl_task_name">Task Name</string>
+  <string name="lbl_0_5_minutes">0-5 minutes</string>
+  <string name="msg_terms_and_condi">Terms and Conditions</string>
+  <string name="lbl_complete">Complete</string>
+  <string name="lbl_english">English</string>
+  <string name="msg_how_can_i_creat">How can I create a task?</string>
+  <string name="lbl_section_11">Section 11</string>
+  <string name="msg_0_of_15_complet">0 of 15 complete</string>
+  <string name="lbl_fast_forward">Fast forward⚡</string>
+  <string name="lbl_let_s_do_it">Let\u2019s do it&#128170;&#127995;</string>
+  <string name="lbl_trigger_of_task">Trigger of Task</string>
+  <string name="msg_were_you_able_t">Were you able to complete the task?</string>
+  <string name="lbl_email2">Email</string>
+  <string name="lbl_ongoing">Ongoing</string>
+  <string name="msg_challenge_tri">Challenge &amp; Triumph Task 1</string>
+  <string name="lbl_change_password">Change Password</string>
+  <string name="msg_circumstance_wh2">Circumstance which triggered the situation.</string>
+  <string name="msg_just_like_a_per2">"Just like a perfect cup of coffee, you've brewed patience, strength, and resilience."</string>
+  <string name="lbl_have_to_say"> have to say!</string>
+  <string name="lbl_19_jan">19
+Jan</string>
+  <string name="lbl_yes">Yes</string>
+  <string name="msg_0_of_25_complet">0 of 25 complete</string>
+  <string name="msg_our_mission_i">. Our mission is to pioneer the development of a groundbreaking application that leverages cutting-edge research and artificial intelligence to enhance the therapeutic landscape for individuals dealing with Obsessive-Compulsive Disorder (OCD).</string>
+  <string name="lbl_10_jan">10
+Jan</string>
+  <string name="msg_we_know_that_th">We know that this minute might have been stressful for you, but you did it! Move one step ahead, by entering the stress level.</string>
+  <string name="msg_complete_the_ta">Complete the task to conquer your OCD and climb the mountain to overcome to it.</string>
+  <string name="lbl_stage_1_of_4">Stage 1 of 4</string>
+  <string name="lbl_task">Task</string>
+  <string name="lbl_11_mins">11 mins</string>
+  <string name="lbl_skip">Skip</string>
+  <string name="lbl_register">Register</string>
+  <string name="lbl_app_shortcuts">App shortcuts</string>
+  <string name="msg_we_are_a_dedica">We are a dedicated team of researchers from the prestigious Indraprastha Institute of Information Technology Delhi (IIITD) collaborating with experts from the All India Institute of Medical Sciences (AIIMS). Our mission is to pioneer the development of a groundbreaking application that leverages cutting-edge research and artificial intelligence to enhance the therapeutic landscape for individuals dealing with Obsessive-Compulsive Disorder (OCD).</string>
+  <string name="lbl_submit">SUBMIT</string>
+  <string name="msg_fear_conquer_qu">Fear-Conquer Quest 1</string>
+  <string name="lbl_save">Save</string>
+  <string name="msg_compulsion_to_s">Compulsion to straighten tie.</string>
+  <string name="msg_challenge_tri2">Challenge &amp; Triumph Task 2</string>
+  <string name="msg_not_the_same_as">Not the same as you said, record again.</string>
+  <string name="msg_8_journal_entri">8 journal entries</string>
+  <string name="lbl_25_jan">25
+Jan</string>
+  <string name="lbl_frequency">Frequency</string>
+  <string name="lbl_modules">Modules</string>
+  <string name="lbl_journal_entries">Journal entries</string>
+  <string name="lbl_register_now">Register now!</string>
+  <string name="lbl_18_jan">18
+Jan</string>
+  <string name="msg_0_of_18_complet">0 of 18 complete</string>
+  <string name="lbl_enter_email">Enter Email</string>
+  <string name="lbl_10_seconds">10 seconds</string>
+  <string name="lbl_assigned">Assigned</string>
+  <string name="msg_just_give_us_a">Just give us a moment to set up your journey to conquer OCD!</string>
+  <string name="msg_the_personalize">"The personalized approach to tasks and progress tracking feature really sets this app apart. It feels like having a therapist in my pocket. The 'Comfort Exploration Time' and 'Micro Exposure Moment' concepts are brilliant!&#127807;"</string>
+  <string name="msg_to_make_progres"> to make progress!</string>
+  <string name="lbl_7_days">7 days&#128293;</string>
+  <string name="msg_details_of_the">Details of the task</string>
+  <string name="msg_as_someone_new">"As someone new to ERP therapy, this app made it easy to understand and implement. The 'Resources Section' is a treasure trove of knowledge. Grateful for the positive impact it's had on my mental health!&#129504;❤️\u200d&#129657;"</string>
+  <string name="msg_0_of_22_complet">0 of 22 complete</string>
+  <string name="lbl_11_15_minutes">11-15 minutes</string>
+  <string name="msg_view_complete">View &amp; Complete&#127937;</string>
+  <string name="msg_obsessions_abou">Obsessions about dirty surfaces, spreading illness, or being contaminated by another person\u2019s presence are common with contamination OCD.</string>
+  <string name="lbl_trigger">Trigger</string>
+  <string name="msg_embark_on_a_jou">Embark on a journey of education and empowerment as you navigate the complexities of OCD.</string>
+  <string name="lbl_20_jan">20
+Jan</string>
+  <string name="msg_how_can_i_acces">How can I access the task?</string>
+  <string name="lbl_enter_name">Enter Name</string>
+  <string name="msg_my_compulsion_t">My compulsion to straighten my tie persisted throughout the entirety of the high-stakes negotiation, a continuous ritual reflecting his
+ongoing efforts to maintain a sense of control and composure.</string>
+  <string name="lbl_next">Next</string>
+  <string name="lbl_21_jan">21
+Jan</string>
+  <string name="msg_name_of_the_com">Name of the compulsion:</string>
+  <string name="msg_more_than_15_ti">More than 15 times</string>
+  <string name="msg_duration_for_wh">Duration for which compulsion was performed:</string>
+  <string name="lbl_20_25_minutes">20-25 minutes</string>
+  <string name="lbl_20_seconds">20 seconds</string>
+  <string name="msg_until_then_re">, until then relax yourself and have a break.</string>
+  <string name="msg_relationship_oc">Relationship OCD</string>
+  <string name="msg_in_response_my">In response, my obsession with straightening my tie emerged, a repetitive action serving as a calming mechanism to navigate the stress and
+uncertainty of the high-stakes negotiation.</string>
+  <string name="msg_fear_conquest">Fear &amp; Conquest Task 1</string>
+  <string name="msg_stage_1_self2">✅ Stage 1: Self-monitoring week
+✅ Stage 2: Beginner-friendly week
+</string>
+  <string name="lbl_submit2">Submit</string>
+  <string name="msg_other_intrusive">Other intrusive thoughts</string>
+  <string name="lbl_riya_choudhary">Riya Choudhary
+</string>
+  <string name="msg_this_document_a">"This document and the other documents that we reference below make up our house rules,or what we officially call our Terms of Use (the "Terms" for short).
+The Terms are a legally binding contract between you and our app. If you live in India, the contract is between you and our app.
+If you live elsewhere, the contract is between you and XYZ Ireland UC, a subsidiary of XYZ.
+
+We'll just refer to XYZ and all of its subsidiaries collectively as "XYZ." Please note that Section 11. Disputes with XYZ, contains an arbitration clause and class action waiver. By agreeing to the Terms, you agree to resolve all disputes through binding individual arbitration, which means that you waive any right to have those disputes decided by a judge or jury, and that you waive your right to participate in class actions, class arbitrations, or representative actions."</string>
+  <string name="msg_washing_and_cle">Washing and cleaning</string>
+  <string name="lbl_obsession">Obsession</string>
+  <string name="msg_view_all_the_on">View all the ongoing modules here!</string>
+  <string name="lbl_hardikya_gupta">Hardikya Gupta</string>
+  <string name="lbl_learning">learning</string>
+  <string name="lbl_ocd_advanced">OCD Advanced</string>
+  <string name="lbl_login_now">Login now!</string>
+  <string name="msg_enter_your_choi">Enter your choice here.</string>
+  <string name="msg_allow_picture_i">Allow picture in picture access</string>
+  <string name="lbl_perfectionism">Perfectionism</string>
+  <string name="msg_enter_the_behav">Enter the behavior here.</string>
+  <string name="lbl_set_my_goal">Set my goal!</string>
+  <string name="msg_mindful_engagem">Mindful Engagement Time</string>
+  <string name="lbl_75_seconds">75 seconds</string>
+  <string name="msg_assistant_profe">Assistant Professor of Clinical Psychology, AIIMS, New Delhi</string>
+  <string name="msg_contact_live_ch">Contact Live chat</string>
+  <string name="lbl_17_jan">17
+Jan</string>
+  <string name="msg_contamination_o">Contamination OCD</string>
+  <string name="msg_not_sure_about">Not sure about it, I will do it later.</string>
+  <string name="lbl_view">View</string>
+  <string name="lbl_0_of_5_complete">0 of 5 complete</string>
+  <string name="lbl_6_10_times">6-10 times</string>
+  <string name="msg_updated_07th_fe">Updated 07th February, 2024</string>
+  <string name="lbl_therapist">therapist</string>
+  <string name="lbl_21_25_times">21-25 times</string>
+  <string name="msg_stage_1_self">✅ Stage 1: Self-monitoring week
+✅ Stage 2: Beginner-friendly week
+&#128275;Stage 3: Path to Proficiency Week
+Stage 4: Skillful Mastery Week</string>
+  <string name="lbl_09_jan">09
+Jan</string>
+  <string name="msg_0_of_20_complet">0 of 20 complete</string>
+  <string name="msg_commit_to_ackno">Commit to acknowledging the uncertainty without engaging in compulsive rituals. Instead, allow yourself to sit with the discomfort and refrain from performing the usual behaviors that provide temporary relief.</string>
+  <string name="msg_result_in_exces">result in excessive </string>
+  <string name="msg_patient_s_fear">"Patient's fear of contamination and aversion to touching doorknobs."</string>
+  <string name="lbl_4_videos">4 videos</string>
+  <string name="msg_complete_the">&#128274;Complete the task to perform the sub-task.</string>
+  <string name="lbl_enter_password">Enter Password</string>
+  <string name="lbl_due_time">Due time</string>
+  <string name="lbl_introduction">Introduction</string>
+  <string name="lbl_j7_pl_4sw_9d">J7#pL@4sW!9d</string>
+  <string name="lbl_rocd_ii">ROCD II</string>
+  <string name="msg_more_than_25_ti">More than 25 times</string>
+  <string name="msg_seek_support_to">Seek support to keep making progress!</string>
+  <string name="msg_where_you_left">Where you left to off:</string>
+  <string name="lbl_stage_2_of_4">Stage 2 of 4</string>
+  <string name="msg_continue_my_jou">Continue my journey!</string>
+  <string name="msg_accepting_these">Accepting These terms</string>
+  <string name="lbl_completed_2">Completed (2)</string>
+  <string name="lbl_completed_1">Completed (1)</string>
+  <string name="msg_about_dirty_sur"> about dirty surfaces, spreading illness, or being contaminated by another person\u2019s presence are common with contamination OCD.</string>
+  <string name="lbl_contamination">Contamination</string>
+  <string name="msg_0_of_21_complet">0 of 21 complete</string>
+  <string name="lbl_overview">Overview</string>
+  <string name="lbl_about_us">About Us</string>
+  <string name="lbl_22_jan">22
+Jan</string>
+  <string name="lbl_registration">Registration</string>
+  <string name="msg_we_know_your_pe">"We know your personal information is important to you, so it's important to us. Our Privacy Policy details how your information is collected, used and shared when you use our Services. By using our Services, you're also agreeing that we can process your information in the ways set out in the Privacy Policy, so please read it here....."</string>
+  <string name="msg_sent_us_an_e_ma">Sent us an e-mail</string>
+  <string name="lbl_course_overview">Course Overview</string>
+  <string name="lbl_start_course">Start course&#128640;</string>
+  <string name="lbl_12_00_pm">12:00 PM</string>
+  <string name="msg_these_are_some">These are some of the common types of OCD mentioned above. In case your OCD isn\u2019t mentioned above, there is nothing to worry about. Mention your OCD below, and we will try to provide you with the services for the same.</string>
+  <string name="lbl_name">Name</string>
+  <string name="msg_disputes_with">. Disputes with XYZ, contains an arbitration clause and class action waiver. By agreeing to the Terms, you agree to resolve all disputes through binding individual arbitration, which means that you waive any right to have those disputes decided by a judge or jury, and that you waive your right to participate in class actions, class arbitrations, or representative actions.</string>
+  <string name="lbl_profile">Profile</string>
+  <string name="msg_create_shortcut2">Create shortcut to resources screen</string>
+  <string name="msg_fear_conquer2">Fear &amp; Conquer Task 2</string>
+  <string name="lbl_5_10_minutes">5-10 minutes</string>
+  <string name="msg_85_on_a_scale">85 (on a scale of 100)</string>
+  <string name="msg_during_this_tim">During this time, touch the nearest doorknobs. Once completed, start with the endurance time.
+
+All the best!&#128175;</string>
+  <string name="lbl_seek">Seek </string>
+  <string name="msg_in_this_video">In this video, we have talked about the Exposure and Response Prevention and how it applies to OCD treatment. The whole premise of ERP is to expose oneself to something that triggers your anxiety and prevent yourself from responding with compulsions. When you do this correctly you allow yourself to achieve habituation and successfully overcome your fears. In this video, we have given a brief description of how to apply ERP with OCD treatment.</string>
+  <string name="msg_journal_your_th">Journal your thoughts!</string>
+  <string name="msg_you_have_proved">You have proved it to yourself that,
+\u201cJournal writing is a voyage to the interior.\u201d</string>
+  <string name="lbl_85">85</string>
+  <string name="lbl_16_jan">16
+Jan</string>
+  <string name="lbl_search">Search</string>
+  <string name="msg_health_anxiety2">Health Anxiety II</string>
+  <string name="msg_0_of_14_complet">0 of 14 complete</string>
+  <string name="msg_health_anxiety3">Health Anxiety III</string>
+  <string name="lbl_00_05">00:05</string>
+  <string name="msg_mark_as_complet">Mark as complete✅</string>
+  <string name="lbl_1_day_streak">1-day streak&#128293;</string>
+  <string name="msg_overly_afraid_o">Overly afraid of becoming sick or getting someone else sick.</string>
+  <string name="msg_let_s_hear_what2">Let\u2019s hear what do </string>
+  <string name="lbl_05_00_pm">05:00 PM</string>
+  <string name="msg_experience_anxi">Experience anxiety due to specific thoughts, with a strong need to \u201cneutralize\u201d them.</string>
+  <string name="msg_compulsion_not">Compulsion not listed? Type here.</string>
+  <string name="msg_frequency_and_d">Frequency and duration of the compulsion</string>
+  <string name="msg_pure_ocd_treatm">Pure OCD Treatment - What is Pure OCD (1 of 3)</string>
+  <string name="lbl_faq_s">FAQ\u2019s</string>
+  <string name="msg_your_password_h">Your password has been saved!✔️</string>
+  <string name="msg_compulsion_perf">Compulsion performed as a response to the obsession.</string>
+  <string name="msg_stage_1_jour">&#128275;Stage 1: Journal your thoughts
+Beginner Friendly Week
+Path to Proficiency Week
+Skillful Mastery Week</string>
+  <string name="msg_agreed_upon_beh2">Agreed upon behavior</string>
+  <string name="lbl_stage2">
+Stage </string>
+  <string name="lbl_jan_18_2024">Jan 18, 2024</string>
+  <string name="lbl_about_the_video">About the video</string>
+  <string name="msg_6_10_times_0">6-10 times ; 0-5 minutes</string>
 </resources>

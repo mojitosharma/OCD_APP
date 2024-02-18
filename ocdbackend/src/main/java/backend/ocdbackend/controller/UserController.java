@@ -2,7 +2,6 @@ package backend.ocdbackend.controller;
 
 import backend.ocdbackend.model.User;
 import backend.ocdbackend.service.UserService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

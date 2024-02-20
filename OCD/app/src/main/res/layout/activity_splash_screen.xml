@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".SplashScreenActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearRowskip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView android:id="@+id/imageImageThirteen"
+                android:layout_gravity="top|start"
+                android:layout_height="@dimen/_410pxv"
+                android:layout_marginBottom="@dimen/_10pxv"
+                android:layout_marginTop="@dimen/_25pxv"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_splash_screen_1"
+                />
+
+            <LinearLayout
+                android:id="@+id/linearColumnhighstresslev"
+                android:layout_gravity="bottom|center"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="match_parent"
+                android:layout_above="@+id/linearRowskip"
+                android:orientation="vertical">
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtHighstresslev"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:text="@string/msg_high_stress_lev"
+                    style="@style/txtNunitoSansbold20" tools:text="@string/msg_high_stress_lev"/>
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:id="@+id/txtLanguage"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginTop="@dimen/_15pxv"
+                    android:layout_width="match_parent"
+                    android:text="@string/msg_spend_more_time"
+                    style="@style/txtNunitoSansregular14_1" tools:text="@string/msg_spend_more_time"/>
+                <LinearLayout
+                    android:id="@+id/linearRowrectanglethree"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_35pxv"
+                    android:layout_width="match_parent" android:orientation="horizontal">
+                    <View android:background="@color/indigo_200"
+                        android:id="@+id/lineRectangleThree"
+                        android:layout_height="@dimen/_5pxv"
+                        android:layout_weight="0.33" android:layout_width="0dp"/>
+                    <View android:background="@color/gray_200"
+                        android:id="@+id/lineRectangleFour"
+                        android:layout_height="@dimen/_5pxv"
+                        android:layout_marginStart="@dimen/_13pxh"
+                        android:layout_weight="0.33" android:layout_width="0dp"/>
+                    <View android:background="@color/gray_200"
+                        android:id="@+id/lineRectangleFive"
+                        android:layout_height="@dimen/_5pxv"
+                        android:layout_marginStart="@dimen/_13pxh"
+                        android:layout_weight="0.33" android:layout_width="0dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/linearRowskip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSkip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingTop="@dimen/_11pxv"
+            android:paddingBottom="@dimen/_11pxv"
+            android:singleLine="true"
+            android:text="@string/lbl_skip"
+            android:textAllCaps="false"
+            style="@style/btnSolidRounded_1"
+            android:onClick="onClickSkip"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginStart="@dimen/_15pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingTop="@dimen/_10pxv"
+            android:paddingBottom="@dimen/_10pxv"
+            android:singleLine="true"
+            android:text="@string/lbl_next"
+            android:textAllCaps="false"
+            style="@style/btnSolidRounded_2"
+            />
+    </LinearLayout>
+</RelativeLayout>
+

@@ -25,5 +25,6 @@ public class User {
     private String email;
     private String password;
     private int therapist_id;
-
+    private String profile_image; // Base64 encoded image data
 }
+

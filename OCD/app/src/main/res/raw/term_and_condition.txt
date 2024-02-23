@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<h2><strong>1: Accepting These terms</strong> 2</h2>
+<p>This document and the other documents that we reference below make up our house rules,or what we officially call our Terms of Use (the "Terms" for short).
+   The Terms are a legally binding contract between you and our app. If you live in India, the contract is between you and our app.
+   If you live elsewhere, the contract is between you and XYZ Ireland UC, a subsidiary of XYZ.
+
+   We'll just refer to XYZ and all of its subsidiaries collectively as "XYZ." Please note that Section 11. Disputes with XYZ, contains an arbitration clause and class action waiver. By agreeing to the Terms, you agree to resolve all disputes through binding individual arbitration, which means that you waive any right to have those disputes decided by a judge or jury, and that you waive your right to participate in class actions, class arbitrations, or representative actions..</p>
+
+
+
+<h2><strong>2: Privacy conditions</strong> 2</h2>
+<p>We know your personal information is important to you, so it's important to us. Our Privacy Policy details how your information is collected, used and shared when you use our Services. By using our Services, you're also agreeing that we can process your information in the ways set out in the Privacy Policy, so please read it here.....</p>
+
+<h2>Heading 2</h2>
+
+<p>This is another paragraph under heading 2. You can format text using HTML tags like <em>italic</em> or <strong>bold</strong>.</p>
+
+<!-- Add more HTML formatted content as needed -->
+
+</body>
+</html>

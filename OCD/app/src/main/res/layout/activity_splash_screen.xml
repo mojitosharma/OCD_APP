@@ -102,8 +102,7 @@
             android:singleLine="true"
             android:text="@string/lbl_skip"
             android:textAllCaps="false"
-            style="@style/btnSolidRounded_1"
-            android:onClick="onClickSkip"/>
+            style="@style/btnSolidRounded_1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNext"

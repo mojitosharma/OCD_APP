@@ -92,8 +92,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_13pxh"
                     android:layout_marginTop="@dimen/_14pxv"
-                    android:layout_width="@dimen/_20pxh"
-                    android:onClick = "showHidePassword">
+                    android:layout_width="@dimen/_20pxh">
                     <ImageView
                         android:id="@+id/imgEye"
                         android:layout_gravity="top|start"
@@ -125,7 +124,6 @@
                 android:text="@string/lbl_login"
                 android:textAllCaps="false"
                 style="@style/btnSolidRounded_3" tools:text="@string/lbl_login"
-                android:onClick = "onClickLogin"
                 />
 
             <TextView
@@ -167,7 +165,6 @@
                     android:text="@string/msg_new_user_to_the"
                     style="@style/txtDMSansregular11"
                     tools:text="@string/msg_new_user_to_the"
-                    android:onClick="newUser"
                     android:layout_marginBottom="15dp"
                     />
 
@@ -183,7 +180,6 @@
                     android:text="@string/msg_register_now"
                     style="@style/txtDMSansregularindigo_200_87"
                     tools:text="@string/msg_register_now"
-                    android:onClick="newUser"
                     android:layout_marginBottom="15dp"/>
             </LinearLayout>
 

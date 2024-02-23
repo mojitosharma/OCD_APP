@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-
     <string name="app_name">OCD</string>
+    <string name="countdown_format">Resend OTP in %ds seconds</string>
+    <string name="continue_p">Continue</string>
     <string name="loading">Loading…</string>
+    <string name="msg_validateOTP">A 4-digit verification code is sent to %s. Please enter it here.</string>
+    <string name="gender_and_dob">%s \u2022 %s</string>
     <string name="no_internet_connection">No internet connection!</string>
     <string name="msg_beginner_friend3">Beginner-friendly Week</string>
     <string name="lbl_rocd_i">ROCD I</string>
@@ -44,7 +47,6 @@ We'll just refer to XYZ and all of its subsidiaries collectively as "XYZ." Pleas
     <string name="msg_sign_in_with_go">Sign in with Google</string>
     <string name="msg_number_of_times">Number of times compulsion performed:</string>
     <string name="lbl_m_01_01_2002">M \u2022 01.01.2002</string>
-    <string name="msg_a_4_digit_verif">A 4-digit verification code is sent to hardikya01gupta@gmail.com. Please enter it here.</string>
     <string name="lbl_checking">Checking</string>
     <string name="msg_the_app_has_bee">"The app has been a beacon of support. The 'Task Guidance Video' is a fantastic touch for those moments of uncertainty. The 'Post-Task Reflection' form also encourages self-awareness and growth!&#128200;"</string>
     <string name="lbl_dob_dd_yy_mm">DOB (DD/YY/MM)</string>
@@ -72,7 +74,6 @@ We'll just refer to XYZ and all of its subsidiaries collectively as "XYZ." Pleas
     <string name="msg_sign_in_with_fa">Sign in with Facebook</string>
     <string name="lbl_30">30</string>
     <string name="lbl_31">31</string>
-    <string name="msg_resend_otp_in_6">Resend OTP in 60 seconds.</string>
     <string name="lbl_app_shortcuts2">App Shortcuts</string>
     <string name="lbl_0_complete">0% complete</string>
     <string name="msg_we_can_help_wit">We can help with:</string>
@@ -337,7 +338,8 @@ Jan 19, 2024</string>
     <string name="lbl_k">k</string>
     <string name="lbl_m">M</string>
     <string name="lbl_stress_level_2">Stress level 2</string>
-    <string name="msg_already_an_exis">Already an existing user? Login now!</string>
+    <string name="msg_already_an_exis">Already an existing user?</string>
+    <string name="login_now">Login now!</string>
     <string name="lbl_12_pm">12 PM</string>
     <string name="msg_hang_on_in_ther">Hang on in there, this is your moment of strength&#128170;&#128338;</string>
     <string name="lbl_change_password2">Change password</string>
@@ -603,4 +605,5 @@ Stage </string>
     <string name="lbl_jan_18_2024">Jan 18, 2024</string>
     <string name="lbl_about_the_video">About the video</string>
     <string name="msg_6_10_times_0">6-10 times ; 0-5 minutes</string>
+
 </resources>

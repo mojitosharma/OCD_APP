@@ -13,7 +13,9 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.regex.Pattern;
@@ -22,6 +24,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText;
     private EditText passwordEditText;
+    private FrameLayout btnShowPassword;
+    private Button btnLogin;
+    private TextView btnNewUser;
 
     private ImageView eyeImageView;
     @Override
@@ -29,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Initialize();
+        onClickShowHidePassword();
+        onClickLogin();
+        onClickNewUser();
     }
 
     // Initialize views
@@ -36,36 +44,55 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.txtEnterPassword);
         eyeImageView = findViewById(R.id.imgEye);
+        btnShowPassword = findViewById(R.id.btnShowPassword);
+        btnLogin= findViewById(R.id.btnLogin);
+        btnNewUser = findViewById(R.id.btnNewUser);
     }
 
     // Set a click for show hide password
-    public void showHidePassword(View view) {
-        if (passwordEditText.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
-            // If password is currently hidden, show it
-            passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            eyeImageView.setImageResource(R.drawable.img_eye);
-        } else {
-            // If password is currently shown, hide it
-            passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            eyeImageView.setImageResource(R.drawable.img_eye_close);
-        }
+    public void onClickShowHidePassword() {
+        passwordEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (passwordEditText.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+                    // If password is currently hidden, show it
+                    passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    eyeImageView.setImageResource(R.drawable.img_eye);
+                } else {
+                    // If password is currently shown, hide it
+                    passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    eyeImageView.setImageResource(R.drawable.img_eye_close);
+                }
+            }
+        });
+
     }
 
     // Set a click listener for the login button
-    public void onClickLogin(View view){
-        if (validate()) {
-            // Move to the next activity
+    public void onClickLogin(){
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()) {
+                    // Move to the next activity
 //                    Intent intent = new Intent(LoginActivity.this, NextActivity.class);
 //                    startActivity(intent);
-            finish(); // optional, to finish the current activity
-        }
+                    finish(); // optional, to finish the current activity
+                }
+            }
+        });
     }
 
     // Set a click listener for New user
-    public void newUser(View view){
-        Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-        startActivity(intent);
-        finish();
+    public void onClickNewUser(){
+        btnNewUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     // Validate function to check email and password

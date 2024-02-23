@@ -136,8 +136,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_13pxh"
                     android:layout_marginTop="@dimen/_14pxv"
-                    android:layout_width="@dimen/_20pxh"
-                    android:onClick = "showHidePassword">
+                    android:layout_width="@dimen/_20pxh">
                     <ImageView
                         android:id="@+id/imgShowPassword"
                         android:layout_gravity="top|start"
@@ -179,8 +178,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_13pxh"
                     android:layout_marginTop="@dimen/_14pxv"
-                    android:layout_width="@dimen/_20pxh"
-                    android:onClick = "showHidePassword">
+                    android:layout_width="@dimen/_20pxh">
                     <ImageView
                         android:id="@+id/imgShowConfirmPassword"
                         android:layout_gravity="top|start"
@@ -245,25 +243,50 @@
                 android:text="@string/lbl_register"
                 android:textAllCaps="false" style="@style/btnSolidRounded_3"
                 tools:text="@string/lbl_register"
-                android:onClick = "onClickRegister"/>
+                />
 
-            <TextView android:ellipsize="end"
-                android:gravity="center_horizontal"
-                android:id="@+id/btnAlreadyExist"
-                android:layout_height="wrap_content"
+            <View android:background="@color/gray_200"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/_1pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_19pxv"
+                android:layout_marginTop="@dimen/_13pxv"
+                android:layout_width="@dimen/_320pxh"/>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:singleLine="true"
-                android:text="@string/msg_already_an_exis"
-                style="@style/txtDMSansregular11" tools:text="@string/msg_already_an_exis"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_vertical">
 
+                <TextView
+                    android:ellipsize="end"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_18pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/msg_already_an_exis"
+                    style="@style/txtDMSansregular11"
+                    tools:text="@string/msg_already_an_exis"
+                    android:layout_marginBottom="15dp"
+                    />
 
-
-
-
-
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/btnAlreadyExist"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:layout_marginStart="@dimen/_3pxh"
+                    android:layout_marginTop="@dimen/_18pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/login_now"
+                    style="@style/txtDMSansregularindigo_200_87"
+                    tools:text="@string/login_now"
+                    android:layout_marginBottom="15dp"/>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

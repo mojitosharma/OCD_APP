@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_home"
+        android:title="Home"
+        android:icon="@drawable/img_home" />
+    <item
+        android:id="@+id/menu_task"
+        android:title="Task"
+        android:icon="@drawable/img_checkmark_gray_700" />
+    <item
+        android:id="@+id/menu_resource"
+        android:title="Resource"
+        android:icon="@drawable/img_settings" />
+    <item
+        android:id="@+id/menu_profile"
+        android:title="Profile"
+        android:icon="@drawable/img_lock" />
+</menu>

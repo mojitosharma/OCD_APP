@@ -25,26 +25,33 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         boolean isFirstTime = prefs.getBoolean(FIRST_TIME_KEY, true);
 
-        Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
-        startActivity(intent);
-        finish();
-//
-//        if (isFirstTime) {
-//            // If it's the first time, set the flag to false and show splash activity
-//            SharedPreferences.Editor editor = prefs.edit();
-//            editor.putBoolean(FIRST_TIME_KEY, false);
-//            editor.apply();
-//
-//            Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//        else{
-//            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
+//        Intent intent1 = new Intent(MainActivity.this, AboutUsActivity.class);
+//        startActivity(intent1);
+//        finish();
+
+        if (isFirstTime) {
+            // If it's the first time, set the flag to false and show splash activity
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(FIRST_TIME_KEY, false);
+            editor.apply();
+
+            Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         // Rest of your MainActivity code...
     }
 }
+
+//    OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+//        @Override
+//        public void handleOnBackPressed() {
+//            requireActivity().getFragmentManager().popBackStack();
+//        }
+//    };

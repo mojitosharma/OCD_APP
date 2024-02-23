@@ -1,10 +1,12 @@
 package com.example.ocd;
 
+import static com.example.ocd.helper.helperFunctions.isPasswordValid;
 import static com.example.ocd.helper.helperFunctions.isValidDOBFormat;
 import static com.example.ocd.helper.helperFunctions.isValidEmail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -13,8 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -22,6 +26,9 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText nameEditText, dobEditText, emailEditText, passwordEditText, confirmPasswordEditText, educationEditText, occupationEditText;
     private Spinner genderSpinner;
     private ImageView imgShowPassword, imgShowConfirmPassword;
+    private FrameLayout btnShowPassword, btnShowConfirmPassword;
+    private Button btnRegister;
+    private TextView btnAlreadyExist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,10 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         Initialize();
+        readValues();
+        onClickRegister();
+        onClickShowHidePassword();
+        onClickLogin();
     }
 
     // Initialize views
@@ -44,18 +55,100 @@ public class SignUpActivity extends AppCompatActivity {
         imgShowPassword = findViewById(R.id.imgShowPassword);
         imgShowConfirmPassword = findViewById(R.id.imgShowConfirmPassword);
         genderSpinner = findViewById(R.id.gender);
+        btnShowPassword = findViewById(R.id.btnShowPassword);
+        btnShowConfirmPassword = findViewById(R.id.btnShowConfirmPassword);
+        btnRegister = findViewById(R.id.btnRegister);
+        btnAlreadyExist = findViewById(R.id.btnAlreadyExist);
     }
 
-    public void onClickRegister(View view){
-        if (validate()) {
-            // Move to the next activity
-//                    Intent intent = new Intent(LoginActivity.this, NextActivity.class);
-//                    startActivity(intent);
-            finish(); // optional, to finish the current activity
+    private void readValues() {
+        Intent intent = getIntent();
+        if (intent.hasExtra("NAME")) {
+            // Data is received from VerifyOTPActivity, update your UI or handle as needed
+            String name = intent.getStringExtra("NAME");
+            String dob = intent.getStringExtra("DOB");
+            String gender = intent.getStringExtra("GENDER");
+            String email = intent.getStringExtra("EMAIL");
+            String education = intent.getStringExtra("EDUCATION");
+            String occupation = intent.getStringExtra("OCCUPATION");
+
+            // Update your UI or perform any other actions with the received data
+            nameEditText.setText(name);
+            emailEditText.setText(email);
+            dobEditText.setText(dob);
+            educationEditText.setText(education);
+            occupationEditText.setText(occupation);
+
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                    this,
+                    R.array.gender_options,
+                    android.R.layout.simple_spinner_item
+            );
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            genderSpinner.setAdapter(adapter);
+            if (intent.hasExtra("GENDER")) {
+                int position = adapter.getPosition(gender);
+                genderSpinner.setSelection(position);
+            }
         }
     }
 
-    public void showHidePassword(View view) {
+    public void onClickRegister(){
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()) {
+                    String name = nameEditText.getText().toString().trim();
+                    String dob = dobEditText.getText().toString().trim();
+                    String selectedGender = genderSpinner.getSelectedItem().toString();
+                    String email = emailEditText.getText().toString().trim();
+                    String education = educationEditText.getText().toString().trim();
+                    String occupation = occupationEditText.getText().toString().trim();
+                    // Create an Intent to start the next activity (VerifyOTPActivity)
+                    Intent intent = new Intent(SignUpActivity.this, VerifyOTPActivity.class);
+                    // Pass data to the next activity
+                    intent.putExtra("NAME", name);
+                    intent.putExtra("DOB", dob);
+                    intent.putExtra("GENDER", selectedGender);
+                    intent.putExtra("EMAIL", email);
+                    intent.putExtra("EDUCATION", education);
+                    intent.putExtra("OCCUPATION", occupation);
+
+                    // Start the next activity
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+    }
+
+    public void onClickShowHidePassword() {
+        btnShowPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHidePassword();
+            }
+        });
+        btnShowConfirmPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHidePassword();
+            }
+        });
+    }
+
+    private void onClickLogin(){
+        btnAlreadyExist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void showHidePassword(){
         if (passwordEditText.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
             // If password is currently hidden, show it
             passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -70,6 +163,7 @@ public class SignUpActivity extends AppCompatActivity {
             imgShowPassword.setImageResource(R.drawable.img_eye_close);
         }
     }
+
 
     private boolean validate() {
         boolean flagName = validateName();
@@ -114,7 +208,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean isValidGender() {
         String selectedGender = genderSpinner.getSelectedItem().toString();
-
         if ("Gender".equals(selectedGender)) {
             Toast.makeText(getApplicationContext(), "Invalid gender selected!", Toast.LENGTH_SHORT).show();
             genderSpinner.setSelection(0);
@@ -127,8 +220,11 @@ public class SignUpActivity extends AppCompatActivity {
     // Validate email
     private boolean validateEmail() {
         String email = emailEditText.getText().toString().trim();
-        if (!isValidEmail(email)) {
+        if (email.isEmpty()) {
             emailEditText.setError("Email is Required");
+            return false;
+        } else if (!isValidEmail(email)) {
+            emailEditText.setError("Invalid email format");
             return false;
         }else {
             emailEditText.setError(null);
@@ -142,6 +238,9 @@ public class SignUpActivity extends AppCompatActivity {
         if (password.isEmpty()) {
             passwordEditText.setError("Password is required");
             return false;
+        } else if (!isPasswordValid(password)) {
+            passwordEditText.setError("Must contain at-least 8 characters and\nShould Contain at-least one: \n\tcapital letter\n\tsmallcase letter\n\tspecial character");
+            return false;
         } else {
             passwordEditText.setError(null);
             return true;
@@ -154,6 +253,9 @@ public class SignUpActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
         if (confirmPassword.isEmpty()) {
             confirmPasswordEditText.setError("Password is required");
+            return false;
+        } else if (!isPasswordValid(password)) {
+            passwordEditText.setError("Must contain at-least 8 characters and\nShould Contain at-least one: \n\tcapital letter\n\tsmallcase letter\n\tspecial character");
             return false;
         } else if (confirmPassword.isEmpty() || !confirmPassword.equals(password)) {
             confirmPasswordEditText.setError("Password does not match");

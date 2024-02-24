@@ -16,9 +16,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/create")
-    public User createUser(@RequestBody User user) {
-        System.out.println("here");
+    @PostMapping("/register")
+    public User registerUser(@RequestBody User user) {
         return userService.save(user);
     }
 
@@ -27,5 +26,13 @@ public class UserController {
     public HttpEntity<String> createUser() {
         return new ResponseEntity<>("test", HttpStatus.OK);
     }
+
+    @GetMapping("/getOTP")
+    public HttpEntity<Integer> getOTP(@RequestParam String email) {
+        int otp = 1234;
+        // You can send this OTP to the user through SMS, email, etc.
+        return new ResponseEntity<>(otp, HttpStatus.OK);
+    }
+
 
 }

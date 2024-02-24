@@ -3,7 +3,6 @@ package com.example.ocd;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -15,9 +14,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 
-//A 4-digit verification code is sent to . Please enter it here.
+import com.example.ocd.model.User;
+import com.example.ocd.retrofit.RetrofitService;
+import com.example.ocd.retrofit.UserAPI;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class VerifyOTPActivity extends AppCompatActivity {
@@ -27,17 +37,17 @@ public class VerifyOTPActivity extends AppCompatActivity {
     private TextView txtDuration, otpSendText;
     private CountDownTimer countDownTimer;
     private boolean timerRunning;
+    private String otp;
 
-    private String name;
-    private String dob;
-    private String gender;
-    private String email;
-    private String education;
-    private String occupation;
+    User user;
+    RetrofitService retrofitService;
 
 
     private static final long COUNTDOWN_DURATION = 60000; // 60 seconds
     private static final long COUNTDOWN_INTERVAL = 1000; // 1 second
+
+
+    // todo stop the time when the screen changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +63,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
     }
 
     private void readingData() {
-        Intent intent = getIntent();
-        name = intent.getStringExtra("NAME");
-        dob = intent.getStringExtra("DOB");
-        gender = intent.getStringExtra("GENDER");
-        email = intent.getStringExtra("EMAIL");
-        education = intent.getStringExtra("EDUCATION");
-        occupation = intent.getStringExtra("OCCUPATION");
+        user = (User) getIntent().getSerializableExtra("USER");
     }
 
     private void initialize() {
@@ -71,7 +75,9 @@ public class VerifyOTPActivity extends AppCompatActivity {
         txtDuration = findViewById(R.id.txtDuration);
         otpSendText = findViewById(R.id.otpSendText);
         btnLetsBeginMyTherapy.setEnabled(false);
-        otpSendText.setText(getString(R.string.msg_validateOTP, email));
+        otpSendText.setText(getString(R.string.msg_validateOTP, user.getEmail()));
+        retrofitService = new RetrofitService();
+        getOTPToken(user.getEmail());
     }
 
     private void startCountdownTimer() {
@@ -103,7 +109,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
         optTextViewThree = findViewById(R.id.optTextViewThree);
         optTextViewFour = findViewById(R.id.optTextViewFour);
 
-// Add TextWatcher to each EditText
+        // Add TextWatcher to each EditText
         optTextViewOne.addTextChangedListener(createTextWatcher(optTextViewTwo));
         optTextViewTwo.addTextChangedListener(createTextWatcher(optTextViewThree));
         optTextViewThree.addTextChangedListener(createTextWatcher(optTextViewFour));
@@ -111,27 +117,14 @@ public class VerifyOTPActivity extends AppCompatActivity {
     }
 
     private void onCLickBtnLetsBeginMyTherapy() {
-        btnLetsBeginMyTherapy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOtpValid()) {
-                    Intent intent = new Intent(VerifyOTPActivity.this, TermAndConditionActivity.class);
-                    // Pass data to the next activity
-                    intent.putExtra("NAME", name);
-                    intent.putExtra("DOB", dob);
-                    intent.putExtra("GENDER", gender);
-                    intent.putExtra("EMAIL", email);
-                    intent.putExtra("EDUCATION", education);
-                    intent.putExtra("OCCUPATION", occupation);
-
-                    // Start the next activity
-                    startActivity(intent);
-                    finish();
-
-                    // If you encounter an issue or need to simulate a failure, show the retry dialog
-                    showRetryDialog();
-                }
-                // check if the otp is valid if valid then send the data and go to the next screen else
+        btnLetsBeginMyTherapy.setOnClickListener(v -> {
+            if (isOtpValid()) {
+                Intent intent = new Intent(VerifyOTPActivity.this, TermAndConditionActivity.class);
+                intent.putExtra("USER", user);
+                startActivity(intent);
+//                    finish();
+            } else {
+                showRetryDialog();
             }
         });
     }
@@ -175,43 +168,41 @@ public class VerifyOTPActivity extends AppCompatActivity {
         };
     }
 
-    // show time out error and move to previous screen
+    // show time out error and move to the previous screen
     private void showTimeoutError() {
         // Create and show a dialog with timeout error message
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Timeout Error")
-                .setMessage("The verification process has timed out.")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        // send the data back to same screen and wait to opt again
-                    }
+                .setMessage("The verification process has timed out. What would you like to do?")
+                .setPositiveButton("Retry", (dialog, which) -> {
+                    // Reset OTP input fields and restart the countdown timer
+                    resetOtpInputFields();
+                    startCountdownTimer();
+                })
+                .setNegativeButton("Go Back", (dialog, which) -> {
+                    // Go back to SignUpActivity with the entered details
+                    navigateBackToSignUpActivity();
                 })
                 .setCancelable(false);
 
-        Dialog dialog = builder.create();
+        // Show the created dialog
+        AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 
     private void showRetryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Verification Failed")
                 .setMessage("There was an issue with the verification. What would you like to do?")
-                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Reset OTP input fields and restart the countdown timer
-                        resetOtpInputFields();
-                        startCountdownTimer();
-                    }
+                .setPositiveButton("Retry", (dialog, which) -> {
+                    // Reset OTP input fields and restart the countdown timer
+                    resetOtpInputFields();
+                    startCountdownTimer();
                 })
-                .setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Go back to SignUpActivity with the entered details
-                        navigateBackToSignUpActivity();
-                    }
+                .setNegativeButton("Go Back", (dialog, which) -> {
+                    // Go back to SignUpActivity with the entered details
+                    navigateBackToSignUpActivity();
                 })
                 .setCancelable(false);
 
@@ -220,11 +211,12 @@ public class VerifyOTPActivity extends AppCompatActivity {
     }
 
     private boolean isOtpValid() {
-        // Add your OTP validation logic here
-        // Return true if the OTP is valid, false otherwise
-        return true;  // Replace with your actual validation logic
+        String enteredOTP = optTextViewOne.getText().toString() +
+                optTextViewTwo.getText().toString() +
+                optTextViewThree.getText().toString() +
+                optTextViewFour.getText().toString();
+        return enteredOTP.equals(otp);
     }
-
 
     private void resetOtpInputFields() {
         // Clear the OTP input fields
@@ -232,22 +224,45 @@ public class VerifyOTPActivity extends AppCompatActivity {
         optTextViewTwo.setText("");
         optTextViewThree.setText("");
         optTextViewFour.setText("");
+        countDownTimer.cancel();
+        startCountdownTimer();
+        getOTPToken(user.getEmail());
     }
+
 
     private void navigateBackToSignUpActivity() {
         // Create an Intent to go back to SignUpActivity with the entered details
         Intent intent = new Intent(VerifyOTPActivity.this, SignUpActivity.class);
-        intent.putExtra("NAME", name);
-        intent.putExtra("DOB", dob);
-        intent.putExtra("GENDER", gender);
-        intent.putExtra("EMAIL", email);
-        intent.putExtra("EDUCATION", education);
-        intent.putExtra("OCCUPATION", occupation);
+        intent.putExtra("USER", user);
 
         // Start the SignUpActivity
         startActivity(intent);
         finish();  // Finish the current activity
     }
+
+    // Retrieve OTP token from the server
+    private void getOTPToken(String email) {
+        UserAPI userAPI = retrofitService.getRetrofit().create(UserAPI.class);
+        userAPI.getOTPToken(email).enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.isSuccessful()) {
+                    otp = String.valueOf(response.body());
+
+                } else {
+                    Toast.makeText(VerifyOTPActivity.this, "Failed to retrieve OTP! Please try later.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                // Handle failure
+                Toast.makeText(VerifyOTPActivity.this, "Failed to retrieve OTP", Toast.LENGTH_SHORT).show();
+                Logger.getLogger(VerifyOTPActivity.class.getName()).log(Level.SEVERE, "Error occurred", t);
+            }
+        });
+    }
+
 
 
     public void onBackPressedCustom() {
@@ -261,9 +276,5 @@ public class VerifyOTPActivity extends AppCompatActivity {
         this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }
 

@@ -4,18 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import android.view.MenuItem;
+
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+// TODO: set image based on gender. check first if the image exist or not.
 
 public class AboutUsActivity extends AppCompatActivity {
 
 
     BottomNavigationView bottomNavigationView;
+    private ImageView backArrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +24,22 @@ public class AboutUsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_us);
 
         intitalize();
+        onClickbackArrow();
         onClickBottomNavigationView();
 
 
     }
 
     private void intitalize() {
+        backArrow = findViewById(R.id.backArrow);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.menu_home);
+        bottomNavigationView.setSelectedItemId(R.id.menu_profile);
+    }
+
+    private void onClickbackArrow(){
+        backArrow.setOnClickListener(view -> {
+            this.finish();
+        });
     }
 
     private void onClickBottomNavigationView() {
@@ -53,4 +62,6 @@ public class AboutUsActivity extends AppCompatActivity {
             return false;
         });
     }
+
+
 }

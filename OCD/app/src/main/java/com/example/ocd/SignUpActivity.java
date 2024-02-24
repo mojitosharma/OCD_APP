@@ -21,6 +21,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ocd.model.Name;
+import com.example.ocd.model.User;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText nameEditText, dobEditText, emailEditText, passwordEditText, confirmPasswordEditText, educationEditText, occupationEditText;
@@ -29,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     private FrameLayout btnShowPassword, btnShowConfirmPassword;
     private Button btnRegister;
     private TextView btnAlreadyExist;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,21 +67,16 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void readValues() {
         Intent intent = getIntent();
-        if (intent.hasExtra("NAME")) {
+        if (intent.hasExtra("USER")) {
             // Data is received from VerifyOTPActivity, update your UI or handle as needed
-            String name = intent.getStringExtra("NAME");
-            String dob = intent.getStringExtra("DOB");
-            String gender = intent.getStringExtra("GENDER");
-            String email = intent.getStringExtra("EMAIL");
-            String education = intent.getStringExtra("EDUCATION");
-            String occupation = intent.getStringExtra("OCCUPATION");
+            user = (User) getIntent().getSerializableExtra("USER");
 
             // Update your UI or perform any other actions with the received data
-            nameEditText.setText(name);
-            emailEditText.setText(email);
-            dobEditText.setText(dob);
-            educationEditText.setText(education);
-            occupationEditText.setText(occupation);
+            nameEditText.setText(user.getNameString());
+            emailEditText.setText(user.getEmail());
+            dobEditText.setText(user.getDobString());
+            educationEditText.setText(user.getEducation());
+            occupationEditText.setText(user.getOccupation());
 
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                     this,
@@ -86,8 +85,8 @@ public class SignUpActivity extends AppCompatActivity {
             );
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             genderSpinner.setAdapter(adapter);
-            if (intent.hasExtra("GENDER")) {
-                int position = adapter.getPosition(gender);
+            if (!user.getGender().isEmpty()) {
+                int position = adapter.getPosition(user.getGender());
                 genderSpinner.setSelection(position);
             }
         }
@@ -104,15 +103,13 @@ public class SignUpActivity extends AppCompatActivity {
                     String email = emailEditText.getText().toString().trim();
                     String education = educationEditText.getText().toString().trim();
                     String occupation = occupationEditText.getText().toString().trim();
+                    String password = passwordEditText.getText().toString().trim();
                     // Create an Intent to start the next activity (VerifyOTPActivity)
                     Intent intent = new Intent(SignUpActivity.this, VerifyOTPActivity.class);
                     // Pass data to the next activity
-                    intent.putExtra("NAME", name);
-                    intent.putExtra("DOB", dob);
-                    intent.putExtra("GENDER", selectedGender);
-                    intent.putExtra("EMAIL", email);
-                    intent.putExtra("EDUCATION", education);
-                    intent.putExtra("OCCUPATION", occupation);
+                    Name userName = new Name(name);
+                    User user = new User(userName, dob, selectedGender, education, occupation, email, password);
+                    intent.putExtra("USER", user);
 
                     // Start the next activity
                     startActivity(intent);
@@ -235,6 +232,7 @@ public class SignUpActivity extends AppCompatActivity {
     // Validate password
     private boolean validatePassword() {
         String password = passwordEditText.getText().toString().trim();
+        System.out.println(isPasswordValid(password));
         if (password.isEmpty()) {
             passwordEditText.setError("Password is required");
             return false;

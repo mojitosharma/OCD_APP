@@ -14,6 +14,7 @@ import java.util.Date;
 @Document(collection = "Users")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
+    @Id
     private ObjectId user_id;
     private Name name;
     private int patient_number;

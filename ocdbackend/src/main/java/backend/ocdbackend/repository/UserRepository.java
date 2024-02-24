@@ -3,10 +3,11 @@ package backend.ocdbackend.repository;
 import backend.ocdbackend.model.User;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Repository
 public interface UserRepository extends MongoRepository<User, ObjectId> {
 
     User findByEmail(String email);

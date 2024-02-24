@@ -14,6 +14,7 @@ import java.util.Date;
 @Document(collection = "Users")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
+    @Id
     private ObjectId user_id;
     private Name name;
     private int patient_number;
@@ -25,5 +26,6 @@ public class User {
     private String email;
     private String password;
     private int therapist_id;
-
+    private String profile_image; // Base64 encoded image data
 }
+

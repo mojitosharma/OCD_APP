@@ -1,5 +1,6 @@
 package backend.ocdbackend.configuration;
 
+import backend.ocdbackend.utils.RSAKeyProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -61,9 +62,9 @@ public class SecurityConfiguration {
                     auth.anyRequest().authenticated();
                 });
 
-        http.oauth2ResourceServer()
-                .jwt()
-                .jwtAuthenticationConverter(jwtAuthenticationConverter());
+        http.oauth2ResourceServer((oauth2) -> oauth2.jwt(jwt -> {
+            jwt.jwtAuthenticationConverter(jwtAuthenticationConverter());
+        }));
         http.sessionManagement(
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         );

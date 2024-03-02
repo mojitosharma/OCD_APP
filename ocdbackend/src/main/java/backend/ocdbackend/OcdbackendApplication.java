@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,19 +34,21 @@ public class OcdbackendApplication {
 			Set<ObjectId> authorities = new HashSet<>();
 			authorities.add(adminRole.getId());
 
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
 			ApplicationUser admin = new ApplicationUser(
 					"vaibhav20547@iiitd.ac.in", // email
 					passwordEncoder.encode("vaibhavj@2023"), // encoded password
 					authorities, // authorities
-					new Name("Admin", "User"), // name
-					null, // patient_number, adjust as necessary
-					null, // dob, adjust as necessary
-					null, // day_of_enrollment, adjust as necessary
+					new Name("Vaibhav", "Admin_Jaiswal"), // name
+					1, // patient_number, adjust as necessary
+					dateFormat.parse("08/07/2003"), // dob, adjust as necessary
+					dateFormat.parse("0/07/2019"), // day_of_enrollment, adjust as necessary
 					"Male", // gender, adjust as necessary
 					"High School", // education, adjust as necessary
 					"Engineer", // occupation, adjust as necessary
-					null, // therapist_id, adjust as necessary
-					null // profile_image, adjust as necessary
+					2, // therapist_id, adjust as necessary
+					"checkprofileimage123" // profile_image, adjust as necessary
 			);
 
 			userRepository.save(admin);

@@ -11,15 +11,16 @@ import backend.ocdbackend.model.Role;
 import backend.ocdbackend.repository.RoleRepository;
 import backend.ocdbackend.repository.UserRepository;
 import org.bson.types.ObjectId;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 @Transactional
@@ -38,7 +39,7 @@ public class AuthenticationService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private TokenService tokenService;
+    public TokenService tokenService;
 
     public ApplicationUser registerUser(String email, String password, Name name, Integer patient_number, Date dob, Date day_of_enrollment, String gender, String education, String occupation, Integer therapist_id, String profile_image) {
 
@@ -65,6 +66,7 @@ public class AuthenticationService {
 
         return userRepository.save(user);
     }
+
 
     public LoginResponseDTO loginUser(String email, String password){
 

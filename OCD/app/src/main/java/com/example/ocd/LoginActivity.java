@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                     // Move to the next activity
 //                    Intent intent = new Intent(LoginActivity.this, NextActivity.class);
 //                    startActivity(intent);
+                    // Todo: call the remote to login
                     finish(); // optional, to finish the current activity
                 }
             }

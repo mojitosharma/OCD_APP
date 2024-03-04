@@ -1,20 +1,14 @@
 package com.example.ocd;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-
-
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-// TODO: set image based on gender. check first if the image exist or not.
-
-public class AboutUsActivity extends AppCompatActivity {
-
+public class AppShortcutActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     private ImageView backArrow;
@@ -22,7 +16,7 @@ public class AboutUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        setContentView(R.layout.activity_app_shortcut);
 
         intitalize();
         onClickbackArrow();
@@ -48,17 +42,17 @@ public class AboutUsActivity extends AppCompatActivity {
             Intent intent;
             switch (item.getItemId()) {
                 case R.id.menu_home:
-                    intent = new Intent(AboutUsActivity.this, HomeActivity.class);
+                    intent = new Intent(AppShortcutActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 case R.id.menu_task:
-                    intent = new Intent(AboutUsActivity.this, TaskActivity.class);
+                    intent = new Intent(AppShortcutActivity.this, TaskActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 case R.id.menu_resource:
-                    intent = new Intent(AboutUsActivity.this, ResourcesActivity.class);
+                    intent = new Intent(AppShortcutActivity.this, ResourcesActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
@@ -69,6 +63,4 @@ public class AboutUsActivity extends AppCompatActivity {
             return false;
         });
     }
-
-
 }

@@ -26,12 +26,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent1 = new Intent(MainActivity.this, SignUpActivity.class);
-        startActivity(intent1);
-        finish();
+//        Intent intent1 = new Intent(MainActivity.this, SignUpActivity.class);
+//        startActivity(intent1);
+//        finish();
+
+
 
         // Check if the app is opened for the first time
-//        checkFirstTime();
+        checkFirstTime();
 
 
         // Rest of your MainActivity code...
@@ -51,11 +53,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else {
             if (isFirstTime) {
-                // If it's the first time, set the flag to false and show splash activity
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean(FIRST_TIME_KEY, false);
-                editor.apply();
-
                 Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
                 startActivity(intent);
                 finish();

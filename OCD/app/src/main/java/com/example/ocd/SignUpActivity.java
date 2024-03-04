@@ -109,6 +109,7 @@ public class SignUpActivity extends AppCompatActivity {
                     // Pass data to the next activity
                     Name userName = new Name(name);
                     User user = new User(userName, dob, selectedGender, education, occupation, email, password);
+                    user.setStage(1);
                     intent.putExtra("USER", user);
 
                     // Start the next activity
@@ -255,7 +256,7 @@ public class SignUpActivity extends AppCompatActivity {
         } else if (!isPasswordValid(password)) {
             passwordEditText.setError("Must contain at-least 8 characters and\nShould Contain at-least one: \n\tcapital letter\n\tsmallcase letter\n\tspecial character");
             return false;
-        } else if (confirmPassword.isEmpty() || !confirmPassword.equals(password)) {
+        } else if (!confirmPassword.equals(password)) {
             confirmPasswordEditText.setError("Password does not match");
             return false;
         } else {

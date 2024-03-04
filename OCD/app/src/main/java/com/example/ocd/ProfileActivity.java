@@ -2,22 +2,33 @@ package com.example.ocd;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 
+import com.example.ocd.model.Name;
+import com.example.ocd.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 public class ProfileActivity extends AppCompatActivity {
-
-    private ImageView firstImage, secondImage;
-    private CardView circularCardView;
-    private TextView txtName, genderAndDOB, editProfile, setting, support, aboutUs, appGuide, logOut;
+    private static final String PREF_NAME = "LoginPref";
+    private static final String USER_DATA = "user_data";
+    private static final String USER_IMAGE = "user_image";
+    private ImageView profileImage;
+    private TextView txtName, genderAndDOB;
+    private LinearLayout editProfile, setting, support, aboutUs, appGuide, logOut;
     BottomNavigationView bottomNavigationView;
 
         // get gender based on gender set image if img is not set
@@ -29,17 +40,21 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         initialize();
+        loadStoredUserData();
+        onClickBottomNavigationView();
+        onClickEditProfile();
+        onCLickSetting();
+        onClickSupport();
+        onClickAboutUs();
+        onClickAppGuide();
+        onClickLogOut();
+        onClickAboutUs();
 
-        // You can perform further configurations or set listeners as needed
-        // For example, setting text for TextViews
-        txtName.setText(getString(R.string.lbl_name)); // Replace with actual data
-        genderAndDOB.setText(getString(R.string.gender_and_dob, "Male", "01/01/1990")); // Replace with actual data
     }
 
+
     private void initialize() {
-        firstImage = findViewById(R.id.firstImage);
-        secondImage = findViewById(R.id.secondImage);
-        circularCardView = findViewById(R.id.circularCardView);
+        profileImage = findViewById(R.id.profileImage);
         txtName = findViewById(R.id.txtName);
         genderAndDOB = findViewById(R.id.genderAndDOB);
         editProfile = findViewById(R.id.edit_profile);
@@ -52,18 +67,87 @@ public class ProfileActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.menu_profile);
     }
 
+    private void loadStoredUserData(){
+        SharedPreferences preferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        String storedUserJson = preferences.getString(USER_DATA, null);
+        String storedUserImage = preferences.getString(USER_IMAGE, null);
+        if (storedUserJson != null) {
+            try {
+                Gson gson = new Gson();
+                User storedUser = gson.fromJson(storedUserJson, User.class);
+
+                // Set the retrieved user data in respective EditText fields
+                txtName.setText(storedUser.getNameString());
+                genderAndDOB.setText(getString(R.string.gender_and_dob, storedUser.getGender(), storedUser.getDobString()));
+                if (storedUserImage != null) {
+                    // todo read the image from the database and set the image in the image view
+                    // Image exists, load it
+                    // Implement logic to load the image into 'profileImage' ImageView
+                } else {
+                    // Image does not exist, set default image based on gender
+                    if ("Male".equalsIgnoreCase(storedUser.getGender())) {
+                        profileImage.setImageResource(R.drawable.img_male_1);
+                    } else {
+                        profileImage.setImageResource(R.drawable.img_female_1);
+                    }
+                }
+            } catch (JsonSyntaxException e) {
+                // Handle JSON parsing error
+                e.printStackTrace();
+                Toast.makeText(this, "Error loading user data", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
+    private void onClickEditProfile(){
+        editProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void onCLickSetting() {
+        setting.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, SettingActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void onClickSupport() {
+    }
+
+    private void onClickAboutUs(){
+        aboutUs.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, AboutUsActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void onClickAppGuide() {
+    }
+
+    private void onClickLogOut() {
+    }
+
     private void onClickBottomNavigationView() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
+            Intent intent;
             switch (item.getItemId()) {
                 case R.id.menu_home:
-//                    selectedFragment = new HomeFragment();
+                    intent = new Intent(ProfileActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 case R.id.menu_task:
-                    Toast.makeText(ProfileActivity.this, "My Plants Clicked", Toast.LENGTH_SHORT).show();
-//                    selectedFragment = new TaskFragment();
+                    intent = new Intent(ProfileActivity.this, TaskActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 case R.id.menu_resource:
-//                    selectedFragment = new ResourceFragment();
+                    intent = new Intent(ProfileActivity.this, ResourcesActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 case R.id.menu_profile:
                     return true;

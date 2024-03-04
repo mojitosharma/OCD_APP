@@ -2,6 +2,7 @@ package com.example.ocd;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -33,14 +34,15 @@ public class HomeActivity extends AppCompatActivity {
 //                    selectedFragment = new HomeFragment();
                     return true;
                 case R.id.menu_task:
-                    Toast.makeText(HomeActivity.this, "My Plants Clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, "TASK clicked", Toast.LENGTH_SHORT).show();
 //                    selectedFragment = new TaskFragment();
                     return true;
                 case R.id.menu_resource:
 //                    selectedFragment = new ResourceFragment();
                     return true;
                 case R.id.menu_profile:
-//                    selectedFragment = new ProfileFragment();
+                    Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                    startActivity(intent);
                     return true;
             }
             return false;

@@ -48,6 +48,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
 
     // todo stop the time when the screen changes
+    // todo hash the password
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -32,6 +32,8 @@ public class User implements Serializable {
     private String email;
     @SerializedName("password")
     private String password;
+    @SerializedName("stage")
+    private int stage;
     @SerializedName("therapist_id")
     private int therapist_id;
 
@@ -146,6 +148,14 @@ public class User implements Serializable {
 
     public void setTherapist_id(int therapist_id) {
         this.therapist_id = therapist_id;
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
     }
 }
 

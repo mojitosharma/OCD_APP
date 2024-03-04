@@ -1,6 +1,8 @@
 package com.example.ocd;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,7 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
-
+    private static final String PREF_NAME = "LoginPref";
+    private static final String FIRST_TIME_KEY = "isFirstTime";
     private static final int SPLASH_SCREEN_DURATION = 3000;
     private int currentScreen = 1;
 
@@ -53,6 +56,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SplashScreenActivity.class);
             intent.putExtra("currentScreen", currentScreen);
             startActivity(intent);
+            // If it's the first time, set the flag to false and show splash activity
+            SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(FIRST_TIME_KEY, false);
+            editor.apply();
             finish();
         }
     }

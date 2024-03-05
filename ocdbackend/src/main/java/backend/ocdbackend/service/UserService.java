@@ -1,7 +1,5 @@
 package backend.ocdbackend.service;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import backend.ocdbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

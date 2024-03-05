@@ -1,17 +1,11 @@
 package com.example.ocd;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-
-
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-// TODO: set image based on gender. check first if the image exist or not.
 
 public class AboutUsActivity extends AppCompatActivity {
 
@@ -63,7 +57,6 @@ public class AboutUsActivity extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.menu_profile:
-//                    selectedFragment = new ProfileFragment();
                     return true;
             }
             return false;

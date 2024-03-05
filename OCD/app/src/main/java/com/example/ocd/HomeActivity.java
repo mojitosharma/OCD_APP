@@ -29,20 +29,24 @@ public class HomeActivity extends AppCompatActivity {
 
     private void onClickBottomNavigationView() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
+            Intent intent;
             switch (item.getItemId()) {
                 case R.id.menu_home:
-//                    selectedFragment = new HomeFragment();
                     return true;
                 case R.id.menu_task:
-                    Toast.makeText(HomeActivity.this, "TASK clicked", Toast.LENGTH_SHORT).show();
-//                    selectedFragment = new TaskFragment();
+                    intent = new Intent(HomeActivity.this, TaskActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 case R.id.menu_resource:
-//                    selectedFragment = new ResourceFragment();
+                    intent = new Intent(HomeActivity.this, ResourcesActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 case R.id.menu_profile:
-                    Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                    intent = new Intent(HomeActivity.this, ProfileActivity.class);
                     startActivity(intent);
+                    finish();
                     return true;
             }
             return false;

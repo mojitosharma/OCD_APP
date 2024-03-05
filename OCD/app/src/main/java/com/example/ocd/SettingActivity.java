@@ -70,6 +70,10 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void onClickChangeLanguage() {
+        changeLanguage.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingActivity.this, ChangeLanguageActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void intitalize() {

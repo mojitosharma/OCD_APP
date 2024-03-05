@@ -12,11 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.cardview.widget.CardView;
-import androidx.core.widget.NestedScrollView;
-
-import com.example.ocd.model.Name;
 import com.example.ocd.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -33,6 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         // get gender based on gender set image if img is not set
 //    String formattedString = getString(R.string.gender_and_dob, gender, dob);
+    // TODO: set image based on gender. check first if the image exist or not.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +111,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void onClickSupport() {
+        support.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, SupportActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void onClickAboutUs(){
@@ -125,6 +125,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void onClickAppGuide() {
+        appGuide.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, AppGuideActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void onClickLogOut() {

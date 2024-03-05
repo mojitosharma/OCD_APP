@@ -15,12 +15,14 @@
         <ImageView android:id="@+id/backArrow"
             android:layout_height="@dimen/_25pxh"
             android:layout_marginTop="@dimen/_3pxv"
-            android:layout_width="@dimen/_14pxh"
+            android:layout_width="@dimen/_24pxh"
             android:layout_marginStart="@dimen/_25pxh"
+            android:paddingStart="@dimen/_5pxh"
+            android:paddingEnd="@dimen/_5pxh"
             android:scaleType="fitXY"
             android:src="@drawable/img_arrow3"
-            tools:ignore="ContentDescription" tools:src="@drawable/img_arrow3"/>
-
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_arrow3"/>
         <TextView android:ellipsize="end"
             android:id="@+id/txtPreferences"
             android:layout_height="wrap_content"

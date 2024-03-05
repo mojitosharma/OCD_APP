@@ -56,11 +56,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SplashScreenActivity.class);
             intent.putExtra("currentScreen", currentScreen);
             startActivity(intent);
-            // If it's the first time, set the flag to false and show splash activity
-            SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean(FIRST_TIME_KEY, false);
-            editor.apply();
             finish();
         }
     }
@@ -97,6 +92,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Move to the main activity
                 startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+                // If it's the first time, set the flag to false and show splash activity
+                SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean(FIRST_TIME_KEY, false);
+                editor.apply();
                 finish();
             }
         });

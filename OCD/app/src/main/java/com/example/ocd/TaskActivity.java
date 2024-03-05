@@ -2,23 +2,51 @@ package com.example.ocd;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import androidx.recyclerview.widget.GridLayoutManager;
+
+import com.example.ocd.adapter.ObsessionListAdapter;
 
 public class TaskActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private ArrayList<String> obsessionList;
+    private TaskActivity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_task);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        initialize();
+        setRecyclerView();
     }
+
+    private void initialize() {
+        recyclerView = (RecyclerView) findViewById(R.id.obsessionListRecycler);
+    }
+
+    private void getObsessionList() {
+        // todo: add logic to fetch the values from the remote database
+        obsessionList = new ArrayList<>();
+        obsessionList.add("Contamination");
+        obsessionList.add("Losing Control");
+        obsessionList.add("Harm");
+        obsessionList.add("Unwanted Sexual Thoughts");
+        obsessionList.add("Perfectionism");
+        obsessionList.add("Religious Obsessions");
+        obsessionList.add("other");
+    }
+
+    private void setRecyclerView(){
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        ObsessionListAdapter customAdapter = new ObsessionListAdapter(obsessionList);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
+
 }

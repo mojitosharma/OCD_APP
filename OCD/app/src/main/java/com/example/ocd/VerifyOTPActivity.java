@@ -122,6 +122,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
             if (isOtpValid()) {
                 Intent intent = new Intent(VerifyOTPActivity.this, TermAndConditionActivity.class);
                 intent.putExtra("USER", user);
+                cancelCountdownTimer();
                 startActivity(intent);
 //                    finish();
             } else {
@@ -200,6 +201,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
                     // Reset OTP input fields and restart the countdown timer
                     resetOtpInputFields();
                     startCountdownTimer();
+                    optTextViewOne.requestFocus();
                 })
                 .setNegativeButton("Go Back", (dialog, which) -> {
                     // Go back to SignUpActivity with the entered details
@@ -225,9 +227,16 @@ public class VerifyOTPActivity extends AppCompatActivity {
         optTextViewTwo.setText("");
         optTextViewThree.setText("");
         optTextViewFour.setText("");
-        countDownTimer.cancel();
+        cancelCountdownTimer();
         startCountdownTimer();
         getOTPToken(user.getEmail());
+    }
+
+    private void cancelCountdownTimer() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+            timerRunning = false;
+        }
     }
 
 

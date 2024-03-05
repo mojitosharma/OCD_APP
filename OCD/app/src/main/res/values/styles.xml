@@ -346,6 +346,12 @@
         <item name="android:fontFamily">@font/nunito_sans</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
+    <style name="txtNunitoSansregular13_4">
+        <item name="android:textSize">@dimen/_13pxh</item>
+        <item name="android:textColor">@color/gray_800</item>
+        <item name="android:fontFamily">@font/nunito_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
     <style name="txtNunitoSansregular11_3">
         <item name="android:textSize">@dimen/_11pxh</item>
         <item name="android:textColor">@color/gray_800_7f</item>

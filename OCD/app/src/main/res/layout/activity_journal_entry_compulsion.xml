@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JournalEntry.JournalEntryCompulsionActivity">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/topLinearLayout"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarToolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:contentInsetStart="0dp"
+            android:padding="@dimen/_5pxh"
+            style="@style/groupStylewhite_A700cornerRadius">
+
+            <ImageView android:id="@+id/backArrow"
+                android:layout_height="@dimen/_35pxh"
+                android:layout_marginBottom="@dimen/_3pxv"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_width="@dimen/_37pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_arrowleft_black_900"
+                tools:ignore="ContentDescription"
+                android:padding="@dimen/_5pxh"
+                tools:src="@drawable/img_arrowleft_black_900"/>
+
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtJournalentry"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_96pxh"
+                android:layout_weight="0.72"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                android:text="@string/lbl_journal_entry"
+                style="@style/txtNunitoSanssemibold14_2" tools:text="@string/lbl_journal_entry"/>
+
+            <TextView
+                android:id="@+id/txtGoodmorningH"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/_1pxv"
+                android:text="@string/lbl_journal_entry"
+                style="@style/txtNunitoSanssemibold14_2"
+                tools:text="@string/lbl_journal_entry"
+                android:ellipsize="end"
+                android:singleLine="true"/>
+            <ImageView android:id="@+id/crossButton"
+                android:layout_height="@dimen/_25pxh"
+                android:layout_marginBottom="@dimen/_2pxv"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_width="@dimen/_25pxh"
+                android:padding="@dimen/_5pxh"
+                android:layout_gravity="end"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_close_black_900"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_close_black_900"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearRowgroupseventy"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_21pxh"
+            android:layout_marginStart="@dimen/_21pxh"
+            android:layout_marginTop="@dimen/_18pxv"
+            android:layout_width="match_parent" android:orientation="horizontal">
+            <ImageButton
+                android:background="@drawable/rectangle_bg_indigo_400_radius_2"
+                android:id="@+id/btnGroupSeventy"
+                android:layout_height="@dimen/_12pxh"
+                android:layout_width="@dimen/_12pxh"
+                android:paddingHorizontal="@dimen/_2pxh"
+                android:paddingVertical="@dimen/_2pxv"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_group339" tools:ignore="ContentDescription"/>
+            <View android:background="@color/indigo_400"
+                android:id="@+id/lineLineThree"
+                android:layout_height="@dimen/_1pxv"
+                android:layout_marginBottom="@dimen/_5pxv"
+                android:layout_marginTop="@dimen/_6pxv"
+                android:layout_weight="0.43" android:layout_width="0dp"/>
+            <View
+                android:background="@drawable/rectangle_bg_indigo_400_radius_2"
+                android:id="@+id/viewRectangle176"
+                android:layout_height="@dimen/_12pxh" android:layout_width="@dimen/_12pxh"/>
+            <View android:background="@color/gray_300"
+                android:id="@+id/lineLineFour"
+                android:layout_height="@dimen/_1pxv"
+                android:layout_marginBottom="@dimen/_5pxv"
+                android:layout_marginTop="@dimen/_6pxv"
+                android:layout_weight="0.44" android:layout_width="0dp"/>
+            <View
+                android:background="@drawable/rectangle_bg_gray_300_radius_2"
+                android:id="@+id/viewRectangle177"
+                android:layout_height="@dimen/_12pxh" android:layout_width="@dimen/_12pxh"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/linearRowobsession"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_7pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_2pxv"
+            android:layout_width="match_parent" android:orientation="horizontal">
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtObsession"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:layout_width="0dp"
+                android:gravity="start"
+                android:singleLine="true"
+                android:text="@string/lbl_obsession"
+                style="@style/txtNunitoSansregular14_9" tools:text="@string/lbl_obsession"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtCompulsion"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.38"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                android:gravity="center_horizontal"
+                android:text="@string/lbl_compulsion"
+                style="@style/txtNunitoSanssemibold14_4" tools:text="@string/lbl_compulsion"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtFrequency"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.28"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                android:gravity="end"
+                android:text="@string/lbl_frequency"
+                style="@style/txtNunitoSansregular12_1" tools:text="@string/lbl_frequency"/>
+        </LinearLayout>
+
+        <View
+            android:background="@drawable/rectangle_bg_bluegray_100_radius_1"
+            android:id="@+id/lineRectangle146"
+            android:layout_height="@dimen/_2pxv"
+            android:layout_marginTop="@dimen/_8pxv"
+            android:layout_width="match_parent"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topLinearLayout"
+        android:layout_above="@+id/btnProceed">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtNameofthecom"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_13pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@string/msg_name_of_the_com"
+            style="@style/txtNunitoSansregular14_8"
+            tools:text="@string/msg_name_of_the_com"/>
+
+        <EditText
+            android:id="@+id/txtInputCompulsionName"
+            android:background="@drawable/rectangle_bg_gray_100_border_bluegray_100_radius_10"
+            android:hint="@string/msg_enter_the_name"
+            android:layout_height="@dimen/_100pxv"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_11pxv"
+            android:padding="@dimen/_11pxv"
+            android:textColorHint="@color/gray_800"
+            style="@style/txtNunitoSansregular13_4"
+            android:scrollbars="vertical"
+            android:gravity="top"/>
+
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtCompulsionOne"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_25pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@string/lbl_compulsion2"
+            style="@style/txtNunitoSansregular14_8" tools:text="@string/lbl_compulsion2"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/compulsionListRecycler"
+            android:background="@color/white"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"/>
+
+        <EditText
+            android:id="@+id/txtInputCompulsion"
+            android:background="@drawable/rectangle_bg_gray_100_border_bluegray_100_radius_10"
+            android:hint="@string/msg_compulsion_not"
+            android:layout_height="@dimen/_150pxv"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_11pxv"
+            android:padding="@dimen/_11pxv"
+            android:textColorHint="@color/gray_800"
+            style="@style/txtNunitoSansregular13_4"
+            android:scrollbars="vertical"
+            android:gravity="top"/>
+
+    </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:ellipsize="end" android:gravity="center"
+        android:id="@+id/btnProceed"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10pxv"
+        android:paddingBottom="@dimen/_10pxv"
+        android:paddingEnd="@dimen/_30pxh"
+        android:paddingStart="@dimen/_30pxh"
+        android:paddingTop="@dimen/_10pxv"
+        android:singleLine="true"
+        android:text="@string/lbl_proceed"
+        android:textAllCaps="false" style="@style/btnSolid_1" tools:text="@string/lbl_proceed"/>
+
+
+
+</RelativeLayout>

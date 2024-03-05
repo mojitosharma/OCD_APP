@@ -16,6 +16,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".JournalEntry.ObservationSubmitted"
+            android:exported="false" />
+        <activity
+            android:name=".JournalEntry.JournalEntryFrequencyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JournalEntry.JournalEntryCompulsionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JournalEntry.JournalEntryObsessionActivity"
+            android:exported="false" />
+        <activity
             android:name=".AppGuideActivity"
             android:exported="false" />
         <activity

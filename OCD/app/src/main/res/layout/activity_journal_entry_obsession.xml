@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TaskActivity">
+    tools:context=".JournalEntry.JournalEntryObsessionActivity">
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                 tools:text="@string/lbl_journal_entry"
                 android:ellipsize="end"
                 android:singleLine="true"/>
-            <ImageView android:id="@+id/imageVector"
+            <ImageView android:id="@+id/crossButton"
                 android:layout_height="@dimen/_25pxh"
                 android:layout_marginBottom="@dimen/_2pxv"
                 android:layout_marginEnd="@dimen/_10pxh"
@@ -64,7 +64,7 @@
                 android:src="@drawable/img_close_black_900"
                 tools:ignore="ContentDescription" tools:src="@drawable/img_close_black_900"/>
 
-         </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
 
         <LinearLayout android:gravity="center_horizontal"
@@ -107,39 +107,37 @@
             </LinearLayout>
             <LinearLayout android:id="@+id/linearRowobsession"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_11pxv"
+                android:layout_marginBottom="@dimen/_7pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_2pxv"
-                android:layout_width="match_parent" android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtObsession"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.37"
                     android:layout_width="0dp"
                     android:singleLine="true"
+                    android:gravity="start"
                     android:text="@string/lbl_obsession"
                     style="@style/txtNunitoSanssemibold14_3" tools:text="@string/lbl_obsession"/>
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtCompulsion"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_1pxv"
-                    android:layout_marginStart="@dimen/_59pxh"
-                    android:layout_marginTop="@dimen/_2pxv"
                     android:layout_weight="0.34"
                     android:layout_width="0dp"
                     android:singleLine="true"
+                    android:gravity="center_horizontal"
                     android:text="@string/lbl_compulsion"
                     style="@style/txtNunitoSansregular12_1" tools:text="@string/lbl_compulsion"/>
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtFrequency"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_1pxv"
-                    android:layout_marginStart="@dimen/_65pxh"
-                    android:layout_marginTop="@dimen/_2pxv"
                     android:layout_weight="0.3"
                     android:layout_width="0dp"
                     android:singleLine="true"
+                    android:gravity="end"
                     android:text="@string/lbl_frequency"
                     style="@style/txtNunitoSansregular12_1" tools:text="@string/lbl_frequency"/>
             </LinearLayout>
@@ -154,6 +152,100 @@
             android:layout_width="match_parent"/>
 
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topLinearLayout"
+        android:layout_above="@+id/btnProceed">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            style="@style/groupStylewhite_A700">
+
+            <TextView android:ellipsize="end" android:gravity="start"
+                android:id="@+id/txtCircumstancewh"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_13pxv"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@string/msg_circumstance_wh"
+                style="@style/txtNunitoSansregular14_8" tools:text="@string/msg_circumstance_wh"/>
+
+            <EditText
+                android:id="@+id/txtInputTrigger"
+                android:background="@drawable/rectangle_bg_gray_100_border_bluegray_100_radius_10"
+                android:hint="@string/msg_type_your_trigg"
+                android:layout_height="@dimen/_150pxv"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_11pxv"
+                android:padding="@dimen/_11pxv"
+                android:textColorHint="@color/gray_800"
+                style="@style/txtNunitoSansregular13_4"
+                android:scrollbars="vertical"
+                android:gravity="top"/>
+
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtObsessionOne"
+                android:layout_gravity="start"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_23pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@string/lbl_obsession2"
+                style="@style/txtNunitoSansregular14_8" tools:text="@string/lbl_obsession2"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/obsessionListRecycler"
+                android:background="@color/white"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"/>
+
+            <EditText
+                android:id="@+id/txtInputObsession"
+                android:background="@drawable/rectangle_bg_gray_100_border_bluegray_100_radius_10"
+                android:hint="@string/msg_obsession_not_l"
+                android:layout_height="@dimen/_150pxv"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_11pxv"
+                android:padding="@dimen/_11pxv"
+                android:textColorHint="@color/gray_800"
+                style="@style/txtNunitoSansregular13_4"
+                android:scrollbars="vertical"
+                android:gravity="top"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:ellipsize="end"
+        android:id="@+id/btnProceed"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10pxv"
+        android:layout_width="match_parent"
+        android:paddingBottom="@dimen/_10pxv"
+        android:paddingEnd="@dimen/_30pxh"
+        android:paddingStart="@dimen/_30pxh"
+        android:paddingTop="@dimen/_10pxv"
+        android:singleLine="true"
+        android:text="@string/lbl_proceed"
+        android:textAllCaps="false" style="@style/btnSolid" tools:text="@string/lbl_proceed"/>
+
+
 
 
 </RelativeLayout>

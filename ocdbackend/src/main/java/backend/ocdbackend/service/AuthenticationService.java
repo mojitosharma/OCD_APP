@@ -44,8 +44,9 @@ public class AuthenticationService {
     public ApplicationUser registerUser(String email, String password, Name name, Integer patient_number, Date dob, Date day_of_enrollment, String gender, String education, String occupation, Integer therapist_id, String profile_image) {
 
         String encodedPassword = passwordEncoder.encode(password);
-        Role userRole = roleRepository.findByAuthority("USER").orElseThrow(() -> new RuntimeException("User role not found"));
-
+        Role userRole = roleRepository.findByAuthority("USER")
+                .orElseThrow(() -> new RuntimeException("User role not found"));
+        System.out.println(userRole.getId());
         Set<ObjectId> authorities = new HashSet<>();
         authorities.add(userRole.getId()); // Assuming Role has an ObjectId getter
 

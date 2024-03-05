@@ -33,6 +33,7 @@ public class OcdbackendApplication {
 			// Create and save the admin user
 			Set<ObjectId> authorities = new HashSet<>();
 			authorities.add(adminRole.getId());
+			System.out.println(authorities);
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 

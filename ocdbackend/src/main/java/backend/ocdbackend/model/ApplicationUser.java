@@ -35,6 +35,7 @@ public class ApplicationUser implements UserDetails {
 
 
     public ApplicationUser() {
+        super();
         authorities = new HashSet<>();
     }
 
@@ -42,6 +43,7 @@ public class ApplicationUser implements UserDetails {
                            Name name, Integer patient_number, Date dob, Date day_of_enrollment,
                            String gender, String education, String occupation, Integer therapist_id,
                            String profile_image) {
+        super();
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -66,6 +68,9 @@ public class ApplicationUser implements UserDetails {
         return grantedAuthorities;
     }
 
+    public ObjectId getUserId(){
+        return this.user_id;
+    }
     @Override
     public String getPassword() {
         return password;

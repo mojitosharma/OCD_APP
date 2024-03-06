@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="tooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="backgroundTint">@color/indigo_400_bc</item>
+        <item name="android:visibility">visible</item>
+
+    </style>
+
+    <style name="tooltipShOverylay">
+        <item name="cornerSize">50%</item>
+    </style>
     <style name="btnSolidRoundedBottomCorner_1">
         <item name="android:textSize">@dimen/_16pxh</item>
         <item name="android:textColor">@color/white_A700_87</item>

@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -32,6 +34,8 @@ public class JournalEntryFrequencyActivity extends AppCompatActivity {
     private ArrayList<String> frequencyList, timeList;
     private JournalFrequencyAdapter customAdapterFrequency, customAdapterTime;
     private ImageView backArrow, crossButton;
+    private SeekBar sliderStressMeter;
+    private TextView txtStressValue;
     private String trigger, obsession, compulsionName, compulsion;
 
     @Override
@@ -41,11 +45,13 @@ public class JournalEntryFrequencyActivity extends AppCompatActivity {
 
         initialize();
         readValues();
-        getCompulsionList();
+        getTimeAndFrequencyList();
         setRecyclerView();
         onClickBackArrow();
         onClickCrossButton();
+        onClickSliderStressMeter();
         onClickBtnSubmit();
+
     }
 
 
@@ -54,6 +60,8 @@ public class JournalEntryFrequencyActivity extends AppCompatActivity {
         crossButton = findViewById(R.id.crossButton);
         compulsionFrequencyListRecycler = findViewById(R.id.compulsionFrequencyListRecycler);
         compulsionDurationListRecycler = findViewById(R.id.compulsionDurationListRecycler);
+        sliderStressMeter = findViewById(R.id.sliderStressMeter);
+        txtStressValue = findViewById(R.id.txtStressValue);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnSubmit.setBackgroundResource(R.drawable.rectangle_bg_indigo_400_radius_5);
     }
@@ -68,7 +76,7 @@ public class JournalEntryFrequencyActivity extends AppCompatActivity {
         }
     }
 
-    private void getCompulsionList() {
+    private void getTimeAndFrequencyList() {
         // todo: add logic to fetch the values from the remote database
         frequencyList = new ArrayList<>();
         frequencyList.add("0-5 times");
@@ -112,39 +120,39 @@ public class JournalEntryFrequencyActivity extends AppCompatActivity {
         });
     }
 
+    private void onClickSliderStressMeter() {
+        sliderStressMeter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                txtStressValue.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Handle touch start
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Handle touch end
+            }
+        });
+    }
+
     private void onClickBtnSubmit() {
-//        btnProceed.setOnClickListener(view -> {
-//            String compulsionName = txtInputCompulsionName.getText().toString().trim();
-//            String compulsion = txtInputCompulsion.getText().toString().trim();
-//            String selectedCompulsion = customAdapter.getSelectedOption();
-//            if(!compulsionName.isEmpty() && !selectedCompulsion.isEmpty()){
-//                if(selectedCompulsion.equals("other")) {
-//                    if (compulsion.isEmpty()) {
-//                        Toast.makeText(JournalEntryCompulsionActivity.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else {
-//                        Intent intent = new Intent(JournalEntryCompulsionActivity.this, JournalEntryFrequencyActivity.class);
-//                        intent.putExtra("trigger", trigger);
-//                        intent.putExtra("obsession", obsession);
-//                        intent.putExtra("compulsionName", compulsionName);
-//                        intent.putExtra("compulsion", compulsion);
-//                        startActivity(intent);
-//                    }
-//                }
-//                else {
-//                    Intent intent = new Intent(JournalEntryCompulsionActivity.this, JournalEntryFrequencyActivity.class);
-//                    intent.putExtra("trigger", compulsionName);
-//                    intent.putExtra("obsession", obsession);
-//                    intent.putExtra("compulsion", selectedCompulsion);
-//                    intent.putExtra("compulsionName", compulsionName);
-//                    startActivity(intent);
-//                }
-//            }
-//            else{
-//                Toast.makeText(JournalEntryCompulsionActivity.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
-//            }
-//
-//        });
+        btnSubmit.setOnClickListener(view -> {
+            String time = customAdapterTime.getSelectedOption();
+            String frequency = customAdapterFrequency.getSelectedOption();
+            String stressValue = txtStressValue.getText().toString();
+            if(!time.isEmpty() && !frequency.isEmpty() && !stressValue.equals("NIL")){
+                // todo: add logic to send the values to the remote database
+                Intent intent = new Intent(JournalEntryFrequencyActivity.this, ObservationSubmittedActivity.class);
+                startActivity(intent);
+                this.finish();
+            }
+            else{
+                Toast.makeText(JournalEntryFrequencyActivity.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+            }
+
+        });
 
     }
 }

@@ -83,7 +83,7 @@ public class JournalListAdapter extends RecyclerView.Adapter<JournalListAdapter.
 
     public String getSelectedOption() {
         if (selectedItem == -1) {
-            return null;
+            return "";
         }
         return list.get(selectedItem);
     }

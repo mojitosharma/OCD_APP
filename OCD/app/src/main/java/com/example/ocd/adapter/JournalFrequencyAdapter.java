@@ -72,7 +72,7 @@ public class JournalFrequencyAdapter extends RecyclerView.Adapter<JournalFrequen
 
     public String getSelectedOption() {
         if (selectedItem == -1) {
-            return null;
+            return "";
         }
         return list.get(selectedItem);
     }

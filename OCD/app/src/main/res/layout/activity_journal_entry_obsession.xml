@@ -231,19 +231,19 @@
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:ellipsize="end"
+        android:ellipsize="end" android:gravity="center"
         android:id="@+id/btnProceed"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10pxv"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10pxv"
         android:paddingBottom="@dimen/_10pxv"
         android:paddingEnd="@dimen/_30pxh"
         android:paddingStart="@dimen/_30pxh"
         android:paddingTop="@dimen/_10pxv"
         android:singleLine="true"
         android:text="@string/lbl_proceed"
-        android:textAllCaps="false" style="@style/btnSolid" tools:text="@string/lbl_proceed"/>
+        android:textAllCaps="false" style="@style/btnSolid_1" tools:text="@string/lbl_proceed"/>
 
 
 

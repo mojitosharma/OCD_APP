@@ -225,126 +225,65 @@
             android:text="@string/lbl_stress_meter"
             style="@style/txtNunitoSansregular14_8" tools:text="@string/lbl_stress_meter"/>
 
-        <SeekBar
-            android:id="@+id/slider"
-            android:layout_width="match_parent"
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:max="100"
-            android:progress="0"
-            android:thumb="@android:color/transparent"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <SeekBar
-            android:id="@+id/slider1"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            android:max="100"
-            android:progress="0"
-            android:thumb="@android:color/transparent"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:tickMark="@null"
-            android:splitTrack="false"/>
-
-        <com.google.android.material.slider.RangeSlider
-            android:id="@+id/rangeSlider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:valueFrom="0"
-            android:valueTo="100"
-            android:stepSize="1"
-            android:value="0,100"
-            app:labelBehavior="withinBounds"
-            app:values="@array/slider_values"
-            app:thumbColor="@color/indigo_400"
-            app:trackColorActive="@color/indigo_400"
-            app:trackColorInactive="@color/indigo_400"/>
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="10"
-            android:progress="3" />
-
-
-
-        <FrameLayout android:id="@+id/frameStacklinesix"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="@dimen/_18pxv"
-            android:layout_marginEnd="@dimen/_20pxh"
-            android:layout_marginStart="@dimen/_20pxh"
-            android:layout_marginTop="@dimen/_14pxv" android:layout_width="@dimen/_320pxh">
-            <LinearLayout android:id="@+id/linearRowlinesix"
-                android:layout_gravity="center"
+            <TextView
+                android:ellipsize="end"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_4pxv"
-                android:layout_marginStart="@dimen/_1pxh"
-                android:layout_marginTop="@dimen/_4pxv"
-                android:layout_width="match_parent"
-                android:orientation="horizontal" style="@style/groupStylegray_3">
-                <View android:background="@color/gray_700_7f"
-                    android:id="@+id/lineLineSix"
-                    android:layout_height="@dimen/_10pxv"
-                    android:layout_marginStart="@dimen/_83pxh"
-                    android:layout_weight="0.01" android:layout_width="0dp"/>
-                <LinearLayout android:id="@+id/linearRowlineseven"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_68pxh"
-                    android:layout_marginStart="@dimen/_83pxh"
-                    android:layout_weight="0.99"
-                    android:layout_width="0dp" android:orientation="horizontal">
-                    <View android:background="@color/gray_700_7f"
-                        android:id="@+id/lineLineSeven"
-                        android:layout_height="@dimen/_10pxv"
-                        android:layout_weight="0.5" android:layout_width="0dp"/>
-                    <View android:background="@color/gray_700_7f"
-                        android:id="@+id/lineLineEight"
-                        android:layout_height="@dimen/_10pxv"
-                        android:layout_marginStart="@dimen/_82pxh"
-                        android:layout_weight="0.5" android:layout_width="0dp"/>
-                </LinearLayout>
-            </LinearLayout>
-            <View
-                android:background="@drawable/rectangle_bg_gray_700_radius_9"
-                android:id="@+id/viewEllipseThree"
-                android:layout_gravity="start"
-                android:layout_height="@dimen/_18pxh"
-                android:layout_marginEnd="@dimen/_10pxh" android:layout_width="@dimen/_18pxh"/>
-        </FrameLayout>
-        <LinearLayout android:id="@+id/linearRowzero"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_20pxh"
-            android:layout_marginStart="@dimen/_20pxh"
-            android:layout_marginTop="@dimen/_2pxv"
-            android:layout_width="match_parent" android:orientation="horizontal">
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtZero"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_30pxh"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:singleLine="true"
+                android:text="@string/_0"
+                style="@style/txtNunitoSansregular14_8"
+                tools:text="@string/_0"/>
+
+            <com.google.android.material.slider.Slider
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.26"
-                android:layout_width="0dp" android:singleLine="true"
-                android:text="@string/lbl_0"
-                style="@style/txtNunitoSansregular12_2" tools:text="@string/lbl_0"/>
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtOneHundred"
+                android:id="@+id/sliderStressMeter"
+                android:stepSize="1.0"
+                android:valueFrom="0"
+                android:valueTo="100"
+                android:tickMark="@null"
+                android:thumb="@drawable/rectangle_bg_indigo_200_radius_10"
+                android:progressTint="@color/indigo_400_bc"
+                app:labelStyle="@style/tooltip"
+                tools:ignore="SpeakableTextPresentCheck"/>
+
+            <TextView
+                android:ellipsize="end"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_291pxh"
-                android:layout_weight="0.74"
-                android:layout_width="0dp" android:singleLine="true"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginTop="@dimen/_30pxh"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:singleLine="true"
                 android:text="@string/lbl_100"
-                style="@style/txtNunitoSansregular12_2" tools:text="@string/lbl_100"/>
-        </LinearLayout>
-        <androidx.appcompat.widget.AppCompatButton
-            android:ellipsize="end" android:gravity="center"
-            android:id="@+id/btnZeroOne"
-            android:layout_gravity="center_horizontal"
+                style="@style/txtNunitoSansregular14_8"
+                tools:text="@string/lbl_100"/>
+        </RelativeLayout>
+
+
+
+
+
+        <TextView
+            android:ellipsize="end"
+            android:gravity="center"
+            android:id="@+id/txtStressValue"
             android:layout_height="@dimen/_31pxv"
+            android:layout_gravity="center_horizontal"
             android:layout_marginEnd="@dimen/_20pxh"
             android:layout_marginStart="@dimen/_20pxh"
             android:layout_marginTop="@dimen/_16pxv"
@@ -353,11 +292,11 @@
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_30pxh"
             android:paddingTop="@dimen/_7pxv"
-            android:singleLine="true" android:text="@string/lbl_00"
+            android:singleLine="true"
+            android:text="@string/lbl_nil"
             android:textAllCaps="false"
-            style="@style/btnSolidRounded_5" tools:text="@string/lbl_00"/>
-
-
+            style="@style/btnSolidRounded_5"
+            tools:text="@string/lbl_nil"/>
 
     </LinearLayout>
     </ScrollView>

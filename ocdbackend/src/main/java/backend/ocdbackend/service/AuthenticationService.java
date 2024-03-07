@@ -2,7 +2,9 @@ package backend.ocdbackend.service;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import backend.ocdbackend.model.LoginResponseDTO;
 import backend.ocdbackend.model.ApplicationUser;
@@ -41,7 +43,23 @@ public class AuthenticationService {
     @Autowired
     public TokenService tokenService;
 
-    public ApplicationUser registerUser(String email, String password, Name name, Integer patient_number, Date dob, Date day_of_enrollment, String gender, String education, String occupation, Integer therapist_id, String profile_image) {
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pat = Pattern.compile(emailRegex);
+        return pat.matcher(email).matches();
+    }
+
+
+    public String registerUser(String email, String password, Name name, Integer patient_number, Date dob, Date day_of_enrollment, String gender, String education, String occupation, Integer therapist_id, String profile_image) {
+
+        if (!isValidEmail(email)) {
+            return "Invalid email format";
+        }
+
+        Optional<ApplicationUser> existingUser = userRepository.findByEmail(email);
+        if (existingUser.isPresent()) {
+            return "User already exists and cannot register";
+        }
 
         String encodedPassword = passwordEncoder.encode(password);
         Role userRole = roleRepository.findByAuthority("USER")
@@ -65,7 +83,8 @@ public class AuthenticationService {
                 profile_image // profile_image
         );
 
-        return userRepository.save(user);
+        userRepository.save(user);
+        return "User successfully registered";
     }
 
 
@@ -75,7 +94,7 @@ public class AuthenticationService {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
-
+            System.out.println("Check");
             String token = tokenService.generateJwt(auth);
 
             return new LoginResponseDTO(userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found")), token);

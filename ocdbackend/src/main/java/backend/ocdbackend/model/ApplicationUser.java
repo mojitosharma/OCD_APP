@@ -30,6 +30,10 @@ public class ApplicationUser implements UserDetails {
     private String occupation;
     private int therapist_id;
     private String profile_image; // Base64 encoded image data
+
+    private Boolean locked = false;
+
+    private Boolean enabled = true;
     private Set<ObjectId> authorities; // Assuming roles are stored as strings
 
 
@@ -83,7 +87,7 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return !locked;
     }
 
     @Override
@@ -98,7 +102,7 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
     public ObjectId getId() {

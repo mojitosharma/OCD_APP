@@ -1,6 +1,7 @@
 package backend.ocdbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,6 +16,7 @@ import java.util.Set;
 
 @Document(collection = "users")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Data
 public class ApplicationUser implements UserDetails {
 
     @Id

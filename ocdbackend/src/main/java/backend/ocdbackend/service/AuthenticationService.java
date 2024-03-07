@@ -12,6 +12,7 @@ import backend.ocdbackend.model.Name;
 import backend.ocdbackend.model.Role;
 import backend.ocdbackend.repository.RoleRepository;
 import backend.ocdbackend.repository.UserRepository;
+import backend.ocdbackend.utils.EmailValidator;
 import org.bson.types.ObjectId;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,19 +42,19 @@ public class AuthenticationService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    public TokenService tokenService;
+    private TokenService tokenService;
 
-    public boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        Pattern pat = Pattern.compile(emailRegex);
-        return pat.matcher(email).matches();
-    }
+    @Autowired
+    private EmailValidator emailValidator;
 
 
-    public String registerUser(String email, String password, Name name, Integer patient_number, Date dob, Date day_of_enrollment, String gender, String education, String occupation, Integer therapist_id, String profile_image) {
 
-        if (!isValidEmail(email)) {
-            return "Invalid email format";
+    public String registerUser(String email, String password, Name name, Integer patient_number,
+                               Date dob, Date day_of_enrollment, String gender, String education,
+                               String occupation, Integer therapist_id, String profile_image) {
+
+        if (emailValidator.test(email)) {
+            throw new IllegalStateException("email not valid");
         }
 
         Optional<ApplicationUser> existingUser = userRepository.findByEmail(email);
@@ -84,6 +85,7 @@ public class AuthenticationService {
         );
 
         userRepository.save(user);
+
         return "User successfully registered";
     }
 

@@ -1,0 +1,82 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".TermAndConditionActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/checkBox">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_6pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_17pxv"
+            android:orientation="vertical" >
+
+            <TextView android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:id="@+id/txtTermAndCondition"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_36pxh"
+                android:layout_marginStart="@dimen/_36pxh"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@string/msg_terms_and_condi"
+                style="@style/txtNunitoSansbold24" tools:text="@string/msg_terms_and_condi"/>
+
+
+            <TextView
+                android:id="@+id/tvTermsAndConditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loading terms and conditions..."
+                style="@style/txtNunitoSansregular14"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/checkBox"
+        android:buttonTint="@color/indigo_400"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito_sans"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10pxh"
+        android:layout_marginTop="@dimen/_14pxv"
+        android:layout_width="wrap_content"
+        android:paddingStart="@dimen/_5pxh"
+        android:singleLine="true"
+        android:layout_above="@id/btnContinue"
+        android:text="@string/msg_agree_and_proce"
+        android:textColor="@color/indigo_400"
+        android:textFontWeight="700"
+        android:textSize="@dimen/_14pxh"
+        android:textStyle="bold" tools:text="@string/msg_agree_and_proce"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_7pxv"
+        android:padding="3dp"
+        android:layout_marginStart="@dimen/_19pxv"
+        android:layout_marginEnd="@dimen/_19pxv"
+        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/continue_p"
+        android:textAllCaps="false"
+        style="@style/btnSolidRounded_2"
+        tools:text="@string/continue_p"
+        />
+
+
+</RelativeLayout>

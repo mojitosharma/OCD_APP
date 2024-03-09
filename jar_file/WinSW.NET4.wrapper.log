@@ -1,0 +1,12 @@
+2024-02-23 19:10:15,102 DEBUG - Starting WinSW in console mode
+2024-02-23 19:10:15,144 INFO  - Installing service 'ocd_backend service (ocd_backend)'...
+2024-02-23 19:10:15,224 INFO  - Service 'ocd_backend service (ocd_backend)' was installed successfully.
+2024-02-23 19:12:04,756 DEBUG - Starting WinSW in service mode
+2024-02-23 19:12:04,845 INFO  - Starting java -jar ocd_backend.jar
+2024-02-23 19:12:04,983 INFO  - Started process 49304
+2024-02-23 19:12:05,016 DEBUG - Forwarding logs of the process System.Diagnostics.Process (java) to WinSW.DefaultLogAppender
+2024-02-23 19:12:54,488 INFO  - Stopping ocd_backend
+2024-02-23 19:12:54,490 DEBUG - ProcessKill 49304
+2024-02-23 19:12:54,498 DEBUG - Stopping process 49304...
+2024-02-23 19:12:54,512 DEBUG - Process 49304 canceled with code -1073741510.
+2024-02-23 19:12:54,533 INFO  - Finished ocd_backend

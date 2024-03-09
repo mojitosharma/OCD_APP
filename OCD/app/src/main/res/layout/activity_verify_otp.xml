@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VerifyOTPActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <LinearLayout android:id="@+id/linearColumnverification"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_6pxv"
+                android:layout_marginEnd="@dimen/_19pxh"
+                android:layout_marginStart="@dimen/_19pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtVerification"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:paddingTop="@dimen/_16pxv"
+                android:text="@string/lbl_verification"
+                style="@style/txtNunitoSansbold24"
+                tools:text="@string/lbl_verification"/>
+
+            <TextView android:gravity="center_horizontal"
+                android:id="@+id/otpSendText"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_4pxh"
+                android:layout_marginStart="@dimen/_1pxh"
+                android:text="@string/msg_validateOTP"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_width="match_parent"
+                style="@style/txtNunitoSansregular14_5"/>
+
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRowgroup247"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginStart="@dimen/_1pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+
+                <EditText android:ellipsize="end"
+                    android:id="@+id/optTextViewOne"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:layout_width="0dp"
+                    android:paddingBottom="@dimen/_8pxv"
+                    android:paddingEnd="@dimen/_14pxh"
+                    android:paddingStart="@dimen/_14pxh"
+                    android:paddingTop="@dimen/_7pxv"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:gravity="center"
+                    style="@style/txtSolidRoundedOutline" />
+
+                <EditText android:ellipsize="end"
+                    android:id="@+id/optTextViewTwo"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_14pxh"
+                    android:layout_weight="0.25"
+                    android:layout_width="0dp"
+                    android:paddingBottom="@dimen/_8pxv"
+                    android:paddingEnd="@dimen/_14pxh"
+                    android:paddingStart="@dimen/_15pxh"
+                    android:paddingTop="@dimen/_7pxv"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:gravity="center"
+                    style="@style/txtSolidRoundedOutline" />
+
+                <EditText android:ellipsize="end"
+                    android:id="@+id/optTextViewThree"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_14pxh"
+                    android:layout_weight="0.25"
+                    android:layout_width="0dp"
+                    android:paddingBottom="@dimen/_8pxv"
+                    android:paddingEnd="@dimen/_14pxh"
+                    android:paddingStart="@dimen/_14pxh"
+                    android:paddingTop="@dimen/_7pxv"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    style="@style/txtSolidRoundedOutline"/>
+
+                <EditText android:ellipsize="end"
+                        android:id="@+id/optTextViewFour"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14pxh"
+                        android:layout_weight="0.25"
+                        android:layout_width="0dp"
+                        android:paddingBottom="@dimen/_8pxv"
+                        android:paddingEnd="@dimen/_14pxh"
+                        android:paddingStart="@dimen/_14pxh"
+                        android:paddingTop="@dimen/_7pxv"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        style="@style/txtSolidRoundedOutline"/>
+                </LinearLayout>
+
+                <TextView
+                    android:ellipsize="end"
+                    android:id="@+id/txtDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginStart="@dimen/_1pxh"
+                    android:layout_marginTop="@dimen/_20pxv"
+                    android:singleLine="true"
+                    android:text="@string/countdown_format"
+                    style="@style/txtNunitoSansregular11_3"
+                    tools:text="@string/countdown_format" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end" android:gravity="center"
+                android:id="@+id/btnLetsBeginMyTherapy"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/_43pxv"
+                android:layout_marginStart="@dimen/_1pxh"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_width="@dimen/_320pxh"
+                android:paddingBottom="@dimen/_10pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_30pxh"
+                android:paddingTop="@dimen/_10pxv"
+                android:singleLine="true"
+                android:text="@string/msg_let_s_begin_my"
+                android:textAllCaps="false"
+                style="@style/btnSolidRounded_4"
+                tools:text="@string/msg_let_s_begin_my"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

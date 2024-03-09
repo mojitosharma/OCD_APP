@@ -32,8 +32,17 @@ public class helperFunctions {
         }
     }
 
+    public static boolean isPasswordValid(String password) {
+        // Add your password validation logic here
+        // Password should be at least 8 characters, with at least one capital letter, one small letter,
+        // one number, and one special character
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z@$!%*?&]{8,}$";
+
+        return password.matches(passwordPattern);
+    }
+
     // Helper method to check if a string is numeric
-    private static boolean isNumeric(String str) {
+    public static boolean isNumeric(String str) {
         try {
             Integer.parseInt(str);
             return true;
@@ -41,4 +50,6 @@ public class helperFunctions {
             return false;
         }
     }
+
+
 }

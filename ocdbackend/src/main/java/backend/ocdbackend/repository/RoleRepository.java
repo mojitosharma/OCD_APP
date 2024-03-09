@@ -1,16 +1,15 @@
 package backend.ocdbackend.repository;
 
-import backend.ocdbackend.model.ApplicationUser;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+import backend.ocdbackend.model.Role;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
-public interface UserRepository extends MongoRepository<ApplicationUser, ObjectId> {
-
-    Optional<ApplicationUser> findByEmail(String email);
+public interface RoleRepository extends MongoRepository<Role, ObjectId> {
+    Optional<Role> findByAuthority(String authority);
 }

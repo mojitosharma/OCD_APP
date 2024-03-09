@@ -1,9 +1,30 @@
 package backend.ocdbackend.service;
 
-import backend.ocdbackend.model.User;
 
-public interface UserService {
-    User save(User user);
+import backend.ocdbackend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-//     List<User> getUsersByTherapistId(String therapistId);
+
+@Service
+public class UserService implements UserDetailsService {
+
+    final static String USER_NOT_FOUND = "user with email %s not found";
+
+
+    @Autowired
+    private PasswordEncoder encoder;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+            return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+    }
+
 }

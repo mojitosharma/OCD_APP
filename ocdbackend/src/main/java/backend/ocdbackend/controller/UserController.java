@@ -7,18 +7,31 @@ import org.springframework.boot.autoconfigure.graphql.ConditionalOnGraphQlSchema
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+
+//@RestController
+//@RequestMapping("/users")
+//public class UserController {
+//
+//    @Autowired
+//    private UserService userService;
+//
+//    @PostMapping("/create")
+//    public User createUser(@RequestBody User user) {
+//        System.out.println("here");
+//        return userService.save(user);
+//    }
+//
+//}
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
+@CrossOrigin("*")
+
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-
-    @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
-        return userService.save(user);
+    @GetMapping("/")
+    public String helloUserController(){
+        return "User access level";
     }
 
 

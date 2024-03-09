@@ -52,9 +52,9 @@ public class AuthenticationService {
 
     public String registerUser(RegistrationDTO registerDto) {
 
-//        if (emailValidator.test(registerDto.getEmail())) {
-//            return "email not valid";
-//        }
+        if (!emailValidator.test(registerDto.getEmail())) {
+            return "email not valid";
+        }
 
         Optional<ApplicationUser> existingUser = userRepository.findByEmail(registerDto.getEmail());
         if (existingUser.isPresent()) {
@@ -125,12 +125,18 @@ public class AuthenticationService {
     public LoginResponseDTO loginUser(String email, String password){
 
         try{
+            ApplicationUser user = userRepository.findByEmail(email)
+                    .orElseThrow(
+                            () -> new RuntimeException("User not found with this email: " + email));
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
-            System.out.println("Check");
+//            if (password.equals(user.getPassword())) {
+//                return "Password is incorrect";
+//            } else if (!user.isActive()) {
+//                return "your account is not verified";
+//            }
             String token = tokenService.generateJwt(auth);
-
             return new LoginResponseDTO(userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found")), token);
 
         } catch(AuthenticationException e){

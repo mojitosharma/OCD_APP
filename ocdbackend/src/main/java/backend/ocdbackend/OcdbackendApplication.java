@@ -38,7 +38,7 @@ public class OcdbackendApplication {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 			ApplicationUser admin = new ApplicationUser(
-					"vaibhav20547@iiitd.ac.in", // email
+					"admin@ocd.com", // email
 					passwordEncoder.encode("vaibhavj@2023"), // encoded password
 					authorities, // authorities
 					new Name("Vaibhav", "Admin_Jaiswal"), // name

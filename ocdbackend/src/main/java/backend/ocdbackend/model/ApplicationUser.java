@@ -96,7 +96,7 @@ public class ApplicationUser implements UserDetails {
     public boolean isAccountNonExpired() {
         return !locked;
     }
-
+//check
     @Override
     public boolean isAccountNonLocked() {
         return true;

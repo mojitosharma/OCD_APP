@@ -15,7 +15,7 @@ public class EmailUtil {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(email);
         simpleMailMessage.setSubject("Verify OTP");
-        simpleMailMessage.setText("Hello, User your OTP is : /n" + otp + "/n Please verify within 1 minute");
+        simpleMailMessage.setText("Hello, User your OTP is : " + otp + " Please verify within 1 minute");
         javaMailSender.send(simpleMailMessage);
     }
 }

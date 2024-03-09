@@ -49,7 +49,6 @@ public class AuthenticationService {
     private EmailUtil emailUtil;
 
 
-
     public String registerUser(RegistrationDTO registerDto) {
 
         if (!emailValidator.test(registerDto.getEmail())) {
@@ -58,7 +57,12 @@ public class AuthenticationService {
 
         Optional<ApplicationUser> existingUser = userRepository.findByEmail(registerDto.getEmail());
         if (existingUser.isPresent()) {
-            return "User already exists and cannot register";
+            ApplicationUser olduser = userRepository.findByEmail(registerDto.getEmail())
+                    .orElseThrow(() -> new RuntimeException("User not found with this email: " + registerDto.getEmail()));
+            if (olduser.getEnabled()) { return "User already exists and cannot register"; } //user enabled
+            if (!olduser.getEnabled()){
+                userRepository.deleteById(olduser.getUser_id());
+            }
         }
 
         String otp = otpUtil.generateOtp();
@@ -75,24 +79,24 @@ public class AuthenticationService {
         Set<ObjectId> authorities = new HashSet<>();
         authorities.add(userRole.getId()); // Assuming Role has an ObjectId getter
 
-        ApplicationUser user = new ApplicationUser(
-                registerDto.getEmail(), // email
-                encodedPassword, // encoded password
-                authorities, // authorities
-                registerDto.getName(), // name
-                registerDto.getPatientNumber(), // patient_number
-                registerDto.getDob(), // dob
-                registerDto.getDayOfEnrollment(), // day_of_enrollment
-                registerDto.getGender(), // gender
-                registerDto.getEducation(), // education
-                registerDto.getOccupation(), // occupation
-                registerDto.getTherapistId(), // therapist_id
-                registerDto.getProfileImage() // profile_image
-        );
+        ApplicationUser user = new ApplicationUser();
+        user.setEmail(registerDto.getEmail());
+        user.setAuthorities(authorities);
+        user.setPassword(encodedPassword);
+        user.setName(registerDto.getName());
+
+        if (registerDto.getDob() != null) user.setDob(registerDto.getDob());
+        if (registerDto.getDayOfEnrollment() != null) user.setDay_of_enrollment(registerDto.getDayOfEnrollment());
+        if (registerDto.getGender() != null) user.setGender(registerDto.getGender());
+        if (registerDto.getEducation() != null) user.setEducation(registerDto.getEducation());
+        if (registerDto.getOccupation() != null) user.setOccupation(registerDto.getOccupation());
+        if (registerDto.getTherapistId() != null) user.setTherapist_id(registerDto.getTherapistId());
+        if (registerDto.getProfileImage() != null) user.setProfile_image(registerDto.getProfileImage());
+
         user.setOtp(otp);
         user.setOtpGeneratedTime(LocalDateTime.now());
         userRepository.save(user);
-        return "User successfully registered";
+        return "User data saved succesfully, please verify otp to complete registration";
     }
 
     public String verifyAccount(String email, String otp) {

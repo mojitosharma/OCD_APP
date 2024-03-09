@@ -1,18 +1,14 @@
 package backend.ocdbackend.service;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.regex.Pattern;
-
-import backend.ocdbackend.model.LoginResponseDTO;
-import backend.ocdbackend.model.ApplicationUser;
-import backend.ocdbackend.model.Name;
-import backend.ocdbackend.model.Role;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.*;
+import backend.ocdbackend.model.*;
 import backend.ocdbackend.repository.RoleRepository;
 import backend.ocdbackend.repository.UserRepository;
+import backend.ocdbackend.utils.EmailUtil;
 import backend.ocdbackend.utils.EmailValidator;
+import backend.ocdbackend.utils.OtpUtil;
 import org.bson.types.ObjectId;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,22 +43,32 @@ public class AuthenticationService {
     @Autowired
     private EmailValidator emailValidator;
 
+    @Autowired
+    private OtpUtil otpUtil;
+    @Autowired
+    private EmailUtil emailUtil;
 
 
-    public String registerUser(String email, String password, Name name, Integer patient_number,
-                               Date dob, Date day_of_enrollment, String gender, String education,
-                               String occupation, Integer therapist_id, String profile_image) {
 
-        if (emailValidator.test(email)) {
-            throw new IllegalStateException("email not valid");
-        }
+    public String registerUser(RegistrationDTO registerDto) {
 
-        Optional<ApplicationUser> existingUser = userRepository.findByEmail(email);
+//        if (emailValidator.test(registerDto.getEmail())) {
+//            return "email not valid";
+//        }
+
+        Optional<ApplicationUser> existingUser = userRepository.findByEmail(registerDto.getEmail());
         if (existingUser.isPresent()) {
             return "User already exists and cannot register";
         }
 
-        String encodedPassword = passwordEncoder.encode(password);
+        String otp = otpUtil.generateOtp();
+        try {
+            emailUtil.sendOtpEmail(registerDto.getEmail(), otp);
+        } catch (Exception e) { //Review Exception @MohitSharma (MessagingException e Not working here)
+            throw new RuntimeException("Unable to send otp please try again");
+        }
+
+        String encodedPassword = passwordEncoder.encode(registerDto.getPassword());
         Role userRole = roleRepository.findByAuthority("USER")
                 .orElseThrow(() -> new RuntimeException("User role not found"));
         System.out.println(userRole.getId());
@@ -70,25 +76,51 @@ public class AuthenticationService {
         authorities.add(userRole.getId()); // Assuming Role has an ObjectId getter
 
         ApplicationUser user = new ApplicationUser(
-                email, // email
+                registerDto.getEmail(), // email
                 encodedPassword, // encoded password
                 authorities, // authorities
-                name, // name
-                patient_number, // patient_number
-                dob, // dob
-                day_of_enrollment, // day_of_enrollment
-                gender, // gender
-                education, // education
-                occupation, // occupation
-                therapist_id, // therapist_id
-                profile_image // profile_image
+                registerDto.getName(), // name
+                registerDto.getPatientNumber(), // patient_number
+                registerDto.getDob(), // dob
+                registerDto.getDayOfEnrollment(), // day_of_enrollment
+                registerDto.getGender(), // gender
+                registerDto.getEducation(), // education
+                registerDto.getOccupation(), // occupation
+                registerDto.getTherapistId(), // therapist_id
+                registerDto.getProfileImage() // profile_image
         );
-
+        user.setOtp(otp);
+        user.setOtpGeneratedTime(LocalDateTime.now());
         userRepository.save(user);
-
         return "User successfully registered";
     }
 
+    public String verifyAccount(String email, String otp) {
+        ApplicationUser user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found with this email: " + email));
+        if (user.getOtp().equals(otp) && Duration.between(user.getOtpGeneratedTime(),
+                LocalDateTime.now()).getSeconds() < (1 * 60)) {
+            user.setEnabled(true);
+            userRepository.save(user);
+            return "OTP verified you can login";
+        }
+        return "Please regenerate otp and try again";
+    }
+
+    public String regenerateOtp(String email) {
+        ApplicationUser user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found with this email: " + email));
+        String otp = otpUtil.generateOtp();
+        try {
+            emailUtil.sendOtpEmail(email, otp);
+        } catch (Exception e) { //MessagingException Exception pro
+            throw new RuntimeException("Unable to send otp please try again");
+        }
+        user.setOtp(otp);
+        user.setOtpGeneratedTime(LocalDateTime.now());
+        userRepository.save(user);
+        return "Email sent... please verify account within 1 minute";
+    }
 
     public LoginResponseDTO loginUser(String email, String password){
 

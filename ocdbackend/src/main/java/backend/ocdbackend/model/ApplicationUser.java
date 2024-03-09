@@ -9,12 +9,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Document(collection = "users")
+@Document(collection = "Users")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class ApplicationUser implements UserDetails {
@@ -35,8 +36,12 @@ public class ApplicationUser implements UserDetails {
 
     private Boolean locked = false;
 
-    private Boolean enabled = true;
-    private Set<ObjectId> authorities; // Assuming roles are stored as strings
+    private Boolean enabled = false;
+    private Set<ObjectId> authorities; // Assuming roles are stored as string
+
+    private String otp;
+
+    private LocalDateTime otpGeneratedTime;
 
 
 

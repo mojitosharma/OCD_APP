@@ -16,6 +16,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     private static final String FIRST_TIME_KEY = "isFirstTime";
     private static final int SPLASH_SCREEN_DURATION = 3000;
     private int currentScreen = 1;
+    private Handler handler;
+    private Runnable myRunnable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,12 +33,18 @@ public class SplashScreenActivity extends AppCompatActivity {
             onClickLetsMakeItHappen();
         }
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                moveToNextScreen();
-//            }
-//        }, SPLASH_SCREEN_DURATION);
+        handler = new Handler();
+        myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                moveToNextScreen();
+            }
+        };
+
+// ...
+
+// Start the delayed operation
+        handler.postDelayed(myRunnable, SPLASH_SCREEN_DURATION);
     }
 
     // Load the appropriate layout for each splash screen
@@ -66,6 +74,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Skip all the splash screens
+                handler.removeCallbacks(myRunnable);
                 Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();

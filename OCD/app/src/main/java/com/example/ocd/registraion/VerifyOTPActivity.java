@@ -19,7 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.ocd.HomeActivity;
-import com.example.ocd.OtpVerificationCallback;
+import com.example.ocd.helper.OtpVerificationCallback;
 import com.example.ocd.R;
 import com.example.ocd.model.User;
 import com.example.ocd.retrofit.RetrofitService;

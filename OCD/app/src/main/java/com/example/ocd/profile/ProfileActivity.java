@@ -1,4 +1,4 @@
-package com.example.ocd;
+package com.example.ocd.profile;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +8,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.ocd.HomeActivity;
+import com.example.ocd.MainActivity;
+import com.example.ocd.R;
+import com.example.ocd.ResourcesActivity;
+import com.example.ocd.TaskActivity;
 import com.example.ocd.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;

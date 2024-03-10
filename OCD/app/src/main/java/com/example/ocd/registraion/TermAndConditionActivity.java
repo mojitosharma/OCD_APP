@@ -8,13 +8,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.ocd.LoginActivity;
 import com.example.ocd.R;
 import com.example.ocd.model.User;
 import com.example.ocd.retrofit.RetrofitService;
@@ -37,6 +40,7 @@ public class TermAndConditionActivity extends AppCompatActivity {
     private CheckBox checkBox;
     private Button btnContinue;
     private TextView tvTermsAndConditions;
+    private ProgressBar progressBar;
     User user;
     RetrofitService retrofitService;
 
@@ -61,6 +65,7 @@ public class TermAndConditionActivity extends AppCompatActivity {
         checkBox = findViewById(R.id.checkBox);
         btnContinue = findViewById(R.id.btnContinue);
         btnContinue.setEnabled(false);
+        progressBar = findViewById(R.id.progressBar);
         btnContinue.setBackgroundResource(R.drawable.rectangle_bg_indigo_400_7f_radius_5);
         tvTermsAndConditions = findViewById(R.id.tvTermsAndConditions);
         retrofitService = new RetrofitService();
@@ -85,12 +90,14 @@ public class TermAndConditionActivity extends AppCompatActivity {
 
 
     private void registerUser() {
+        progressBar.setVisibility(View.VISIBLE);
        UserAPI usrapi = retrofitService.getRetrofit().create(UserAPI.class);
         Call<ResponseBody> call = usrapi.registerUser(user);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     String contentType = response.headers().get("Content-Type");
                     ResponseBody responseBody = response.body();
@@ -101,11 +108,6 @@ public class TermAndConditionActivity extends AppCompatActivity {
                             Gson gson = new Gson();
                             assert responseBody != null;
                             User registeredUser = gson.fromJson(responseBody.string(), User.class);
-//                            String userJson = gson.toJson(registeredUser);
-//                            SharedPreferences preferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-//                            SharedPreferences.Editor editor = preferences.edit();
-//                            editor.putString(USER_DATA, userJson);
-//                            editor.apply();
                             Intent intent = new Intent(TermAndConditionActivity.this, VerifyOTPActivity.class);
                             intent.putExtra("USER", registeredUser);
                             startActivity(intent);
@@ -124,21 +126,18 @@ public class TermAndConditionActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    ResponseBody responseBody = response.body();
                     try {
-                        String stringValue = responseBody.string();
-                        Toast.makeText(TermAndConditionActivity.this, "Error: Failed to Register!! Please try again later.", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(TermAndConditionActivity.this, stringValue, Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        assert response.errorBody() != null;
+                        Toast.makeText(TermAndConditionActivity.this, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                // Handle failure
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(TermAndConditionActivity.this, "Failed to register user", Toast.LENGTH_SHORT).show();
                 Logger.getLogger(TermAndConditionActivity.class.getName()).log(Level.SEVERE, "Error occurred", t);
             }

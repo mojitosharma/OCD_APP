@@ -1,17 +1,16 @@
-package com.example.ocd;
+package com.example.ocd.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.ocd.HomeActivity;
+import com.example.ocd.R;
+import com.example.ocd.ResourcesActivity;
+import com.example.ocd.TaskActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingActivity extends AppCompatActivity {

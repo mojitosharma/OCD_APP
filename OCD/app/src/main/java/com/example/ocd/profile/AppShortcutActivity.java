@@ -1,14 +1,18 @@
-package com.example.ocd;
+package com.example.ocd.profile;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ocd.HomeActivity;
+import com.example.ocd.R;
+import com.example.ocd.ResourcesActivity;
+import com.example.ocd.TaskActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
-public class AboutUsActivity extends AppCompatActivity {
-
+public class AppShortcutActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     private ImageView backArrow;
@@ -16,7 +20,7 @@ public class AboutUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        setContentView(R.layout.activity_app_shortcut);
 
         intitalize();
         onClickbackArrow();
@@ -42,26 +46,25 @@ public class AboutUsActivity extends AppCompatActivity {
             Intent intent;
             switch (item.getItemId()) {
                 case R.id.menu_home:
-                    intent = new Intent(AboutUsActivity.this, HomeActivity.class);
+                    intent = new Intent(AppShortcutActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 case R.id.menu_task:
-                    intent = new Intent(AboutUsActivity.this, TaskActivity.class);
+                    intent = new Intent(AppShortcutActivity.this, TaskActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 case R.id.menu_resource:
-                    intent = new Intent(AboutUsActivity.this, ResourcesActivity.class);
+                    intent = new Intent(AppShortcutActivity.this, ResourcesActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 case R.id.menu_profile:
+//                    selectedFragment = new ProfileFragment();
                     return true;
             }
             return false;
         });
     }
-
-
 }

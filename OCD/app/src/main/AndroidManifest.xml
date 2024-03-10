@@ -28,19 +28,19 @@
             android:name=".JournalEntry.JournalEntryObsessionActivity"
             android:exported="false" />
         <activity
-            android:name=".AppGuideActivity"
+            android:name=".profile.AppGuideActivity"
             android:exported="false" />
         <activity
-            android:name=".SupportActivity"
+            android:name=".profile.SupportActivity"
             android:exported="false" />
         <activity
-            android:name=".ChangeLanguageActivity"
+            android:name=".profile.ChangeLanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".NotificationsActivity"
+            android:name=".profile.NotificationsActivity"
             android:exported="false" />
         <activity
-            android:name=".ChangePasswordActivity"
+            android:name=".profile.ChangePasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ResourcesActivity"
@@ -49,22 +49,22 @@
             android:name=".TaskActivity"
             android:exported="false" />
         <activity
-            android:name=".AppShortcutActivity"
+            android:name=".profile.AppShortcutActivity"
             android:exported="false" />
         <activity
-            android:name=".PreferencesActivity"
+            android:name=".profile.PreferencesActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".profile.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".profile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".AboutUsActivity"
+            android:name=".profile.AboutUsActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"

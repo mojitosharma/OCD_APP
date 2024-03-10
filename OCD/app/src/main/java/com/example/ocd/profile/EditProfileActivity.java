@@ -1,6 +1,5 @@
-package com.example.ocd;
+package com.example.ocd.profile;
 
-import static com.example.ocd.helper.helperFunctions.isPasswordValid;
 import static com.example.ocd.helper.helperFunctions.isValidDOBFormat;
 import static com.example.ocd.helper.helperFunctions.isValidEmail;
 
@@ -14,21 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ocd.HomeActivity;
+import com.example.ocd.R;
+import com.example.ocd.ResourcesActivity;
+import com.example.ocd.TaskActivity;
 import com.example.ocd.model.Name;
 import com.example.ocd.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 // todo set the read the value and image from the database and set the values in the edit text

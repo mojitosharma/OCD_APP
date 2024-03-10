@@ -1,4 +1,4 @@
-package com.example.ocd;
+package com.example.ocd.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,13 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ocd.HomeActivity;
+import com.example.ocd.R;
+import com.example.ocd.ResourcesActivity;
+import com.example.ocd.TaskActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class AppShortcutActivity extends AppCompatActivity {
+public class PreferencesActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     private ImageView backArrow;
@@ -16,7 +20,7 @@ public class AppShortcutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_app_shortcut);
+        setContentView(R.layout.activity_preferences);
 
         intitalize();
         onClickbackArrow();
@@ -40,19 +44,19 @@ public class AppShortcutActivity extends AppCompatActivity {
     private void onClickBottomNavigationView() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Intent intent;
-            switch (item.getItemId()) {
+                    switch (item.getItemId()) {
                 case R.id.menu_home:
-                    intent = new Intent(AppShortcutActivity.this, HomeActivity.class);
+                    intent = new Intent(PreferencesActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 case R.id.menu_task:
-                    intent = new Intent(AppShortcutActivity.this, TaskActivity.class);
+                    intent = new Intent(PreferencesActivity.this, TaskActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 case R.id.menu_resource:
-                    intent = new Intent(AppShortcutActivity.this, ResourcesActivity.class);
+                    intent = new Intent(PreferencesActivity.this, ResourcesActivity.class);
                     startActivity(intent);
                     finish();
                     return true;

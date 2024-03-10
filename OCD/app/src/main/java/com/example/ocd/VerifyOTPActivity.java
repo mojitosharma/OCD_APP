@@ -3,17 +3,17 @@ package com.example.ocd;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -21,16 +21,21 @@ import androidx.appcompat.app.AlertDialog;
 import com.example.ocd.model.User;
 import com.example.ocd.retrofit.RetrofitService;
 import com.example.ocd.retrofit.UserAPI;
+import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class VerifyOTPActivity extends AppCompatActivity {
+
+    private static final String PREF_NAME = "LoginPref";
+    private static final String USER_DATA = "user_data";
 
     private EditText optTextViewOne, optTextViewTwo, optTextViewThree, optTextViewFour;
     private Button btnLetsBeginMyTherapy;
@@ -45,10 +50,6 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
     private static final long COUNTDOWN_DURATION = 60000; // 60 seconds
     private static final long COUNTDOWN_INTERVAL = 1000; // 1 second
-
-
-    // todo stop the time when the screen changes
-    // todo hash the password
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,6 @@ public class VerifyOTPActivity extends AppCompatActivity {
         btnLetsBeginMyTherapy.setEnabled(false);
         otpSendText.setText(getString(R.string.msg_validateOTP, user.getEmail()));
         retrofitService = new RetrofitService();
-        getOTPToken(user.getEmail());
     }
 
     private void startCountdownTimer() {
@@ -119,19 +119,27 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
     private void onCLickBtnLetsBeginMyTherapy() {
         btnLetsBeginMyTherapy.setOnClickListener(v -> {
-            if (isOtpValid()) {
-                Intent intent = new Intent(VerifyOTPActivity.this, TermAndConditionActivity.class);
-                intent.putExtra("USER", user);
-                cancelCountdownTimer();
-                startActivity(intent);
-//                    finish();
-            } else {
-                showRetryDialog();
-            }
+            isOtpValid(new OtpVerificationCallback() {
+
+                @Override
+                public void onVerificationResult(boolean isValid) {
+                    if (isValid) {
+                        Intent intent = new Intent(VerifyOTPActivity.this, HomeActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        cancelCountdownTimer();
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        showRetryDialog();
+                    }
+                }
+            });
         });
+
     }
 
-   // set text watcher on each edit text box to move to next box
+
+    // set text watcher on each edit text box to move to next box
     private TextWatcher createTextWatcher(final EditText nextEditText) {
         return new TextWatcher() {
             @Override
@@ -183,7 +191,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Go Back", (dialog, which) -> {
                     // Go back to SignUpActivity with the entered details
-                    navigateBackToSignUpActivity();
+                    navigateBackToTermAndConditionActivity();
                 })
                 .setCancelable(false);
 
@@ -205,7 +213,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Go Back", (dialog, which) -> {
                     // Go back to SignUpActivity with the entered details
-                    navigateBackToSignUpActivity();
+                    navigateBackToTermAndConditionActivity();
                 })
                 .setCancelable(false);
 
@@ -213,12 +221,75 @@ public class VerifyOTPActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private boolean isOtpValid() {
+    private void isOtpValid(OtpVerificationCallback callback) {
         String enteredOTP = optTextViewOne.getText().toString() +
                 optTextViewTwo.getText().toString() +
                 optTextViewThree.getText().toString() +
                 optTextViewFour.getText().toString();
-        return enteredOTP.equals(otp);
+
+        final boolean[] flag = {false};
+
+        UserAPI usrapi = retrofitService.getRetrofit().create(UserAPI.class);
+        Call<ResponseBody> call = usrapi.verifiyAccount(user.getEmail(), enteredOTP);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    String contentType = response.headers().get("Content-Type");
+                    ResponseBody responseBody = response.body();
+
+                    try {
+                        if (contentType != null && contentType.contains("application/json")) {
+
+                            Gson gson = new Gson();
+                            assert responseBody != null;
+                            User registeredUser = gson.fromJson(responseBody.string(), User.class);
+                            String userJson = gson.toJson(registeredUser);
+                            SharedPreferences preferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString(USER_DATA, userJson);
+                            editor.apply();
+                            flag[0] = true;
+                            if (flag[0]) {
+                                callback.onVerificationResult(true);
+                            } else {
+                                callback.onVerificationResult(false);
+                            }
+
+                        } else if (contentType != null && contentType.contains("text/plain")) {
+                            assert responseBody != null;
+                            String stringValue = responseBody.string();
+                            Toast.makeText(VerifyOTPActivity.this, stringValue, Toast.LENGTH_SHORT).show();
+                            callback.onVerificationResult(false);
+
+                        } else {
+                            runOnUiThread(() -> {
+                                assert responseBody != null;
+                                Toast.makeText(VerifyOTPActivity.this, "Verification failed: " + responseBody, Toast.LENGTH_SHORT).show();
+                            });
+                            callback.onVerificationResult(false);
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                else {
+                    // Server returned an error response
+                    Toast.makeText(VerifyOTPActivity.this, "Error: Failed to Verify OTP!! Please try again later.", Toast.LENGTH_SHORT).show();
+                    callback.onVerificationResult(false);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Handle failure
+                Toast.makeText(VerifyOTPActivity.this, "Failed to Verify OTP!!", Toast.LENGTH_SHORT).show();
+                Logger.getLogger(TermAndConditionActivity.class.getName()).log(Level.SEVERE, "Error occurred", t);
+            }
+        });
+
     }
 
     private void resetOtpInputFields() {
@@ -240,35 +311,52 @@ public class VerifyOTPActivity extends AppCompatActivity {
     }
 
 
-    private void navigateBackToSignUpActivity() {
+    private void navigateBackToTermAndConditionActivity() {
         // Create an Intent to go back to SignUpActivity with the entered details
-        Intent intent = new Intent(VerifyOTPActivity.this, SignUpActivity.class);
+        Intent intent = new Intent(VerifyOTPActivity.this, TermAndConditionActivity.class);
         intent.putExtra("USER", user);
-
-        // Start the SignUpActivity
+        cancelCountdownTimer();
         startActivity(intent);
-        finish();  // Finish the current activity
+        finish();
     }
 
     // Retrieve OTP token from the server
     private void getOTPToken(String email) {
-        UserAPI userAPI = retrofitService.getRetrofit().create(UserAPI.class);
-        userAPI.getOTPToken(email).enqueue(new Callback<Integer>() {
-            @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
-                if (response.isSuccessful()) {
-                    otp = String.valueOf(response.body());
+        UserAPI usrapi = retrofitService.getRetrofit().create(UserAPI.class);
+        Call<ResponseBody> call = usrapi.regenerateOTP(user.getEmail());
 
-                } else {
-                    Toast.makeText(VerifyOTPActivity.this, "Failed to retrieve OTP! Please try later.", Toast.LENGTH_SHORT).show();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    String contentType = response.headers().get("Content-Type");
+                    ResponseBody responseBody = response.body();
+                    try {
+                        if (contentType != null && contentType.contains("text/plain")) {
+                            assert responseBody != null;
+                            String stringValue = responseBody.string();
+                            Toast.makeText(VerifyOTPActivity.this, stringValue, Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            runOnUiThread(() -> {
+                                assert responseBody != null;
+                                Toast.makeText(VerifyOTPActivity.this, "Error: " + responseBody, Toast.LENGTH_SHORT).show();
+                            });
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                else {
+                    Toast.makeText(VerifyOTPActivity.this, "Error: Failed to Resend OTP!! Please try again later.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 // Handle failure
-                Toast.makeText(VerifyOTPActivity.this, "Failed to retrieve OTP", Toast.LENGTH_SHORT).show();
-                Logger.getLogger(VerifyOTPActivity.class.getName()).log(Level.SEVERE, "Error occurred", t);
+                Toast.makeText(VerifyOTPActivity.this, "Failed to Resend OTP", Toast.LENGTH_SHORT).show();
+                Logger.getLogger(TermAndConditionActivity.class.getName()).log(Level.SEVERE, "Error occurred", t);
             }
         });
     }
@@ -279,12 +367,13 @@ public class VerifyOTPActivity extends AppCompatActivity {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                navigateBackToSignUpActivity();
-
+                navigateBackToTermAndConditionActivity();
             }
         };
         this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
 }
+
+
 

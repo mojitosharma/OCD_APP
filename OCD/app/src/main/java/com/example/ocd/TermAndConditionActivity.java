@@ -1,10 +1,10 @@
 package com.example.ocd;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
@@ -14,12 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
 import com.example.ocd.model.User;
 import com.example.ocd.retrofit.RetrofitService;
 import com.example.ocd.retrofit.UserAPI;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,14 +26,12 @@ import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TermAndConditionActivity extends AppCompatActivity {
-    private static final String PREF_NAME = "LoginPref";
-    private static final String USER_DATA = "user_data";
-
     private CheckBox checkBox;
     private Button btnContinue;
     private TextView tvTermsAndConditions;
@@ -52,6 +48,7 @@ public class TermAndConditionActivity extends AppCompatActivity {
         loadTermsAndConditions();
         onClickCheckBox();
         onClickBtnContinue();
+        onBackPressedCustom();
     }
 
     private void readingData() {
@@ -64,6 +61,7 @@ public class TermAndConditionActivity extends AppCompatActivity {
         btnContinue.setEnabled(false);
         btnContinue.setBackgroundResource(R.drawable.rectangle_bg_indigo_400_7f_radius_5);
         tvTermsAndConditions = findViewById(R.id.tvTermsAndConditions);
+        retrofitService = new RetrofitService();
     }
 
     private void onClickCheckBox() {
@@ -79,52 +77,72 @@ public class TermAndConditionActivity extends AppCompatActivity {
 
     private void onClickBtnContinue() {
         btnContinue.setOnClickListener(v -> {
-            retrofitService = new RetrofitService();
             registerUser();
         });
     }
 
 
     private void registerUser() {
-        UserAPI usrapi =retrofitService.getRetrofit().create(UserAPI.class);
-        Call<User> call = usrapi.registerUser(user);
-        System.out.println(user.getDob());
-        System.out.println(user.getDay_of_enrollment());
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                System.out.println(response.body());
-                System.out.println("here");
-                if (response.isSuccessful()) {
-                    // User registration successful
-                    User registeredUser = response.body();
-                    Gson gson = new GsonBuilder()
-                            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-                            .create();
-                    String userJson = gson.toJson(registeredUser);
-                    SharedPreferences preferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(USER_DATA, userJson);
-                    editor.apply();
-                    Intent intent = new Intent(TermAndConditionActivity.this, HomeActivity.class);
-                    intent.putExtra("user", registeredUser);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
+       UserAPI usrapi = retrofitService.getRetrofit().create(UserAPI.class);
+        Call<ResponseBody> call = usrapi.registerUser(user);
 
-                } else {
-                    Toast.makeText(TermAndConditionActivity.this, "Failed to Register!! Please try again later.", Toast.LENGTH_SHORT).show();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    String contentType = response.headers().get("Content-Type");
+                    ResponseBody responseBody = response.body();
+
+                    try {
+                        if (contentType != null && contentType.contains("application/json")) {
+
+                            Gson gson = new Gson();
+                            assert responseBody != null;
+                            User registeredUser = gson.fromJson(responseBody.string(), User.class);
+//                            String userJson = gson.toJson(registeredUser);
+//                            SharedPreferences preferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+//                            SharedPreferences.Editor editor = preferences.edit();
+//                            editor.putString(USER_DATA, userJson);
+//                            editor.apply();
+                            Intent intent = new Intent(TermAndConditionActivity.this, VerifyOTPActivity.class);
+                            intent.putExtra("USER", registeredUser);
+                            startActivity(intent);
+                        } else if (contentType != null && contentType.contains("text/plain")) {
+                            assert responseBody != null;
+                            String stringValue = responseBody.string();
+                            Toast.makeText(TermAndConditionActivity.this, stringValue, Toast.LENGTH_SHORT).show();
+                        } else {
+                            runOnUiThread(() -> {
+                                assert responseBody != null;
+                                Toast.makeText(TermAndConditionActivity.this, "Registration failed: " + responseBody, Toast.LENGTH_SHORT).show();
+                            });
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                else {
+                    ResponseBody responseBody = response.body();
+                    try {
+                        String stringValue = responseBody.string();
+                        Toast.makeText(TermAndConditionActivity.this, "Error: Failed to Register!! Please try again later.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TermAndConditionActivity.this, stringValue, Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
                 }
             }
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                    // Handle failure
-                    Toast.makeText(TermAndConditionActivity.this, "Failed to retrieve OTP", Toast.LENGTH_SHORT).show();
-                    Logger.getLogger(VerifyOTPActivity.class.getName()).log(Level.SEVERE, "Error occurred", t);
-                }
-        });
-    }
 
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Handle failure
+                Toast.makeText(TermAndConditionActivity.this, "Failed to register user", Toast.LENGTH_SHORT).show();
+                Logger.getLogger(TermAndConditionActivity.class.getName()).log(Level.SEVERE, "Error occurred", t);
+            }
+        });
+
+    }
 
 
     private void loadTermsAndConditions() {
@@ -149,5 +167,22 @@ public class TermAndConditionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void onBackPressedCustom() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(TermAndConditionActivity.this, SignUpActivity.class);
+                intent.putExtra("USER", user);
+
+                // Start the SignUpActivity
+                startActivity(intent);
+                finish();
+
+            }
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
 
 }

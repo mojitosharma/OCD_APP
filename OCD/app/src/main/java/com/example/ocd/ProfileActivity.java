@@ -1,5 +1,6 @@
 package com.example.ocd;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -132,6 +133,35 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void onClickLogOut() {
+        logOut.setOnClickListener(v -> {
+            showConfirmDialog();
+        });
+    }
+
+    private void showConfirmDialog() {
+        // Create and show a dialog with timeout error message
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("LogOut")
+                .setMessage("Do you wish to continue?")
+                .setPositiveButton("confirm", (dialog, which) -> {
+                    SharedPreferences preferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.remove(USER_DATA);
+                    editor.remove(USER_IMAGE);
+                    editor.apply();
+
+                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("Go Back", (dialog, which) -> {
+                    return;
+                })
+                .setCancelable(false);
+
+        // Show the created dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void onClickBottomNavigationView() {

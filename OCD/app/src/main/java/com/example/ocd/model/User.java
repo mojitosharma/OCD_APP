@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -19,9 +21,9 @@ public class User implements Serializable {
     @SerializedName("patient_number")
     private int patient_number;
     @SerializedName("dob")
-    private Date dob;
+    private String dob;
     @SerializedName("day_of_enrollment")
-    private Date day_of_enrollment;
+    private String day_of_enrollment;
     @SerializedName("gender")
     private String gender;
     @SerializedName("education")
@@ -41,13 +43,10 @@ public class User implements Serializable {
                 String gender, String education, String occupation,
                 String email, String password) {
         this.name = name;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        try {
-            this.dob = sdf.parse(dob);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        this.day_of_enrollment = new Date();
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        this.dob = dob;
+        this.day_of_enrollment = today.format(formatter).replace("-", "/");
         this.gender = gender;
         this.education = education;
         this.occupation = occupation;
@@ -76,29 +75,22 @@ public class User implements Serializable {
     }
 
     public String getDobString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return  sdf.format(this.dob);
+        return  this.dob;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
     public void setDob(String dob) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-
-        try {
-            this.dob = sdf.parse(dob);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.dob = dob;
     }
 
-    public Date getDay_of_enrollment() {
+    public String getDay_of_enrollment() {
         return day_of_enrollment;
     }
 
-    public void setDay_of_enrollment(Date day_of_enrollment) {
+    public void setDay_of_enrollment(String day_of_enrollment) {
         this.day_of_enrollment = day_of_enrollment;
     }
 

@@ -105,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
                     String occupation = occupationEditText.getText().toString().trim();
                     String password = passwordEditText.getText().toString().trim();
                     // Create an Intent to start the next activity (VerifyOTPActivity)
-                    Intent intent = new Intent(SignUpActivity.this, VerifyOTPActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, TermAndConditionActivity.class);
                     // Pass data to the next activity
                     Name userName = new Name(name);
                     User user = new User(userName, dob, selectedGender, education, occupation, email, password);

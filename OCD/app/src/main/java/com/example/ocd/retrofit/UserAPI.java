@@ -3,18 +3,24 @@ package com.example.ocd.retrofit;
 import com.example.ocd.model.User;
 
 import java.util.List;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface UserAPI {
 
-    @POST("/users/register")
-    Call<User> registerUser(@Body User user);
+    @POST("/auth/register")
+    Call<ResponseBody> registerUser(@Body User user);
 
-    @GET("/users/getOTP")
-    Call<Integer> getOTPToken(@Query("email") String email);
+    @PUT("/auth/verify-account")
+    Call<ResponseBody> verifiyAccount(@Query("email") String email, @Query("otp") String otp);
+
+    @PUT("/auth/regenerate-otp")
+    Call<ResponseBody> regenerateOTP(@Query("email") String email);
 
 }

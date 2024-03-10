@@ -23,6 +23,7 @@ import com.example.ocd.R;
 import com.example.ocd.TaskActivity;
 import com.example.ocd.adapter.JournalFrequencyAdapter;
 import com.example.ocd.adapter.JournalListAdapter;
+import com.google.android.material.slider.Slider;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class JournalEntryFrequencyActivity extends AppCompatActivity {
     private ArrayList<String> frequencyList, timeList;
     private JournalFrequencyAdapter customAdapterFrequency, customAdapterTime;
     private ImageView backArrow, crossButton;
-    private SeekBar sliderStressMeter;
+    private Slider sliderStressMeter;
     private TextView txtStressValue;
     private String trigger, obsession, compulsionName, compulsion;
 
@@ -121,20 +122,13 @@ public class JournalEntryFrequencyActivity extends AppCompatActivity {
     }
 
     private void onClickSliderStressMeter() {
-        sliderStressMeter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sliderStressMeter.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                txtStressValue.setText(String.valueOf(progress));
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // Handle touch start
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // Handle touch end
+            public void onValueChange(Slider slider, float value, boolean fromUser) {
+                txtStressValue.setText(String.valueOf(value));
             }
         });
+
     }
 
     private void onClickBtnSubmit() {

@@ -131,7 +131,7 @@ public class AuthenticationService {
         return "Email sent... please verify account within 1 minute";
     }
 
-    public LoginResponseDTO loginUser(String email, String password){
+    public ResponseEntity<?> loginUser(String email, String password){
 
         try{
             ApplicationUser user = userRepository.findByEmail(email)
@@ -140,16 +140,17 @@ public class AuthenticationService {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
-//            if (password.equals(user.getPassword())) {
-//                return "Password is incorrect";
-//            } else if (!user.isActive()) {
-//                return "your account is not verified";
-//            }
-            String token = tokenService.generateJwt(auth);
-            return new LoginResponseDTO(userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found")), token);
+           if (password.equals(user.getPassword())) {
+                return new ResponseEntity<>("Error: Password is incorrect", HttpStatus.BAD_REQUEST);
+           } else if (!user.isEnabled()) {
+                return new ResponseEntity<>("Error: your account is not verified", HttpStatus.BAD_REQUEST);
 
+           }
+            String token = tokenService.generateJwt(auth);
+            LoginResponseDTO loginResponseDTO = new LoginResponseDTO(userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found")), token);
+            return new ResponseEntity<>(loginResponseDTO, HttpStatus.OK);
         } catch(AuthenticationException e){
-            return new LoginResponseDTO(null, "");
+            return new ResponseEntity<>("Error: Authentification Failed", HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Document(collection = "Users")
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -24,9 +25,11 @@ public class ApplicationUser implements UserDetails {
     private ObjectId user_id; // MongoDB uses ObjectId for _id by default
     private Name name;
     private int patient_number;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dob;
     private String password;
     private String email;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date day_of_enrollment;
     private String gender;
     private String education;

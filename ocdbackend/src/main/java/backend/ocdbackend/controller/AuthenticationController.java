@@ -20,23 +20,23 @@ public class AuthenticationController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody RegistrationDTO registerDto){
+    public ResponseEntity<?> registerUser(@RequestBody RegistrationDTO registerDto){
         return authenticationService.registerUser(registerDto);
     }
 
     @PostMapping("/login")
-    public LoginResponseDTO loginUser(@RequestBody LoginDTO body){
+    public ResponseEntity<?> loginUser(@RequestBody LoginDTO body){
         return authenticationService.loginUser(body.getEmail(), body.getPassword());
     }
 
     @PutMapping("/verify-account")
-    public ResponseEntity<String> verifyAccount(@RequestParam String email,
+    public ResponseEntity<?> verifyAccount(@RequestParam String email,
                                                 @RequestParam String otp) {
-        return new ResponseEntity<>(authenticationService.verifyAccount(email, otp), HttpStatus.OK);
+        return authenticationService.verifyAccount(email, otp);
         //http://localhost:8080/verify-account?email=%s&otp=%s use this for sending request
     }
     @PutMapping("/regenerate-otp")
-    public ResponseEntity<String> regenerateOtp(@RequestParam String email) {
-        return new ResponseEntity<>(authenticationService.regenerateOtp(email), HttpStatus.OK);
+    public ResponseEntity<?> regenerateOtp(@RequestParam String email) {
+        return new ResponseEntity<String>(authenticationService.regenerateOtp(email), HttpStatus.OK);
     }
 }

@@ -8,9 +8,9 @@ public class RegistrationDTO {
     private String password;
     private Name name;
     private Integer patientNumber;
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dob;
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dayOfEnrollment;
     private String gender;
     private String education;

@@ -19,6 +19,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 @Service
@@ -49,17 +52,18 @@ public class AuthenticationService {
     private EmailUtil emailUtil;
 
 
-    public String registerUser(RegistrationDTO registerDto) {
+    public ResponseEntity<?> registerUser(RegistrationDTO registerDto) {
 
         if (!emailValidator.test(registerDto.getEmail())) {
-            return "email not valid";
+            return new ResponseEntity<>("Error: Email Not valid", HttpStatus.BAD_REQUEST);
         }
-
         Optional<ApplicationUser> existingUser = userRepository.findByEmail(registerDto.getEmail());
         if (existingUser.isPresent()) {
             ApplicationUser olduser = userRepository.findByEmail(registerDto.getEmail())
                     .orElseThrow(() -> new RuntimeException("User not found with this email: " + registerDto.getEmail()));
-            if (olduser.getEnabled()) { return "User already exists and cannot register"; } //user enabled
+            if (olduser.getEnabled()) { 
+                return new ResponseEntity<>("Error: User already exists and cannot register", HttpStatus.BAD_REQUEST);
+                } //user enabled
             if (!olduser.getEnabled()){
                 userRepository.deleteById(olduser.getUser_id());
             }
@@ -96,19 +100,20 @@ public class AuthenticationService {
         user.setOtp(otp);
         user.setOtpGeneratedTime(LocalDateTime.now());
         userRepository.save(user);
-        return "User data saved succesfully, please verify otp to complete registration";
+        return new ResponseEntity<ApplicationUser>(user, HttpStatus.OK);
     }
 
-    public String verifyAccount(String email, String otp) {
+    public ResponseEntity<?> verifyAccount(String email, String otp) {
         ApplicationUser user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found with this email: " + email));
         if (user.getOtp().equals(otp) && Duration.between(user.getOtpGeneratedTime(),
                 LocalDateTime.now()).getSeconds() < (1 * 60)) {
             user.setEnabled(true);
             userRepository.save(user);
-            return "OTP verified you can login";
+            return new ResponseEntity<ApplicationUser>(user, HttpStatus.OK);
         }
-        return "Please regenerate otp and try again";
+        regenerateOtp(email);
+        return new ResponseEntity<>("Error: Invalid OTP, New OTP send", HttpStatus.BAD_REQUEST);
     }
 
     public String regenerateOtp(String email) {

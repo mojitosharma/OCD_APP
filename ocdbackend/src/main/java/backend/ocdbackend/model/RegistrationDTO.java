@@ -1,13 +1,16 @@
 package backend.ocdbackend.model;
 
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class RegistrationDTO {
     private String email;
     private String password;
     private Name name;
     private Integer patientNumber;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dob;
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dayOfEnrollment;
     private String gender;
     private String education;

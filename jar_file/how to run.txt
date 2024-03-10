@@ -1,0 +1,48 @@
+To ensure that your Spring Boot application continues running even when the terminal is closed on an Ubuntu server, you can use a combination of the `nohup` command and the `&` operator. This will detach the process from the terminal, allowing it to run in the background. Additionally, you may want to redirect the output to a file for later inspection.
+
+Here are the steps:
+
+1. **Run the Spring Boot Application:**
+
+   Run your Spring Boot application as you normally would, but add the `nohup` command and the `&` operator to run it in the background. Redirect the output to a file:
+
+   ```bash
+   nohup java -jar -Dserver.port=8081 target/ocd_backend.jar > output.log 2>&1 &
+   ```
+
+   - `nohup`: Stands for "no hang up" and allows the command to continue running even if the terminal is closed.
+   - `> output.log`: Redirects the standard output to a file named `output.log`.
+   - `2>&1`: Redirects standard error to the same file as standard output.
+   - `&`: Puts the process in the background.
+
+2. **Verify the Process:**
+
+   You can check if the process is running using the `ps` command:
+
+   ```bash
+   ps aux | grep ocd_backend.jar
+   ```
+
+   Replace `your-application-name.jar` with the actual name of your JAR file.
+
+3. **Logging:**
+
+   You can check the contents of the `output.log` file for any output or error messages from your application:
+
+   ```bash
+   cat output.log
+   ```
+
+   This log file will contain the standard output and standard error of your application.
+
+4. **Stop the Process (if needed):**
+
+   If you need to stop the process, you can find its process ID (PID) using `ps aux` and then use the `kill` command:
+
+   ```bash
+   kill -9 PID
+   ```
+
+   Replace `PID` with the actual process ID of your application.
+
+By following these steps, your Spring Boot application should continue running in the background even after closing the terminal. Keep in mind that running processes in the background with `nohup` may not be the best solution for a production environment, and you might want to consider using process management tools like systemd or using Docker for containerized deployments.

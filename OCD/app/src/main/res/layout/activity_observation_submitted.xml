@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".JournalEntry.ObservationSubmittedActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearRowskip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView android:id="@+id/imageImageThirteen"
+                android:layout_gravity="top|start"
+                android:layout_height="@dimen/_400pxh"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_imageremovebg_450x360"
+                />
+            <TextView android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:id="@+id/txtFantasticjob"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_19pxh"
+                android:layout_marginStart="@dimen/_19pxh"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@string/msg_fantastic_job"
+                style="@style/txtNunitoSansbold16_1"
+                tools:text="@string/msg_fantastic_job"/>
+            <TextView android:gravity="start"
+                android:id="@+id/txtDescription"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_19pxh"
+                android:layout_marginStart="@dimen/_19pxh"
+                android:layout_marginTop="@dimen/_14pxv"
+                android:layout_width="match_parent"
+                android:text="@string/msg_you_have_proved"
+                style="@style/txtNunitoSansregular14_1" tools:text="@string/msg_you_have_proved"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearRowskip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="9dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnLetsMoveMyJourneyAhead"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_19pxh"
+            android:layout_marginStart="@dimen/_19pxh"
+            android:layout_marginBottom="@dimen/_13pxh"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_15pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_15pxv"
+            android:singleLine="true"
+            android:text="@string/msg_let_s_move_my_j"
+            android:textAllCaps="false"
+            style="@style/btnSolidRoundedOutline_2"
+            tools:text="@string/msg_let_s_move_my_j"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnViewMyJournalEntry"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_19pxh"
+            android:layout_marginStart="@dimen/_19pxh"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_14pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_14pxv"
+            android:singleLine="true"
+            android:text="@string/msg_view_my_journal"
+            android:textAllCaps="false"
+            style="@style/btnSolidRoundedOutline_3" tools:text="@string/msg_view_my_journal"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
+

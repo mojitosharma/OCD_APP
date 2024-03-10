@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".TermAndConditionActivity">
+    tools:context=".registraion.TermAndConditionActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -61,6 +61,14 @@
         android:textSize="@dimen/_14pxh"
         android:textStyle="bold" tools:text="@string/msg_agree_and_proce"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnContinue"
         android:layout_width="match_parent"
@@ -77,6 +85,7 @@
         style="@style/btnSolidRounded_2"
         tools:text="@string/continue_p"
         />
+
 
 
 </RelativeLayout>

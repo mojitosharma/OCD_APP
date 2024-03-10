@@ -70,16 +70,16 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".TermAndConditionActivity"
+            android:name=".registraion.TermAndConditionActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyOTPActivity"
+            android:name=".registraion.VerifyOTPActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".registraion.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

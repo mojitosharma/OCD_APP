@@ -7,10 +7,13 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
+import okhttp3.RequestBody;
 
 public interface UserAPI {
 
@@ -23,4 +26,6 @@ public interface UserAPI {
     @PUT("/auth/regenerate-otp")
     Call<ResponseBody> regenerateOTP(@Query("email") String email);
 
+    @POST("/auth/login")
+    Call<ResponseBody> loginUser(@Body RequestBody requestBody);
 }

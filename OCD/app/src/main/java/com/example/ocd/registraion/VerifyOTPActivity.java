@@ -1,4 +1,4 @@
-package com.example.ocd;
+package com.example.ocd.registraion;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.ocd.HomeActivity;
+import com.example.ocd.OtpVerificationCallback;
+import com.example.ocd.R;
 import com.example.ocd.model.User;
 import com.example.ocd.retrofit.RetrofitService;
 import com.example.ocd.retrofit.UserAPI;
@@ -33,10 +36,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VerifyOTPActivity extends AppCompatActivity {
-
     private static final String PREF_NAME = "LoginPref";
     private static final String USER_DATA = "user_data";
-
     private EditText optTextViewOne, optTextViewTwo, optTextViewThree, optTextViewFour;
     private Button btnLetsBeginMyTherapy;
     private TextView txtDuration, otpSendText;

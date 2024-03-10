@@ -1,4 +1,4 @@
-package com.example.ocd;
+package com.example.ocd.registraion;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.ocd.R;
 import com.example.ocd.model.User;
 import com.example.ocd.retrofit.RetrofitService;
 import com.example.ocd.retrofit.UserAPI;

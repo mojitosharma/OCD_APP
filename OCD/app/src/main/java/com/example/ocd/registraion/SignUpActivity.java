@@ -1,4 +1,4 @@
-package com.example.ocd;
+package com.example.ocd.registraion;
 
 import static com.example.ocd.helper.helperFunctions.isPasswordValid;
 import static com.example.ocd.helper.helperFunctions.isValidDOBFormat;
@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +20,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ocd.LoginActivity;
+import com.example.ocd.R;
 import com.example.ocd.model.Name;
 import com.example.ocd.model.User;
 

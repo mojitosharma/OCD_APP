@@ -7,17 +7,16 @@ import android.os.Bundle;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.example.ocd.model.Name;
 import com.example.ocd.model.User;
+import com.example.ocd.registraion.TermAndConditionActivity;
 import com.example.ocd.retrofit.RetrofitService;
 import com.example.ocd.retrofit.UserAPI;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -26,7 +25,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 

@@ -98,7 +98,12 @@ public class ProfileActivity extends AppCompatActivity {
                 e.printStackTrace();
                 Toast.makeText(this, "Error loading user data", Toast.LENGTH_SHORT).show();
             }
-
+        }
+        else{
+            Toast.makeText(this, "Login error !!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 

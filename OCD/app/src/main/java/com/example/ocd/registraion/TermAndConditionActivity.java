@@ -91,6 +91,9 @@ public class TermAndConditionActivity extends AppCompatActivity {
 
     private void registerUser() {
         progressBar.setVisibility(View.VISIBLE);
+        checkBox.setVisibility(View.GONE);
+        btnContinue.setVisibility(View.GONE);
+        tvTermsAndConditions.setVisibility(View.GONE);
        UserAPI usrapi = retrofitService.getRetrofit().create(UserAPI.class);
         Call<ResponseBody> call = usrapi.registerUser(user);
 
@@ -98,6 +101,9 @@ public class TermAndConditionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 progressBar.setVisibility(View.GONE);
+                checkBox.setVisibility(View.VISIBLE);
+                btnContinue.setVisibility(View.VISIBLE);
+                tvTermsAndConditions.setVisibility(View.VISIBLE);
                 if (response.isSuccessful()) {
                     String contentType = response.headers().get("Content-Type");
                     ResponseBody responseBody = response.body();
@@ -138,6 +144,9 @@ public class TermAndConditionActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
+                checkBox.setVisibility(View.VISIBLE);
+                btnContinue.setVisibility(View.VISIBLE);
+                tvTermsAndConditions.setVisibility(View.VISIBLE);
                 Toast.makeText(TermAndConditionActivity.this, "Failed to register user", Toast.LENGTH_SHORT).show();
                 Logger.getLogger(TermAndConditionActivity.class.getName()).log(Level.SEVERE, "Error occurred", t);
             }

@@ -33,11 +33,7 @@ public class helperFunctions {
     }
 
     public static boolean isPasswordValid(String password) {
-        // Add your password validation logic here
-        // Password should be at least 8 characters, with at least one capital letter, one small letter,
-        // one number, and one special character
         String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}$";
-
         return password.matches(passwordPattern);
     }
 

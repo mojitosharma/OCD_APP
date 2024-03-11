@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ocd.HomeActivity;
 import com.example.ocd.R;
 import com.example.ocd.ResourcesActivity;
-import com.example.ocd.TaskActivity;
+import com.example.ocd.TaskWeeklyActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AppShortcutActivity extends AppCompatActivity {
@@ -51,7 +51,7 @@ public class AppShortcutActivity extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.menu_task:
-                    intent = new Intent(AppShortcutActivity.this, TaskActivity.class);
+                    intent = new Intent(AppShortcutActivity.this, TaskWeeklyActivity.class);
                     startActivity(intent);
                     finish();
                     return true;

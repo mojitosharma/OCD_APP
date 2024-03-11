@@ -2,27 +2,19 @@ package com.example.ocd.JournalEntry;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ocd.R;
-import com.example.ocd.TaskActivity;
+import com.example.ocd.TaskWeeklyActivity;
 import com.example.ocd.adapter.JournalFrequencyAdapter;
-import com.example.ocd.adapter.JournalListAdapter;
 import com.google.android.material.slider.Slider;
 
 import java.util.ArrayList;
@@ -115,7 +107,7 @@ public class JournalEntryFrequencyActivity extends AppCompatActivity {
 
     private void onClickCrossButton() {
         crossButton.setOnClickListener(view -> {
-            Intent intent = new Intent(JournalEntryFrequencyActivity.this, TaskActivity.class);
+            Intent intent = new Intent(JournalEntryFrequencyActivity.this, TaskWeeklyActivity.class);
             startActivity(intent);
             this.finish();
         });

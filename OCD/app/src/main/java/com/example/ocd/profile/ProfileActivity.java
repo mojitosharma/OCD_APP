@@ -17,7 +17,7 @@ import com.example.ocd.HomeActivity;
 import com.example.ocd.MainActivity;
 import com.example.ocd.R;
 import com.example.ocd.ResourcesActivity;
-import com.example.ocd.TaskActivity;
+import com.example.ocd.TaskWeeklyActivity;
 import com.example.ocd.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
@@ -184,7 +184,7 @@ public class ProfileActivity extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.menu_task:
-                    intent = new Intent(ProfileActivity.this, TaskActivity.class);
+                    intent = new Intent(ProfileActivity.this, TaskWeeklyActivity.class);
                     startActivity(intent);
                     finish();
                     return true;

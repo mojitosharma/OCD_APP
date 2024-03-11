@@ -21,34 +21,11 @@ import android.widget.ImageView;
 import com.example.ocd.HomeActivity;
 import com.example.ocd.R;
 import com.example.ocd.ResourcesActivity;
-import com.example.ocd.TaskActivity;
+import com.example.ocd.TaskWeeklyActivity;
 import com.example.ocd.model.Name;
 import com.example.ocd.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 
 // todo set the read the value and image from the database and set the values in the edit text
@@ -298,7 +275,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.menu_task:
-                    intent = new Intent(EditProfileActivity.this, TaskActivity.class);
+                    intent = new Intent(EditProfileActivity.this, TaskWeeklyActivity.class);
                     startActivity(intent);
                     finish();
                     return true;

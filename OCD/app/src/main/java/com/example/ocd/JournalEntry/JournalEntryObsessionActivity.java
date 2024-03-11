@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.ocd.R;
-import com.example.ocd.TaskActivity;
+import com.example.ocd.TaskWeeklyActivity;
 import com.example.ocd.adapter.JournalListAdapter;
 
 
@@ -111,7 +111,7 @@ public class JournalEntryObsessionActivity extends AppCompatActivity {
 
     private void onClickCrossButton() {
         crossButton.setOnClickListener(view -> {
-            Intent intent = new Intent(JournalEntryObsessionActivity.this, TaskActivity.class);
+            Intent intent = new Intent(JournalEntryObsessionActivity.this, TaskWeeklyActivity.class);
             startActivity(intent);
             this.finish();
         });

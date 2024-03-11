@@ -10,6 +10,8 @@
     <string name="other">other</string>
     <string name="lbl_nil">NIL</string>
     <string name="no_internet_connection">No internet connection!</string>
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
     <string name="msg_beginner_friend3">Beginner-friendly Week</string>
     <string name="lbl_rocd_i">ROCD I</string>
     <string name="msg_beginner_friend2">

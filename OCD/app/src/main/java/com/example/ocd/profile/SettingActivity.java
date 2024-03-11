@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ocd.HomeActivity;
 import com.example.ocd.R;
 import com.example.ocd.ResourcesActivity;
-import com.example.ocd.TaskActivity;
+import com.example.ocd.TaskWeeklyActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingActivity extends AppCompatActivity {
@@ -102,7 +102,7 @@ public class SettingActivity extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.menu_task:
-                    intent = new Intent(SettingActivity.this, TaskActivity.class);
+                    intent = new Intent(SettingActivity.this, TaskWeeklyActivity.class);
                     startActivity(intent);
                     finish();
                     return true;

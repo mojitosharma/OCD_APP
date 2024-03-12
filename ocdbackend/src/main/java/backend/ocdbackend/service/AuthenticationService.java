@@ -151,6 +151,8 @@ public class AuthenticationService {
             return new ResponseEntity<>(loginResponseDTO, HttpStatus.OK);
         } catch(AuthenticationException e){
             return new ResponseEntity<>("Error: Authentification Failed", HttpStatus.BAD_REQUEST);
+        } catch(RuntimeException e){
+            return new ResponseEntity<>("Error: User not found with this email", HttpStatus.BAD_REQUEST);
         }
     }
 

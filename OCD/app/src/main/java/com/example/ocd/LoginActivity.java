@@ -141,8 +141,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } else {
                     try {
-                        assert response.errorBody() != null;
-                        Toast.makeText(LoginActivity.this, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                        String message = response.errorBody().string();
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

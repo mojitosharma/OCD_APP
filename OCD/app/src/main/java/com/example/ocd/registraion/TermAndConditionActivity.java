@@ -133,8 +133,8 @@ public class TermAndConditionActivity extends AppCompatActivity {
                 }
                 else {
                     try {
-                        assert response.errorBody() != null;
-                        Toast.makeText(TermAndConditionActivity.this, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                        String message = response.errorBody().string();
+                        Toast.makeText(TermAndConditionActivity.this, message, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/parentView"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/_5pxh"
+    android:layout_marginBottom="@dimen/_5pxh"
+    android:layout_marginStart="@dimen/_3pxh"
+    android:layout_marginEnd="@dimen/_3pxh">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cellDayText"
-        android:text="1"
-        android:textSize="20sp"
-        android:padding="@dimen/_5pxh"
+        android:text="@string/lbl_d"
+        android:paddingLeft="@dimen/_5pxv"
+        android:paddingRight="@dimen/_5pxv"
+        android:textSize="15sp"
         android:textColor="@color/black"
         android:gravity="center"
         style="@style/txtNunitoSansregular14_1"

@@ -53,9 +53,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
         View view = inflater.inflate(R.layout.calendar_cell, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         if(days.size() > 15) //month view
-            layoutParams.height = (int) (parent.getHeight() * 0.166666666);
+            layoutParams.height = (int) (parent.getHeight() * 0.145);
         else // week view
-            layoutParams.height = (int) parent.getHeight();
+            layoutParams.height = (int) (parent.getHeight()*0.85);
 
         return new CalendarViewHolder(view, onItemListener, days);
     }

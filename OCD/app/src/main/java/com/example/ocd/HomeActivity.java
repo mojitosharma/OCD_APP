@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.ocd.JournalEntry.JournalEntryCompulsionActivity;
+import com.example.ocd.JournalEntry.TaskMonthlyActivity;
 import com.example.ocd.profile.ProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,12 +35,12 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.menu_home:
                     return true;
                 case R.id.menu_task:
-                    intent = new Intent(HomeActivity.this, TaskActivity.class);
+                    intent = new Intent(HomeActivity.this, TaskMonthlyActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 case R.id.menu_resource:
-                    intent = new Intent(HomeActivity.this, ResourcesActivity.class);
+                    intent = new Intent(HomeActivity.this, JournalEntryCompulsionActivity.class);
                     startActivity(intent);
                     finish();
                     return true;

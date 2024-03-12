@@ -18,9 +18,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ocd.CalendarUtils;
+import com.example.ocd.HomeActivity;
 import com.example.ocd.R;
 import com.example.ocd.TaskWeeklyActivity;
 import com.example.ocd.adapter.CalendarAdapter;
+import com.example.ocd.profile.ProfileActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class TaskMonthlyActivity extends AppCompatActivity implements CalendarAd
     private Button btnDay;
     private Button previousMonthBtn;
     private Button nextMonthBtn;
+    private BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -47,6 +51,7 @@ public class TaskMonthlyActivity extends AppCompatActivity implements CalendarAd
         onClickBtnWeek();
         onClickPreviousMonth();
         onClickNextMonth();
+        onClickBottomNavigationView();
     }
 
 
@@ -57,6 +62,7 @@ public class TaskMonthlyActivity extends AppCompatActivity implements CalendarAd
         btnDay = findViewById(R.id.btnDay);
         previousMonthBtn = findViewById(R.id.previousMonthBtn);
         nextMonthBtn = findViewById(R.id.nextMonthBtn);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
     }
 
     private void onCLickBtnDay() {
@@ -104,6 +110,32 @@ public class TaskMonthlyActivity extends AppCompatActivity implements CalendarAd
             CalendarUtils.selectedDate = date;
             setMonthView();
         }
+    }
+
+    private void onClickBottomNavigationView() {
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Intent intent;
+            switch (item.getItemId()) {
+                case R.id.menu_home:
+                    intent = new Intent(TaskMonthlyActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                case R.id.menu_task:
+                    return true;
+                case R.id.menu_resource:
+                    intent = new Intent(TaskMonthlyActivity.this, JournalEntryCompulsionActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                case R.id.menu_profile:
+                    intent = new Intent(TaskMonthlyActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+            }
+            return false;
+        });
     }
 
 }

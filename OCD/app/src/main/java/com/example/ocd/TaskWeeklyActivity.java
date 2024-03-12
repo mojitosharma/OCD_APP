@@ -33,6 +33,8 @@ import com.example.ocd.JournalEntry.TaskDailyActivity;
 import com.example.ocd.JournalEntry.TaskMonthlyActivity;
 import com.example.ocd.adapter.CalendarAdapter;
 import com.example.ocd.adapter.EventAdapter;
+import com.example.ocd.profile.ProfileActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public class TaskWeeklyActivity extends AppCompatActivity implements CalendarAda
     private ListView eventListView;
     private Button previousWeekBtn;
     private Button nextWeekBtn;
+    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,7 @@ public class TaskWeeklyActivity extends AppCompatActivity implements CalendarAda
         onClickPreviousWeekBtn();
         onClickNextWeekBtn();
         setWeekView();
+        onClickBottomNavigationView();
     }
 
     private void initialize() {
@@ -66,6 +70,7 @@ public class TaskWeeklyActivity extends AppCompatActivity implements CalendarAda
         nextWeekBtn = findViewById(R.id.nextWeekBtn);
         btnMonth = findViewById(R.id.btnMonth);
         btnDay = findViewById(R.id.btnDay);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
     }
 
     private void onClickPreviousWeekBtn() {
@@ -128,6 +133,32 @@ public class TaskWeeklyActivity extends AppCompatActivity implements CalendarAda
 
     public void newEventAction(View view) {
 //            startActivity(new Intent(this, EventEditActivity.class));
+    }
+
+    private void onClickBottomNavigationView() {
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Intent intent;
+            switch (item.getItemId()) {
+                case R.id.menu_home:
+                    intent = new Intent(TaskWeeklyActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                case R.id.menu_task:
+                    return true;
+                case R.id.menu_resource:
+                    intent = new Intent(TaskWeeklyActivity.this, JournalEntryCompulsionActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                case R.id.menu_profile:
+                    intent = new Intent(TaskWeeklyActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+            }
+            return false;
+        });
     }
 }
 

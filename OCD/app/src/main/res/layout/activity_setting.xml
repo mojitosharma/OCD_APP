@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile.SettingActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarToolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:contentInsetStart="0dp">
+        <ImageView android:id="@+id/backArrow"
+            android:layout_height="@dimen/_25pxh"
+            android:layout_marginTop="@dimen/_3pxv"
+            android:layout_width="@dimen/_24pxh"
+            android:layout_marginStart="@dimen/_25pxh"
+            android:paddingStart="@dimen/_5pxh"
+            android:paddingEnd="@dimen/_5pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_arrow3"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_arrow3"/>
+        <TextView
+            android:id="@+id/txtSetting"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_1pxv"
+            android:text="@string/lbl_settings"
+            style="@style/txtDMSansbold20"
+            tools:text="@string/lbl_settings"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarToolbar"
+        android:layout_above="@+id/bottomNavigation">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/_10pxv"
+        android:layout_marginEnd="@dimen/_20pxh"
+        android:layout_marginStart="@dimen/_20pxh">
+
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtGeneral"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_23pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@string/lbl_general"
+            style="@style/txtNunitoSanssemibold14_11"
+            android:textSize ="@dimen/_17pxh"
+            tools:text="@string/lbl_general"/>
+
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnlanguage"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            style="@style/groupStylegray_100cornerRadius">
+
+            <LinearLayout
+                android:id="@+id/preferences"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:paddingBottom="@dimen/_10pxv"
+                android:paddingEnd="@dimen/_8pxh"
+                android:paddingStart="@dimen/_4pxh">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_vector_gray_800_18x18"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_4pxh"/>
+
+                <TextView
+                    android:drawablePadding="@dimen/_30pxh"
+                    android:ellipsize="end"
+                    android:text="@string/lbl_preferences"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:singleLine="true"
+                    android:textColorHint="@color/gray_900"
+                    style="@style/etNunitoSansregular14_1"
+                    app:drawableEndCompat="@drawable/img_arrow_3_gray_800" />
+            </LinearLayout>
+
+            <View android:background="@color/gray_300"
+                android:layout_height="@dimen/_1pxv"
+                android:layout_width="@dimen/_320pxh"/>
+
+            <LinearLayout
+                android:id="@+id/apps_shortcut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:paddingBottom="@dimen/_10pxv"
+                android:paddingEnd="@dimen/_8pxh"
+                android:paddingStart="@dimen/_4pxh">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_user"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_4pxh"/>
+
+                <TextView
+                    android:drawablePadding="@dimen/_30pxh"
+                    android:ellipsize="end"
+                    android:text="@string/lbl_app_shortcuts"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:singleLine="true"
+                    android:textColorHint="@color/gray_900"
+                    style="@style/etNunitoSansregular14_1"
+                    app:drawableEndCompat="@drawable/img_arrow_3_gray_800" />
+            </LinearLayout>
+
+            <View android:background="@color/gray_300"
+                android:layout_height="@dimen/_1pxv"
+                android:layout_width="@dimen/_320pxh"/>
+
+            <LinearLayout
+                android:id="@+id/change_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:paddingBottom="@dimen/_10pxv"
+                android:paddingEnd="@dimen/_8pxh"
+                android:paddingStart="@dimen/_4pxh">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_location_gray_800"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_4pxh"/>
+
+                <TextView
+                    android:drawablePadding="@dimen/_30pxh"
+                    android:ellipsize="end"
+                    android:text="@string/lbl_change_password"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:singleLine="true"
+                    android:textColorHint="@color/gray_900"
+                    style="@style/etNunitoSansregular14_1"
+                    app:drawableEndCompat="@drawable/img_arrow_3_gray_800" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <TextView android:ellipsize="end"
+            android:id="@+id/personalization"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_23pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@string/lbl_personalization"
+            style="@style/txtNunitoSanssemibold14_11"
+            android:textSize ="@dimen/_17pxh"
+            tools:text="@string/lbl_personalization"/>
+
+
+        <LinearLayout android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            style="@style/groupStylegray_100cornerRadius">
+
+            <LinearLayout
+                android:id="@+id/notifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:paddingBottom="@dimen/_10pxv"
+                android:paddingEnd="@dimen/_8pxh"
+                android:paddingStart="@dimen/_4pxh">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_vector_gray_800_20x20"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_4pxh"/>
+
+                <TextView
+                    android:drawablePadding="@dimen/_30pxh"
+                    android:ellipsize="end"
+                    android:text="@string/lbl_notifications"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:singleLine="true"
+                    android:textColorHint="@color/gray_900"
+                    style="@style/etNunitoSansregular14_1"
+                    app:drawableEndCompat="@drawable/img_arrow_3_gray_800" />
+            </LinearLayout>
+
+            <View android:background="@color/gray_300"
+                android:layout_height="@dimen/_1pxv"
+                android:layout_width="@dimen/_320pxh"/>
+
+            <LinearLayout
+                android:id="@+id/change_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:paddingBottom="@dimen/_10pxv"
+                android:paddingEnd="@dimen/_8pxh"
+                android:paddingStart="@dimen/_4pxh">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_vector_gray_800_20x22"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_4pxh"/>
+
+                <TextView
+                    android:drawablePadding="@dimen/_30pxh"
+                    android:ellipsize="end"
+                    android:text="@string/lbl_change_language"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:singleLine="true"
+                    android:textColorHint="@color/black_900"
+                    style="@style/etNunitoSansregular14_1"
+                    app:drawableEndCompat="@drawable/img_arrow_3_gray_800" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+
+
+
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        style="@style/groupStylewhite_3"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@drawable/bottom_navigation_color_selector"
+        app:itemTextColor="@drawable/bottom_navigation_color_selector"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>

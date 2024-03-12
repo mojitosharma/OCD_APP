@@ -1,6 +1,8 @@
 package com.example.ocd;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,9 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
-
+    private static final String PREF_NAME = "LoginPref";
+    private static final String FIRST_TIME_KEY = "isFirstTime";
     private static final int SPLASH_SCREEN_DURATION = 3000;
     private int currentScreen = 1;
+    private Handler handler;
+    private Runnable myRunnable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,12 +33,18 @@ public class SplashScreenActivity extends AppCompatActivity {
             onClickLetsMakeItHappen();
         }
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                moveToNextScreen();
-//            }
-//        }, SPLASH_SCREEN_DURATION);
+        handler = new Handler();
+        myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                moveToNextScreen();
+            }
+        };
+
+// ...
+
+// Start the delayed operation
+        handler.postDelayed(myRunnable, SPLASH_SCREEN_DURATION);
     }
 
     // Load the appropriate layout for each splash screen
@@ -63,6 +74,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Skip all the splash screens
+                handler.removeCallbacks(myRunnable);
                 Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -89,6 +101,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Move to the main activity
                 startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+                // If it's the first time, set the flag to false and show splash activity
+                SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean(FIRST_TIME_KEY, false);
+                editor.apply();
                 finish();
             }
         });

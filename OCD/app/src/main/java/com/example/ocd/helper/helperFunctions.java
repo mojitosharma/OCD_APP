@@ -13,7 +13,7 @@ public class helperFunctions {
 
     // Helper method to check if the DOB is in the correct format (DD/YY/MM)
     public static boolean isValidDOBFormat(String dob) {
-        String dobPattern = "\\d{2}/\\d{2}/\\d{2}";
+        String dobPattern = "\\d{2}/\\d{2}/\\d{4}";
         if (dob.matches(dobPattern)) {
             // Check if values are numbers only
             String[] parts = dob.split("/");
@@ -36,7 +36,7 @@ public class helperFunctions {
         // Add your password validation logic here
         // Password should be at least 8 characters, with at least one capital letter, one small letter,
         // one number, and one special character
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z@$!%*?&]{8,}$";
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&]).{8,}$";
 
         return password.matches(passwordPattern);
     }

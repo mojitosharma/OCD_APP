@@ -6,4 +6,8 @@
         <item>Female</item>
         <item>Other</item>
     </array>
+    <array name="slider_values">
+        <item>0.0</item>
+        <item>100.0</item>
+    </array>
 </resources>

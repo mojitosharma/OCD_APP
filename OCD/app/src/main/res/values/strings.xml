@@ -6,6 +6,9 @@
     <string name="loading">Loading…</string>
     <string name="msg_validateOTP">A 4-digit verification code is sent to %s. Please enter it here.</string>
     <string name="gender_and_dob">%s \u2022 %s</string>
+    <string name="msg_good_morning">Good morning, %s!</string>
+    <string name="other">other</string>
+    <string name="lbl_nil">NIL</string>
     <string name="no_internet_connection">No internet connection!</string>
     <string name="msg_beginner_friend3">Beginner-friendly Week</string>
     <string name="lbl_rocd_i">ROCD I</string>
@@ -605,5 +608,6 @@ Stage </string>
     <string name="lbl_jan_18_2024">Jan 18, 2024</string>
     <string name="lbl_about_the_video">About the video</string>
     <string name="msg_6_10_times_0">6-10 times ; 0-5 minutes</string>
+    <string name="_0">0</string>
 
 </resources>

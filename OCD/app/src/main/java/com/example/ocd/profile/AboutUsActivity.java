@@ -1,21 +1,22 @@
-package com.example.ocd;
+package com.example.ocd.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import com.example.ocd.HomeActivity;
+import com.example.ocd.R;
+import com.example.ocd.ResourcesActivity;
+import com.example.ocd.TaskActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class AboutUsActivity extends AppCompatActivity {
 
 
     BottomNavigationView bottomNavigationView;
+    private ImageView backArrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,34 +24,49 @@ public class AboutUsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_us);
 
         intitalize();
+        onClickbackArrow();
         onClickBottomNavigationView();
 
 
     }
 
     private void intitalize() {
+        backArrow = findViewById(R.id.backArrow);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.menu_home);
+        bottomNavigationView.setSelectedItemId(R.id.menu_profile);
+    }
+
+    private void onClickbackArrow(){
+        backArrow.setOnClickListener(view -> {
+            this.finish();
+        });
     }
 
     private void onClickBottomNavigationView() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
+            Intent intent;
             switch (item.getItemId()) {
                 case R.id.menu_home:
-//                    selectedFragment = new HomeFragment();
+                    intent = new Intent(AboutUsActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 case R.id.menu_task:
-                    Toast.makeText(AboutUsActivity.this, "My Plants Clicked", Toast.LENGTH_SHORT).show();
-//                    selectedFragment = new TaskFragment();
+                    intent = new Intent(AboutUsActivity.this, TaskActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 case R.id.menu_resource:
-//                    selectedFragment = new ResourceFragment();
+                    intent = new Intent(AboutUsActivity.this, ResourcesActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 case R.id.menu_profile:
-//                    selectedFragment = new ProfileFragment();
                     return true;
             }
             return false;
         });
     }
+
+
 }

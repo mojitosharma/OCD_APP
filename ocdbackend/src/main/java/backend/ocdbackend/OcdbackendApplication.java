@@ -5,6 +5,7 @@ import backend.ocdbackend.model.Name;
 import backend.ocdbackend.model.Role;
 import backend.ocdbackend.repository.RoleRepository;
 import backend.ocdbackend.repository.UserRepository;
+import com.twilio.Twilio;
 import org.bson.types.ObjectId;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +20,15 @@ import java.util.Set;
 
 @SpringBootApplication
 public class OcdbackendApplication {
+	// Twilio Credentials
+	private final static String ACCOUNT_SID = "AC653f3309ea60b69378d3163ef146d7f2";
+	private final static String AUTH_ID = "5b69db33b35a6a3a6c482540ca29eb5b";
+
+	// Initializing the Twilio
+	// Java Library with our credentials
+	static {
+		Twilio.init(ACCOUNT_SID, AUTH_ID);
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(OcdbackendApplication.class, args);
 	}

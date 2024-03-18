@@ -36,7 +36,6 @@ public class ApplicationUser implements UserDetails {
     private String occupation;
     private int therapist_id;
     private String profile_image; // Base64 encoded image data
-
     private Boolean locked = false;
 
     private Boolean enabled = false;
@@ -46,7 +45,7 @@ public class ApplicationUser implements UserDetails {
 
     private LocalDateTime otpGeneratedTime;
 
-
+    private Boolean otpUsed;
 
     public ApplicationUser() {
         super();

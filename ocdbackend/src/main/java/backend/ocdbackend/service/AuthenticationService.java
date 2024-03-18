@@ -12,6 +12,8 @@ import backend.ocdbackend.utils.OtpUtil;
 import org.bson.types.ObjectId;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -61,12 +63,8 @@ public class AuthenticationService {
         if (existingUser.isPresent()) {
             ApplicationUser olduser = userRepository.findByEmail(registerDto.getEmail())
                     .orElseThrow(() -> new RuntimeException("User not found with this email: " + registerDto.getEmail()));
-            if (olduser.getEnabled()) { 
-                return new ResponseEntity<>("Error: User already exists and cannot register", HttpStatus.BAD_REQUEST);
-                } //user enabled
-            if (!olduser.getEnabled()){
-                userRepository.deleteById(olduser.getUser_id());
-            }
+            if (olduser.getEnabled()) return new ResponseEntity<>("Error: User already exists and cannot register", HttpStatus.BAD_REQUEST);
+            if (!olduser.getEnabled()) userRepository.deleteById(olduser.getUser_id());
         }
 
         String otp = otpUtil.generateOtp();
@@ -99,6 +97,7 @@ public class AuthenticationService {
 
         user.setOtp(otp);
         user.setOtpGeneratedTime(LocalDateTime.now());
+        user.setOtpUsed(false);
         userRepository.save(user);
         return new ResponseEntity<ApplicationUser>(user, HttpStatus.OK);
     }
@@ -106,14 +105,15 @@ public class AuthenticationService {
     public ResponseEntity<?> verifyAccount(String email, String otp) {
         ApplicationUser user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found with this email: " + email));
-        if (user.getOtp().equals(otp) && Duration.between(user.getOtpGeneratedTime(),
+        if (user.getOtp().equals(otp) && user.getOtpUsed().equals(false) && Duration.between(user.getOtpGeneratedTime(),
                 LocalDateTime.now()).getSeconds() < (1 * 60)) {
             user.setEnabled(true);
+            user.setOtpUsed(true);
             userRepository.save(user);
             return new ResponseEntity<ApplicationUser>(user, HttpStatus.OK);
         }
         regenerateOtp(email);
-        return new ResponseEntity<>("Error: Invalid OTP, New OTP send", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Error: Invalid OTP, OTP send", HttpStatus.BAD_REQUEST);
     }
 
     public String regenerateOtp(String email) {
@@ -127,6 +127,7 @@ public class AuthenticationService {
         }
         user.setOtp(otp);
         user.setOtpGeneratedTime(LocalDateTime.now());
+        user.setOtpUsed(false);
         userRepository.save(user);
         return "Email sent... please verify account within 1 minute";
     }
@@ -140,15 +141,14 @@ public class AuthenticationService {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
-           if (password.equals(user.getPassword())) {
-                return new ResponseEntity<>("Error: Password is incorrect", HttpStatus.BAD_REQUEST);
-           } else if (!user.isEnabled()) {
-                return new ResponseEntity<>("Error: your account is not verified", HttpStatus.BAD_REQUEST);
 
-           }
+           if (password.equals(user.getPassword())) return new ResponseEntity<>("Error: Password is incorrect", HttpStatus.BAD_REQUEST);
+           else if (!user.isEnabled()) return new ResponseEntity<>("Error: your account is not verified", HttpStatus.BAD_REQUEST);
+
             String token = tokenService.generateJwt(auth);
             LoginResponseDTO loginResponseDTO = new LoginResponseDTO(userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found")), token);
             return new ResponseEntity<>(loginResponseDTO, HttpStatus.OK);
+
         } catch(AuthenticationException e){
             return new ResponseEntity<>("Error: Authentification Failed", HttpStatus.BAD_REQUEST);
         }

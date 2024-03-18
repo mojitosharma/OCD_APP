@@ -88,6 +88,12 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version> <!-- Use the latest version available -->
 		</dependency>
+
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>10.0.0-rc.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
